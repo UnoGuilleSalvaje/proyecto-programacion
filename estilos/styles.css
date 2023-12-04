@@ -16120,7 +16120,7 @@ body.mvl-menu--open,html.mvl-menu--open {
 span {
     cursor: pointer; /* Hace que el cursor sea una mano al pasar sobre el texto */
     transition: all 0.3s ease; /* Transición suave para todos los efectos */
-    color: rgba(255, 255, 255, 1); /* Color inicial semitransparente */
+    color: rgba(255, 255, 255); /* Color inicial semitransparente */
 }
 
 span:hover {

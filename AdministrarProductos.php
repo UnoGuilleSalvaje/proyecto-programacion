@@ -31,7 +31,7 @@
         while($fila=$resultado->fetch_assoc()){
             $_SESSION['id'] =$fila['id'];
             $_SESSION['nom'] =$fila['nombre'];
-            $_SESSION['dec'] = $fila['descripcion'];
+            $_SESSION['des'] = $fila['descripcion'];
             $_SESSION['pre'] = $fila['precio'];
             $_SESSION['cant'] = $fila['cantidadExistencia'];
             $_SESSION['agot'] = $fila['agotado'];
