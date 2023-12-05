@@ -10,25 +10,64 @@ if (isset($_SESSION['username'])) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Preguntas Frecuentes - GAND's Movies</title>
-    <link rel="stylesheet" href="estilos/styles.css">
-    <link rel="icon" href="media/g.png" type="image/x-icon">
-    <link rel="shortcut icon" href="media/g.png" type="image/x-icon" >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<?php
+// Conexión a la base de datos
+$servidor = 'localhost';
+$cuenta = 'root';
+$password = '';
+$bd = 'db_peliculas';
+$conexion = new mysqli($servidor, $cuenta, $password, $bd);
 
-    <!-- Bootstrap CSS -->
+if ($conexion->connect_errno) {
+    die('Error en la conexión');
+}
+
+// Obtener todas las películas
+function obtenerPeliculas() {
+    global $conexion;
+    $sql = "SELECT * FROM peliculas";
+    $result = $conexion->query($sql);
+    $peliculas = [];
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $peliculas[] = $row;
+        }
+    }
+    return $peliculas;
+}
+
+$peliculas = obtenerPeliculas();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Tienda</title>
+        <link rel="stylesheet" href="estilos/styles.css">
+		<link rel="stylesheet" href="estilos/estilos.css" />
+        <link rel="icon" href="media/g.png" type="image/x-icon">
+        <link rel="shortcut icon" href="media/g.png" type="image/x-icon" >
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWecw7o4Lg5L3M4anMK8XQ6/JD4pky3uK6PAx9F0RJK5hNgLl4mJ7L6yHuhf"
+        crossorigin="anonymous"
+        />
+
+        <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
+	</head>
+	<bodyt>
 
-<!-- Barra de Navegación -->
+        <!-- Barra de Navegación -->
 
-<nav class="navigation__container">
+        <nav class="navigation__container">
                         <div class="navigation__container--navs 
                             navigation__container--fixed 
                             navigation__container--top">
@@ -88,22 +127,55 @@ if (isset($_SESSION['username'])) {
         <?php endif; ?>
     </div>
 
-                                                <div class="search desktopNav__tabContainer ">
+                                                <div class="search desktopNav__tabContainer">
                                                     <a id="search" class="search desktopNav__tab" aria-label="search"
                                                         href="#">
-                                                        <span
-                                                            class="icon--svg icon--svg--black-fill icon--svg--black-stroke icon--search"
-                                                            aria-hidden="true">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="19"
-                                                                height="17" viewBox="0 0 19 17" fill-rule="evenodd">
-                                                                <circle cx="6.5" cy="6.5" r="5.5">
+ <div class="container-icon">
+				<div class="container-cart-icon" >
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-cart" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path d="M3 3h18v2H3z"/>
+  <path d="M3 8h18l-1.5 9H4.5L3 8z"/>
+  <circle cx="6" cy="19" r="2"/>
+  <circle cx="17" cy="19" r="2"/>
+</svg>
 
-                                                                </circle>
-                                                                <path d="M14 14l3.536 3.536">
+					<div class="count-products ">
+						<span id="contador-productos">0</span>
+					</div>
+				</div>
 
-                                                                </path>
-                                                            </svg>
-                                                        </span>
+				<div class="container-cart-products hidden-cart">
+					<div class="row-product hidden">
+						<div class="cart-product">
+							<div class="info-cart-product">
+								<span class="cantidad-producto-carrito">1</span>
+								<p class="titulo-producto-carrito">El carrito se encuentra vacío</p>
+								<span class="precio-producto-carrito">$0</span>
+							</div>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="red"
+								class="icon-close"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M6 18L18 6M6 6l12 12"
+								/>
+							</svg>
+						</div>
+					</div>
+
+					<div class="cart-total hidden">
+						<h3>Total:</h3>
+						<span class="total-pagar">$0</span>
+					</div>
+					<p class="cart-empty invisible">El carrito está vacío</p>
+				</div>
+			</div>
                                                     </a>
                                                 </div>
                                                 
@@ -111,6 +183,7 @@ if (isset($_SESSION['username'])) {
                                             
                                         </div>
                                     </div>
+
                     
                                     <!-- Links   -->
                                     <div class="desktopNav__lower">
@@ -176,172 +249,61 @@ if (isset($_SESSION['username'])) {
                     </nav>
 
 
-                    <section id="sets-7" class="page__component page__component-- page__component--sets  ">
-                        <div class="sets base_sets half ">
-                            <div class="sets__hero">
-                                <div class="sets__bg__container">
-                                    <figure class="img__wrapper sets__background__wrapper">
-                                        <div class="built__background built__background--single sets__background use-vars"
-                                            style="background-image:url(%27https_/cdn.marvel.com/content/1x/new_com_20231115_set_01.html)">
-                                        </div>
-                                    </figure>
-                                </div>
-                                <div class="mobile_tab"><button class="baseCarousel__arrow base_sets__arrow left "
-                                        role="button" tabindex="0"><svg viewBox="10 0 50 110" width="30px">
-                                            <path d="M40 35 L20 55 L40 75" class="arrow"></path>
-                                        </svg></button>
-                                    <div class="tabs-mobile"></div><button
-                                        class="baseCarousel__arrow base_sets__arrow right" role="button"
-                                        tabindex="0"><svg viewBox="0 0 50 110" width="30px">
-                                            <path d="M20,75,40,55,20,35" class="arrow"></path>
-                                        </svg></button>
-                                </div>
-                                <div class="sets__main">
-                                    <div class="sets__container " aria-live="polite" role="region">
-                                        <div class="sets__eyebrow">Soporte Gands Movies</div>
-                                        <div class="sets__title">¿En qué podemos ayudarte?</div>
-                                        <div class="sets__description">Estamos aquí para ayudarte en cada paso de tu experiencia con nosotros.
-                                             ¿Tienes preguntas sobre cómo encontrar una película, cómo realizar una compra o cualquier otro tema? 
-                                             ¡No dudes en contactarnos! Nuestro equipo de soporte está listo para brindarte la asistencia que necesitas.</div>
-                                             <div class="search-box">
-                                                <input type="text" class="search-input" placeholder="¿Cómo podemos ayudarte?" aria-label="Buscar">
-                                                <button class="search-button" aria-label="Buscar">
-                                                    <i class="fas fa-search"></i> <!-- Utiliza Font Awesome para el ícono de búsqueda -->
-                                                </button>
-                                            </div>
+                    <br><br>
+                    <h1 class="txt">Películas</h1>
 
-                                            
-                                                    
-                                    </div>
-                                    <img class="img-black-original" src="media/soporte.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tabs__div"></div>
-                        </div>
-                    </section>
+		<header>
+			
+            <p style="margin-left: 50px; margin-right: 50px;">Explora nuestro extenso catálogo de películas, donde encontrarás desde los clásicos atemporales hasta los éxitos contemporáneos. Cada película ha sido seleccionada para garantizar que tengas acceso a una diversidad de géneros y estilos, adecuados para cualquier preferencia o estado de ánimo. Nuestro objetivo es proporcionarte no solo entretenimiento, sino también la oportunidad de descubrir nuevas historias y aventurarte en mundos desconocidos, todo desde el confort de tu hogar.</p>
+			
+		</header>
+        <!-- Películas ----------------------------------------------------------------------------- -->
+        <div class="container-items" style="margin-left: 50px; margin-right: 50px;";>
+        <?php
+// Suponiendo que ya tienes una conexión a la base de datos establecida y guardada en la variable $conexion
 
-<div class="container">
-    <br>
-  <h2>Preguntas Frecuentes</h2>
+// Obtener las películas de la base de datos
+$resultado = $conexion->query("SELECT * FROM peliculas");
 
-    <div class="accordion" id="faqAccordion">
-        <!-- Pregunta 1 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel1')">
-                ¿Cómo puedo comprar una película en línea?
-            </div>
-            <div class="panel-body" id="panel1">
-            Para comprar una película en línea en nuestra página, simplemente sigue estos sencillos pasos:
+// Verificar si hay resultados
+if ($resultado->num_rows > 0) {
+    // Mostrar cada película en un div
+    while ($pelicula = $resultado->fetch_assoc()) {
+        $descuentoTexto = $pelicula['tiene_descuento'] == '1' ? $pelicula['descuento'] . '%' : 'No';
+        $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
+        $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
 
-            Busca la película que deseas comprar utilizando la barra de búsqueda o navegando a través de las categorías disponibles.
-            <br>
-            Una vez que has encontrado la película que te interesa, haz clic en ella para ver más detalles, como el formato y el precio.
-            <br>
-            Añade la película a tu carrito de compras haciendo clic en el botón correspondiente.
-            <br>
-            Revisa tu carrito de compras para asegurarte de que la película y la cantidad sean correctas, y procede a la página de pago.
-            <br>
-            En la página de pago, completa la información requerida, como tu dirección de envío y los detalles de tu tarjeta de crédito o usa nuestro sistema de pago seguro.
-            <br>
-            Una vez completada la compra, recibirás una confirmación de tu pedido junto con los detalles de envío si aplica. En el caso de una descarga digital, recibirás instrucciones para acceder a tu película.
-            <br>
-            Esperamos que esto te ayude a comprar la película que buscas. Si tienes alguna otra pregunta o necesitas ayuda adicional, no dudes en contactarnos.
-            </div>
+        echo "<div class='item'>
+                <figure>
+                    <img src='{$pelicula['imagen']}' alt='{$pelicula['nombre']}' />
+                </figure>
+                <div class='info-product'>
+                    <h2>{$pelicula['nombre']}</h2>
+                    <p>ID: {$pelicula['id']}</p>
+                    <p>Descripción: {$pelicula['descripcion']}</p>
+                    <p>Cantidad en existencia: {$pelicula['cantidad_existencia']}</p>
+                    <p>Estado: {$estado}</p>
+                    <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>
+                    <p>Descuento: {$descuentoTexto}</p>
+                    <p>Género: {$pelicula['genero']}</p>
+                    <button class='btn-add-cart'>Añadir al carrito</button>
+                </div>
+              </div>";
+    }
+} else {
+    echo "<p>No se encontraron películas.</p>";
+}
+
+?>
+
         </div>
 
-        <!-- Pregunta 2 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel2')">
-                ¿Cómo accedo a mis películas después de comprarlas?
-            </div>
-            <div class="panel-body" id="panel2">
-                Después de realizar una compra, puedes acceder a tus películas en la sección "Mis Compras" de tu cuenta.
-            </div>
-        </div>
 
-        <!-- Pregunta 3 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel3')">
-                ¿Puedo ver mis películas en varios dispositivos?
-            </div>
-            <div class="panel-body" id="panel3">
-            Sí, puedes ver tus películas en varios dispositivos. Nuestro servicio te permite acceder a tu contenido en diferentes dispositivos para tu comodidad.
-            </div>
-        </div>
 
-        <!-- Pregunta 4 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel4')">
-                ¿Cuánto tiempo tengo para ver una película después de comprarla?
-            </div>
-            <div class="panel-body" id="panel4">
-                Una vez que compres una película, tendrás acceso a ella indefinidamente para verla cuando quieras.
-            </div>
-        </div>
 
-        <!-- Pregunta 5 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel5')">
-                ¿Qué hago si tengo problemas para reproducir una película?
-            </div>
-            <div class="panel-body" id="panel5">
-                Si experimentas problemas para reproducir una película, te recomendaría primero verificar tu conexión a internet y luego asegurarte de que estés utilizando un dispositivo compatible con nuestro servicio. Si el problema persiste, te animo a contactar a nuestro equipo de soporte técnico para recibir ayuda adicional.
-            </div>
-        </div>
 
-        <!-- Pregunta 6 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel6')">
-                ¿Ofrecen reembolsos si no estoy satisfecho con una película?
-            </div>
-            <div class="panel-body" id="panel6">
-                Sí, ofrecemos reembolsos si no estás satisfecho con una película, siempre y cuando cumplas con nuestras políticas de reembolso. Te recomendaría contactar a nuestro equipo de servicio al cliente para obtener más detalles y asistencia con el proceso de reembolso.
-            </div>
-        </div>
 
-        <!-- Pregunta 7 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel7')">
-                ¿Hay restricciones geográficas para ver las películas?
-            </div>
-            <div class="panel-body" id="panel7">
-                Nuestras películas están disponibles globalmente, sin restricciones geográficas.
-            </div>
-        </div>
-
-        <!-- Pregunta 8 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel8')">
-                ¿Puedo descargar las películas para verlas sin conexión?
-            </div>
-            <div class="panel-body" id="panel8">
-                Actualmente, no ofrecemos la opción de descargar películas para verlas sin conexión.
-            </div>
-        </div>
-
-        <!-- Pregunta 9 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel9')">
-                ¿Hay alguna membresía premium que ofrezca beneficios adicionales?
-            </div>
-            <div class="panel-body" id="panel9">
-                Sí, ofrecemos una membresía premium con beneficios adicionales como acceso anticipado y descuentos exclusivos.
-            </div>
-        </div>
-
-        <!-- Pregunta 10 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel10')">
-                ¿Cómo puedo contactar al servicio al cliente?
-            </div>
-            <div class="panel-body" id="panel10">
-                Puedes contactar a nuestro servicio al cliente a través del formulario en la sección "Contáctenos" o por correo electrónico a gandsmovies@gmail.com
-            </div>
-        </div>
-    </div>
-</div>
-
-<br><br><br>
+        <br><br><br>
                    <!--Aqui inicia nuestro footer -->
                 <footer class="page__footer">
                     <footer class="main-footer">
@@ -505,16 +467,9 @@ if (isset($_SESSION['username'])) {
 </div>  
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script>
-    function togglePanel(panelId) {
-        var panel = document.getElementById(panelId);
-        if (panel.style.display === 'block') {
-            panel.style.display = 'none';
-        } else {
-            panel.style.display = 'block';
-        }
-    }
-</script>
-</body>
+
+		<script src="scripts/index.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+	</body>
 </html>
