@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contactanos</title>
+    <style>
+      body {
+          margin: 0;
+          font-family: Roboto,Trebuchet MS,Helvetica,Arial,sans-serif;
+         
+          background-color:white;
+      }
+
+      .contact-container {
+          max-width: 1000px;
+          margin: 50px auto;
+          background-color: white;
+          border: 3px solid #ddd;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          
+      }
+
+      .contact-form {
+          padding: 20px;
+          box-sizing: border-box;
+          float: left;
+          width: 60%;
+      }
+
+      .contact-info {
+          padding: 20px;
+          box-sizing: border-box;
+          float: left;
+          width: 40%;
+
+          background-color: #1e1e1e;
+
+
+      }
+
+      .contact-info h2 {
+          margin-top: 0;
+          color: #ffffff;
+      }
+
+      .contact-info p {
+          color: #ffffff;
+      }
+
+      .contact-form label {
+          display: block;
+          margin-bottom: 8px;
+          color: #333;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 16px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          box-sizing: border-box;
+      }
+
+      .contact-form button {
+          background-color: #e62429;
+
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+
+      .contact-form button:hover {
+          background-color: #e62429;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contact-container">
+      <div class="contact-form">
+        <h1>CONTACTANOS</h1>
+        <form action="correo.php" method="post">
+          <label for="name">TU NOMBRE COMPLETO:</label>
+          <input type="text" name="name" required />
+
+          <label for="email">EMAIL:</label>
+          <input type="email" name="email" required />
+
+          <label for="message">DEJANOS TU MENSAJE:</label>
+          <textarea name="message" rows="4" required></textarea>
+
+          <button type="submit">ENVIAR</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h2>Nuestro domicilio</h2>
+        <p>
+          <strong>Dirección:</strong> Av. Héroe de Nacozari #200A,
+          Aguascalientes
+        </p>
+        <p><strong>Teléfono:</strong> (449) 3684231</p>
+        <p><strong>Correo electrónico:</strong> vanianayeli2011@hotmail.com</p>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.393295029523!2d-102.28450462585542!3d21.88092585796769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee7247ec04cd%3A0xb23e2c30af1bdd16!2sCOPIAS%20UNIVERSIDAD!5e0!3m2!1ses-419!2smx!4v1701740761305!5m2!1ses-419!2smx"
+          width="350"
+          height="300"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
+        </iframe>
+      </div>
+    </div>
+  </body>
+</html>
