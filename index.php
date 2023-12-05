@@ -1,3 +1,16 @@
+<?php
+// Iniciar la sesión al principio de tu script
+session_start();
+
+if (isset($_SESSION['username'])) {
+    // El usuario está logueado.
+    // Puedes realizar acciones adicionales aquí, como mostrar el nombre de usuario.
+    echo "Bienvenido, " . $_SESSION['username'];
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -8,19 +21,23 @@
     <meta property="og:type" content="website" />
     <link rel="icon" href="media/g.png" type="image/x-icon">
     <link rel="shortcut icon" href="media/g.png" type="image/x-icon" >
-
     <link rel="stylesheet" href="estilos/styles.css">
     <link href="index.html" rel="canonical" />
-   
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
     <noscript data-n-css=""></noscript>
     <script>
-        // Añade un evento de clic a todas las imágenes con la clase 'img-table'
+    //Añade un evento de clic a todas las imágenes con la clase 'img-table'
 document.querySelectorAll('.img-table').forEach(function(img) {
   img.addEventListener('click', function() {
-    // Agrega la clase 'shake' al hacer clic en la imagen
+    //Agrega la clase 'shake' al hacer clic en la imagen
     img.classList.add('shake');
     
-    // Remueve la clase 'shake' después de una animación
+    //Remueve la clase 'shake' después de una animación
     setTimeout(function() {
       img.classList.remove('shake');
     }, 500); // 500 milisegundos = 0.5 segundos
@@ -48,25 +65,34 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                 <div class="desktopNav">
                                     <div class="desktopNav__upper">
                                         <div class="desktopNav__tabAndLogoContainer">
-                                            <div class="insider desktopNav__tabContainer">
-                                                
-                                                <div class="insider desktopNav__tab">
-                                                    <img src="media/10307911.png" alt="" style=" width: 20px; height: 20px; margin-top: 13px; margin-left: 7px !important;">
-                                                    <div class="user-menu__links">
-                                                       
-                                                        <a class="user-menu-tab sign-in" href="#">
-                                                            <font style="vertical-align: inherit;">
-                                                                <font style="vertical-align: inherit;">INICIAR SESIÓN </font></font></a>
-                                                            <span class="user-menu-tab separator">
-                                                                <font style="vertical-align: inherit;">
-                                                                    <font style="vertical-align: inherit;">| </font></font></span>
-                                                            <a class="user-menu-tab join-dropdown" href="#">
-                                                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REGISTRARSE</font>
-                                                            </font></a><span class="user-menu-tab username"></span>
-                                                                <span class="user-menu-tab points"></span>
-                                                    </div> 
-                                                </div>
-                                            </div>
+                                        <div class="insider desktopNav__tabContainer">
+    <div class="insider desktopNav__tab">
+        <img src="media/10307911.png" alt="" style="width: 20px; height: 20px; margin-top: 13px; margin-left: 7px !important;">
+        <div class="user-menu__links">
+
+            <?php
+            // Verifica si el usuario está logueado
+            if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+                // Usuario logueado
+                echo '<p class="maravillas-title">Bienvenido, ' . htmlspecialchars($_SESSION['username']) . '</p>';
+            } else {
+                // Usuario no logueado
+                echo '<a class="user-menu-tab sign-in" href="login_registro/index.php">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">INICIAR SESIÓN </font></font></a>
+                        <span class="user-menu-tab separator">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">| </font></font></span>
+                        <a class="user-menu-tab join-dropdown" href="login_registro/index.php">
+                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REGISTRARSE</font>
+                        </font></a>';
+            }
+            ?>
+            <span class="user-menu-tab username"></span>
+            <span class="user-menu-tab points"></span>
+        </div> 
+    </div>
+</div>
                                             
                                             <a class="desktopNav__logo" href="index.php">
                                                 <span class="icon--svg icon--svg mvl-animated-logo" aria-hidden="true">
@@ -75,21 +101,22 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                             </a>
                                             
                                             <div class="desktopNav__right-links">
-                                                <div class="desktopNav__tabContainer">
-                                                    <a class="searchPromo desktopNav__tab"
-                                                        href="#">
+    <div class="desktopNav__tabContainer">
+        <?php if (isset($_SESSION['username'])): ?>
+            <div class="searchPromo__wrap">
+                <br><br>
+                <a href="logout.php" style="margin-right: 15px;"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        <?php else: ?>
+            <!-- Usuario no logueado: Muestra la sección de login -->
+            <a class="searchPromo desktopNav__tab" href="login.php">
+                <img class="searchPromo__image" src="media/tickets.png" alt="GandsMovies logo" />
+                <span class="maravillas-title">Descubre más</span>
+            </a>
+        <?php endif; ?>
+    </div>
 
-                                                        <img class="searchPromo__image"
-                                                            src="media/tickets.png"
-                                                            alt="GandsMovies logo" /> <!--SUSCRIBETE LOGO-->
-                                                        
-                                                            <div class="searchPromo__wrap">
-
-                                                            <p class="maravillas-title">Descubre más</p><span>Iniciar Sesión</span>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="search desktopNav__tabContainer">
+                                                <div class="search desktopNav__tabContainer ">
                                                     <a id="search" class="search desktopNav__tab" aria-label="search"
                                                         href="#">
                                                         <span
@@ -112,7 +139,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                             
                                         </div>
                                     </div>
-
+                    
                                     <!-- Links   -->
                                     <div class="desktopNav__lower">
                                         <ul class="desktopNav__linkContainer">
@@ -125,17 +152,20 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-1"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="#">Películas</a>
+                                                    href="tienda.php">Películas</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-1">
                                                 
                                                 </div>
                                             </li>
-                                            <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-2"
-                                                    class="desktopNav__link mvl-flyout-button"
-                                                    href="#">Géneros</a>
-                                                <div class="desktopNav__flyout-container nav-flyout-container-2">
-                                                  
-                                                </div>
+                                            <li class="desktopNav__linkWrapper ">
+                                                <a class="desktopNav__link" href="#" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Géneros
+                                                </a>
+                                                <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="mostrar_peliculas.php?genero=Accion">Acción</a></li>
+                                                <li><a class="dropdown-item" href="mostrar_peliculas.php?genero=Comedia">Comedia</a></li>
+                                                <li><a class="dropdown-item" href="mostrar_peliculas.php?genero=Drama">Drama</a></li>
+                                                </ul>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-3"
                                                     class="desktopNav__link mvl-flyout-button"
@@ -145,7 +175,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-4"
-                                                    class="desktopNav__link mvl-flyout-button" href="#">Acerca de</a>
+                                                    class="desktopNav__link mvl-flyout-button" href="about/AboutPage/about.php">Acerca de</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-4">
                                                    
                                                 </div>
@@ -164,6 +194,25 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                                     
                                                 </div>
                                             </li>
+<li class="desktopNav__linkWrapper">
+    <?php
+    // Verifica si el usuario está logueado y si su rol es 'admin'
+
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {  
+        echo '<li class="desktopNav__linkWrapper ">
+        <a class="desktopNav__link" href="AdministrarProductos.php" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+        </a>
+        <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="AdministrarProductos.php">Altas</a></li>
+        <li><a class="dropdown-item" href="AdministrarProductos.php">Bajas</a></li>
+        <li><a class="dropdown-item" href="AdministrarProductos.php">Cambios</a></li>
+        </ul>
+    </li>';
+    }
+    ?>
+</li>
+
                                         </ul>
                                     </div>
                                 <!-- Fin de links -->
@@ -173,7 +222,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                         </div>
                     </nav>
 
-                <!-- Header -->
+                <!-- Header -------------------- -->
                 </header>
                 <div class="ad__skin-placeholder"></div>
                 <div id="page-content" class="page__contents -page">
@@ -706,5 +755,6 @@ document.querySelectorAll('.img-table').forEach(function(img) {
 </div>  
 </div>
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
    </body>
 </html>
