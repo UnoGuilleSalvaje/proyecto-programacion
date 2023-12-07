@@ -1,45 +1,138 @@
 <?php
+// Iniciar la sesión al principio de tu script
 session_start();
 
-// Define las clases CSS en una variable
-$class = "logged-out"; // Clase por defecto si el usuario no está logueado
-
 if (isset($_SESSION['username'])) {
-    // Cambia la clase si el usuario está logueado
-    $class = "logged-in";
+    // El usuario está logueado.
+    // Puedes realizar acciones adicionales aquí, como mostrar el nombre de usuario.
     echo "Bienvenido, " . $_SESSION['username'];
+
 }
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acerca de Nosotros</title>
-    <!-- Enlace a Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../estilos/styles.css">
-    <link rel="stylesheet" href="about.css">
-    <link rel="shortcut icon" href="../../media/g.png" type="image/x-icon" >
+    <meta charSet="utf-8" />
+    <title>GandsMovies.com | Sitio oficial GandsMovies</title>
+    <meta name="title" content="GandsMovies.com | sitio oficual GandsMovies peliculas" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="../media/g.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../media/g.png" type="image/x-icon" >
+    <link rel="stylesheet" href="../estilos/styles.css">
+    <link href="../index.html" rel="canonical" />
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        .logged-in {
-            margin-top: 1400px; /* Margen cuando el usuario está logueado */
-        }
 
-        .logged-out {
-            margin-top: 50px; /* Margen cuando el usuario no está logueado */
-        }
-    </style>
+  <style>
+    body {
+          margin: 0;
+          font-family: Roboto,Trebuchet MS,Helvetica,Arial,sans-serif;
+         
+          background-color:white;
+      }
+
+      .contact-container {
+          max-width: 1000px;
+          margin: 50px auto;
+          background-color: white;
+          border: 3px solid #ddd;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          
+      }
+
+      .contact-form {
+          padding: 20px;
+          box-sizing: border-box;
+          float: left;
+          width: 60%;
+      }
+
+      .contact-info {
+          padding: 20px;
+          box-sizing: border-box;
+          float: left;
+          width: 40%;
+
+          background-color: #1e1e1e;
+
+
+      }
+
+      .contact-info h2 {
+          margin-top: 0;
+          color: #ffffff;
+      }
+
+      .contact-info p {
+          color: #ffffff;
+      }
+
+      .contact-form label {
+          display: block;
+          margin-bottom: 8px;
+          color: #333;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 16px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          box-sizing: border-box;
+      }
+
+      .contact-form button {
+          background-color: #e62429;
+
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+
+      .contact-form button:hover {
+          background-color: #e62429;
+
+      }
+  </style>
+    <noscript data-n-css=""></noscript>
+    <script>
+    //Añade un evento de clic a todas las imágenes con la clase 'img-table'
+document.querySelectorAll('.img-table').forEach(function(img) {
+  img.addEventListener('click', function() {
+    //Agrega la clase 'shake' al hacer clic en la imagen
+    img.classList.add('shake');
+    
+    //Remueve la clase 'shake' después de una animación
+    setTimeout(function() {
+      img.classList.remove('shake');
+    }, 500); // 500 milisegundos = 0.5 segundos
+  });
+});
+
+    </script>
+   
 </head>
-<body>
-     <!-- Barra de Navegación -->
 
-     <nav class="navigation__container">
+<body>
+    <div id="__next">
+        <div id="terrigen-page" class="page">
+            <div id="page-wrapper" class="page__body">
+                <header class="page__header">
+
+                    <!-- Barra de Navegación -->
+
+                    <nav class="navigation__container">
                         <div class="navigation__container--navs 
                             navigation__container--fixed 
                             navigation__container--top">
@@ -50,7 +143,7 @@ if (isset($_SESSION['username'])) {
                                         <div class="desktopNav__tabAndLogoContainer">
                                         <div class="insider desktopNav__tabContainer">
     <div class="insider desktopNav__tab">
-        <img src="../../media/10307911.png" alt="" style="width: 20px; height: 20px; margin-top: 13px; margin-left: 7px !important;">
+        <img src="../media/10307911.png" alt="" style="width: 20px; height: 20px; margin-top: 13px; margin-left: 7px !important;">
         <div class="user-menu__links">
 
             <?php
@@ -60,13 +153,13 @@ if (isset($_SESSION['username'])) {
                 echo '<p class="maravillas-title">Bienvenido, ' . htmlspecialchars($_SESSION['username']) . '</p>';
             } else {
                 // Usuario no logueado
-                echo '<a class="user-menu-tab sign-in" href="../../login_registro/index.php">
+                echo '<a class="user-menu-tab sign-in" href="../login_registro/index.php">
                         <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;">INICIAR SESIÓN </font></font></a>
                         <span class="user-menu-tab separator">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">| </font></font></span>
-                        <a class="user-menu-tab join-dropdown" href="../../login_registro/index.php">
+                        <a class="user-menu-tab join-dropdown" href="../login_registro/index.php">
                             <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REGISTRARSE</font>
                         </font></a>';
             }
@@ -77,9 +170,9 @@ if (isset($_SESSION['username'])) {
     </div>
 </div>
                                             
-                                            <a class="desktopNav__logo" href="../../index.php">
+                                            <a class="desktopNav__logo" href="../index.php">
                                                 <span class="icon--svg icon--svg mvl-animated-logo" aria-hidden="true">
-                                                    <img src="../../media/GANDS MOVIES ORIGINAL.png" alt=""><!--LOGO DEL SITIO-->
+                                                    <img src="../media/GANDS MOVIES ORIGINAL.png" alt=""><!--LOGO DEL SITIO-->
                                                 </span>
                                             </a>
                                             
@@ -88,12 +181,12 @@ if (isset($_SESSION['username'])) {
         <?php if (isset($_SESSION['username'])): ?>
             <div class="searchPromo__wrap">
                 <br><br>
-                <a href="../../logout.php" style="margin-right: 15px;"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                <a href="../logout.php" style="margin-right: 15px;"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
             </div>
         <?php else: ?>
             <!-- Usuario no logueado: Muestra la sección de login -->
-            <a class="searchPromo desktopNav__tab" href="../../login.php">
-                <img class="searchPromo__image" src="../../media/tickets.png" alt="GandsMovies logo" />
+            <a class="searchPromo desktopNav__tab" href="../login.php">
+                <img class="searchPromo__image" src="../media/tickets.png" alt="GandsMovies logo" />
                 <span class="maravillas-title">Descubre más</span>
             </a>
         <?php endif; ?>
@@ -128,26 +221,26 @@ if (isset($_SESSION['username'])) {
                                         <ul class="desktopNav__linkContainer">
                                             <li class="desktopNav__linkWrapper">
                                                 <a id="mvl-flyout-button-0" class="desktopNav__link mvl-flyout-button"
-                                                    href="../../index.php">Inicio</a>
+                                                    href="../index.php">Inicio</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-0">
                                                    
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-1"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="../../tienda.php">Películas</a>
+                                                    href="../tienda.php">Películas</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-1">
                                                 
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper ">
-                                                <a class="desktopNav__link" href="#" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="desktopNav__link" href="../#" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Géneros
                                                 </a>
                                                 <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="../../mostrar_peliculas.php?genero=Accion">Acción</a></li>
-                                                <li><a class="dropdown-item" href="../../mostrar_peliculas.php?genero=Comedia">Comedia</a></li>
-                                                <li><a class="dropdown-item" href="../../mostrar_peliculas.php?genero=Drama">Drama</a></li>
+                                                <li><a class="dropdown-item" href="../mostrar_peliculas.php?genero=Accion">Acción</a></li>
+                                                <li><a class="dropdown-item" href="../mostrar_peliculas.php?genero=Comedia">Comedia</a></li>
+                                                <li><a class="dropdown-item" href="../mostrar_peliculas.php?genero=Drama">Drama</a></li>
                                                 </ul>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-3"
@@ -158,43 +251,44 @@ if (isset($_SESSION['username'])) {
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-4"
-                                                    class="desktopNav__link mvl-flyout-button" href="../../about/AboutPage/about.php">Acerca de</a>
+                                                    class="desktopNav__link mvl-flyout-button" href="../about/AboutPage/about.php">Acerca de</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-4">
                                                    
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-5"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="../../ayuda.php">Ayuda</a>
+                                                    href="../ayuda.php">Ayuda</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-5">
                                                    
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-6"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="../../Contactanos/index.php">Contáctanos</a>
+                                                    href="../Contactanos/index.php">Contáctanos</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-6">
                                                     
                                                 </div>
                                             </li>
-                                            <li class="desktopNav__linkWrapper">
+<li class="desktopNav__linkWrapper">
     <?php
     // Verifica si el usuario está logueado y si su rol es 'admin'
 
     if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {  
         echo '<li class="desktopNav__linkWrapper ">
-        <a class="desktopNav__link" href="AdministrarProductos.php" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="desktopNav__link" href="../AdministrarProductos.php" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
         </a>
         <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="../../alta_producto.php">Altas</a></li>
-        <li><a class="dropdown-item" href="../../editar_producto.php">Cambios</a></li>
-        <li><a class="dropdown-item" href="../../eliminar_producto.php">Bajas</a></li>
+        <li><a class="dropdown-item" href="../alta_producto.php">Altas</a></li>
+        <li><a class="dropdown-item" href="../editar_producto.php">Cambios</a></li>
+        <li><a class="dropdown-item" href="../eliminar_producto.php">Bajas</a></li>
         </ul>
     </li>';
     }
     ?>
 </li>
+
                                         </ul>
                                     </div>
                                 <!-- Fin de links -->
@@ -203,101 +297,59 @@ if (isset($_SESSION['username'])) {
                             </section>
                         </div>
                     </nav>
-
-                    
-     <div class="container2 <?php echo $class; ?>">
-    <br>
-    <h1 style="text-align: center;">Acerca de Nosotros</h1>
-        Bienvenido a GandsMovies.com, tu destino número uno para disfrutar de las mejores películas en línea.
-            <br>
-            Nos enorgullece ofrecer una amplia variedad de películas en diferentes géneros para satisfacer todos los gustos.
-            <br>
-            Nuestro equipo está comprometido con brindarte una experiencia cinematográfica excepcional,
-            <br> 
-            trabajamos arduamente para garantizar que tengas acceso a las últimas películas y clásicos 
-            atemporales, todo en un solo lugar conveniente.
-            <br><br>
-    </div>
-
-    <div class="container">
-        <div class="box box-1" style="--img: url(../img/arely.jpeg);" 
-        data-text="Arely Zuleika Espino Dávalos"></div>
-        <div class="box box-2" style="--img: url(../img/guille.jpg);" 
-        data-text="Guillermo Alfonso Castañeda Hernández"></div>
-        <div class="box box-3" style="--img: url(../img/vania.jpg);" 
-        data-text="Vania Nayeli Pérez Ortíz"></div>
-        <div class="box box-4" style="--img: url(../img/axel.jpg);" 
-        data-text="Axel Arturo Paredes Huerta"></div>
-        <div class="box box-5" style="--img: url(../img/eduardo.jpg);" 
-        data-text="Eduardo Neftali García Infante"></div>
-        <div class="box box-6" style="--img: url(../img/alondra.jpg);" 
-        data-text="Alondra Joceline Quezada Alfaro"></div>
-        <div class="box box-7" style="--img: url(../img/americo.jpg);" 
-        data-text="Américo Ismael Calzada González"></div>
-    </div>
-
-    <br><br>
-    <div class="container2">
-        En GandsMovies.com, valoramos tu tiempo y comodidad. 
-        <br>
-        Nuestra plataforma está diseñada para ser fácil de usar, brindándote acceso rápido a 
-        una biblioteca extensa de películas. 
-        <br>
-        Además, nos esforzamos por mantenernos actualizados con las últimas tendencias y lanzamientos cinematográficos.
-        <br>
-        ¡Gracias por elegir GandsMovies.com! 
-        <br>
-        ¡Esperamos que disfrutes explorando nuestro catálogo y viendo tus películas favoritas!
-    </div>
-
-<br><br>
-
-    <h1 style="text-align: center;">Acerca de GANDS</h1>
-<br>
-
-<div class="containerr">
-    <div class="row">
-        <div class="col-md-6 col-lg-4">
-            <div class="tool-card">
-                <img src="../../media/vision.webp" alt="Visión" style="width: 350px;">
-                <h3>Visión</h3>
-                <p>Ser líderes globales en la distribución de películas, ofreciendo una experiencia única y personalizada para cada amante del cine.</p>
-                <br>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="tool-card">
-                <img src="../../media/mision.jpg" alt="Misión" style="width: 350px;">
-                <h3>Misión</h3>
-                <p>Proporcionar la más amplia variedad de películas al alcance de todos, garantizando calidad y accesibilidad en nuestro servicio.</p>
-                <br>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="tool-card">
-                <img src="../../media/objetivos.jpg" alt="Objetivo" style="width: 350px;">
-                <h3>Objetivo</h3>
-                <p>Innovar constantemente en nuestra plataforma para hacer que el descubrimiento y disfrute de películas sea una experiencia emocionante y fácil para todos.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
     
-    <br><br><br>
+    <div class="contact-container">
+      <div class="contact-form">
+        <h1>CONTACTANOS</h1>
+        <form action="correo.php" method="post">
+          <label for="name">TU NOMBRE COMPLETO:</label>
+          <input type="text" name="name" required />
+
+          <label for="email">EMAIL:</label>
+          <input type="email" name="email" required />
+
+          <label for="message">DEJANOS TU MENSAJE:</label>
+          <textarea name="message" rows="4" required></textarea>
+
+          <button type="submit">ENVIAR</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h2>Nuestro domicilio</h2>
+        <p>
+          <strong>Dirección:</strong> Av. Héroe de Nacozari #200A,
+          Aguascalientes
+        </p>
+        <p><strong>Teléfono:</strong> (449) 3684231</p>
+        <p><strong>Correo electrónico:</strong> vanianayeli2011@hotmail.com</p>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.393295029523!2d-102.28450462585542!3d21.88092585796769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee7247ec04cd%3A0xb23e2c30af1bdd16!2sCOPIAS%20UNIVERSIDAD!5e0!3m2!1ses-419!2smx!4v1701740761305!5m2!1ses-419!2smx"
+          width="350"
+          height="300"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
+        </iframe>
+      </div>
+    </div>
+  </body>
+</html>
+
+<br><br><br>
                    <!--Aqui inicia nuestro footer -->
                 <footer class="page__footer">
                     <footer class="main-footer">
                         <div class="main-footer__full-content">
-                            <div class="main-footer__links"><a class="main-footer__logo" href="../../index.html">
+                            <div class="main-footer__links"><a class="main-footer__logo" href="index.html">
                                 <span class="icon--svg main-footer__logo--svg" aria-hidden="true">
-                                      <!--Icono G-->    <img src="../../media/g.png" alt="" style="width: 90%; height: 96%; margin-left: 19px; ">
+                                      <!--Icono G-->    <img src="../media/g.png" alt="" style="width: 90%; height: 96%; margin-left: 19px; ">
                                 </span></a>
                                 <nav class="main-footer__primary-links" aria-label="Primary footer navigtion">
                                     <ul>
-                                        <li class="main-footer__link"><a href="#">Inicio</a>
+                                        <li class="main-footer__link"><a href="../index.php">Inicio</a>
                                         </li>
                                         <li class="main-footer__link"><a href="#">Catálogos</a>
                                         </li>
@@ -321,7 +373,7 @@ if (isset($_SESSION['username'])) {
                                 <div class="main-footer__promotion">
                                         <div class="main-footer__promotion-image-wrapper">
                                             <figure class="img__wrapper "><img
-                                                    src="../../media/U.png" style="width: 40px; height: 40px; margin-left: 25px;" 
+                                                    src="../media/U.png" style="width: 40px; height: 40px; margin-left: 25px;" 
                                                    
                                                     alt="--Imagen" class="main-footer__promotion-image" />
                                             </figure>
@@ -336,7 +388,7 @@ if (isset($_SESSION['username'])) {
                                      
                                         <div class="main-footer__promotion-image-wrapper">
                                             <figure class="img__wrapper "><img
-                                                    src="../../media/E.png" style="width: 40px; height: 40px; margin-left: 25px;"
+                                                    src="../media/E.png" style="width: 40px; height: 40px; margin-left: 25px;"
                                                     
                                                     alt="Marvel Unlimited Logo" class="main-footer__promotion-image" />
                                             </figure>
@@ -450,6 +502,8 @@ if (isset($_SESSION['username'])) {
 </div>  
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-   </body>
+
+		<script src="scripts/index.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	</body>
 </html>
