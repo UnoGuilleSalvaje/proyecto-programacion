@@ -99,7 +99,7 @@ function actualizar_contrasena($username, $nuevo_password) {
     $host = 'localhost';
     $usuario_db = 'root';
     $contrasena_db = '';
-    $nombre_db = 'baseinventario';
+    $nombre_db = 'baseinventario.sql';
 
     $conexion = new mysqli($host, $usuario_db, $contrasena_db, $nombre_db);
 

@@ -1,244 +1,195 @@
 <?php
-   session_start();
-     
-    $servidor='localhost';
-    $cuenta='root';
-    $password='';
-    $bd='productos';
-     
-    $_SESSION['id'] = '';
-    $_SESSION['nom'] = '';
-    $_SESSION['des'] = '';
-    $_SESSION['pre'] = '';
-    $_SESSION['cant'] = '';
-    $_SESSION['agot'] = '';
-    $_SESSION['img'] = '';
-    $_SESSION['tdes'] = '';
-    $_SESSION['des'] = '';
-   
-    $conexion = new mysqli($servidor,$cuenta,$password,$bd);
+// Iniciar la sesión al principio de tu script
+session_start();
 
-    if ($conexion->connect_errno){
-         die('Error en la conexion');
-    }
-    if(isset($_POST['submit'])){
-        $modificar=$_POST['modificar'];
-        $_SESSION['modificar2']=$modificar;
-        $sql2="SELECT *
-        FROM productos
-        WHERE id='$modificar'";
-        $resultado=$conexion->query($sql2);
-        while($fila=$resultado->fetch_assoc()){
-            $_SESSION['id'] =$fila['id'];
-            $_SESSION['nom'] =$fila['nombre'];
-            $_SESSION['des'] = $fila['descripcion'];
-            $_SESSION['pre'] = $fila['precio'];
-            $_SESSION['cant'] = $fila['cantidadExistencia'];
-            $_SESSION['agot'] = $fila['agotado'];
-            $_SESSION['img'] = $fila['imagen'];
-            $_SESSION['tdes'] = $fila['tiene_descuento'];
-            $_SESSION['des'] = $fila['descuento'];
-        }
+if (isset($_SESSION['username'])) {
+    // El usuario está logueado.
+    // Puedes realizar acciones adicionales aquí, como mostrar el nombre de usuario.
+    echo "Bienvenido, " . $_SESSION['username'];
 
-    }
+}
 
-    if(isset($_POST['mod'])){
-        $uno=$_POST['id2'];
-        $dos=$_POST['nombre2'];
-        $tres=$_POST['descripcion2'];
-        $cuatro=$_POST['precio2'];
-        $cinco=$_POST['cantidad_existencia2'];
-        $seis=$_POST['agotado2'];
-        $siete=$_POST['imagen2'];
-        $ocho=$_POST['tiene_descuento2'];
-        $nueve=$_POST['descuento2'];
-        $modificar=$_SESSION['modificar2'];
+?>
 
-        $ne = "UPDATE productos
-        SET id='$uno',nombre='$dos',descripcion='$tres',precio='$cuatro',cantidad='$cinco',agotado='$seis',imagen='$siete',tiene_descuento='$ocho',descuento='$nueve'
-        WHERE id='$modificar'";
-        $fin=$conexion->query($ne);
-    }
-    // Crear producto
-    function agregarProducto($nombre, $descripcion, $precio, $cantidadExistencia, $agotado, $imagen, $tieneDescuento, $descuento) {
-        global $conexion;
-        $sql = "INSERT INTO productos (nombre, descripcion, precio, cantidad_existencia, agotado, imagen, tiene_descuento, descuento)
-                VALUES ('$nombre', '$descripcion', $precio, $cantidadExistencia, $agotado, '$imagen', $tieneDescuento, $descuento)";
-        $result = $conexion->query($sql);
-        return $result;
-    }
-    
-    // Obtener todos los productos
-    function obtenerProductos() {
-        global $conexion;
-        $sql = "SELECT * FROM productos";
-        $result = $conexion->query($sql);
-        $productos = [];
-    
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $productos[] = $row;
-            }
-        }
-    
-        return $productos;
-    }
-    
-    // Actualizar producto
-    function actualizarProducto($id, $nombre, $descripcion, $precio, $cantidadExistencia, $agotado, $imagen, $tieneDescuento, $descuento) {
-        global $conexion;
-        $sql = "UPDATE productos SET nombre='$nombre', descripcion='$descripcion', precio=$precio,
-                cantidad_existencia=$cantidadExistencia, agotado=$agotado, imagen='$imagen',
-                tiene_descuento=$tieneDescuento, descuento=$descuento
-                WHERE id=$id";
-        $result = $conexion->query($sql);
-        return $result;
-    }
-    
-    // Eliminar producto
-    function eliminarProducto($id) {
-        global $conexion;
-        $sql = "DELETE FROM productos WHERE id=$id";
-        $result = $conexion->query($sql);
-        return $result;
-    }
-    ?>
-<!DOCTYPE html>
-<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administración de Productos</title>
+    <meta charSet="utf-8" />
+    <title>GandsMovies.com | Sitio oficial GandsMovies</title>
+    <meta name="title" content="GandsMovies.com | sitio oficual GandsMovies peliculas" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="media/g.png" type="image/x-icon">
+    <link rel="shortcut icon" href="media/g.png" type="image/x-icon" >
+    <link rel="stylesheet" href="estilos/styles.css">
+    <link href="index.html" rel="canonical" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e; /* Gris página */
+}
 
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-        }
+form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #151515; /* Gris más oscuro */
+    color: #ffffff;
+    border-radius: 5px;
+}
 
-        h1 {
-            margin: 0;
-        }
+label {
+    display: block;
+    margin-bottom: .5em;
+    color: #ffffff;
+}
 
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ec1d24; /* Rojo GANDS Logo */
+    background-color: #1e1e1e; /* Gris página */
+    color: #ffffff;
+}
 
-        form {
-            margin-bottom: 20px;
-        }
+input[type="submit"],
+button {
+    display: block;
+    margin: auto; /* Centra el botón horizontalmente */
+    width: 40%;
+    padding: 10px;
+    background-color: #e62429; /* Rojo botón */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
 
-        input,
-        textarea,
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
+input[type="submit"]:hover,
+button:hover {
+    background-color: #ec1d24; /* Rojo GANDS Logo */
+}
 
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+/* Agregando un poco de espacio alrededor del formulario */
+.container-form {
+    padding: 40px;
+}
 
-        button:hover {
-            background-color: #45a049;
-        }
+/* Estilos para los mensajes de error o confirmación */
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.error {
+    background-color: #ff3860;
+}
+.success {
+    background-color: #23d160;
+}
 
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+.home-link {
+  position: absolute;
+  top: 70px; /* Ajusta según sea necesario para la posición vertical */
+  left: 50%;
+  transform: translateX(-50%); /* Centra horizontalmente */
+  z-index: 10; /* Asegura que la imagen esté encima de otros elementos */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), /* Sombra interna */
+               0 6px 20px 0 rgba(0, 0, 0, 1); /* Sombra externa más difuminada */
+}
 
-        li {
-            margin-bottom: 10px;
-        }
+.home-link a {
+  display: block;
+  text-align: center; /* Centra la imagen en el enlace */
+}
 
-        a {
-            text-decoration: none;
-            color: #3498db;
-            margin-left: 10px;
-        }
+.home-link img {
+  width: 100px; /* O el tamaño que prefieras */
+  height: auto; /* Mantiene la relación de aspecto */
+}
 
-        a:hover {
-            text-decoration: underline;
-        }
     </style>
+
+
+    <noscript data-n-css=""></noscript>
+    <script>
+    //Añade un evento de clic a todas las imágenes con la clase 'img-table'
+document.querySelectorAll('.img-table').forEach(function(img) {
+  img.addEventListener('click', function() {
+    //Agrega la clase 'shake' al hacer clic en la imagen
+    img.classList.add('shake');
+    
+    //Remueve la clase 'shake' después de una animación
+    setTimeout(function() {
+      img.classList.remove('shake');
+    }, 500); // 500 milisegundos = 0.5 segundos
+  });
+});
+
+    </script>
 </head>
-<body>
-    <header>
-        <h1>Administración de Productos</h1>
-    </header>
 
-    <!-- Formulario para agregar producto -->
-    <main>
-    <form action="config.php" method="post">
-    <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" required>
-    
-    <label for="descripcion">Descripción:</label>
-    <textarea name="descripcion" required></textarea>
-    
-    <label for="precio">Precio:</label>
-    <input type="number" name="precio" required>
+<?php
+$servidor = 'localhost';
+$cuenta = 'root';
+$password = '';
+$bd = 'db_peliculas';
+// Conexión a la base de datos
+$conexion = new mysqli($servidor, $cuenta, $password, $bd);
+if ($conexion->connect_errno) {
+    die('Error en la conexión');
+} else {
+    // Conexión exitosa
+    if (isset($_POST['submit'])) {
+        // Obtenemos el id del formulario para eliminar
+        $eliminar = $_POST['eliminar'];
+        // Sentencia SQL para eliminar
+        $sql = "DELETE FROM peliculas WHERE id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("i", $eliminar);
 
-    <label for="cantidad_existencia">Cantidad en existencia:</label>
-    <input type="number" name="cantidad_existencia" required>
-
-    <label for="agotado">Agotado:</label>
-    <select name="agotado" required>
-        <option value="0">No</option>
-        <option value="1">Sí</option>
-    </select>
-
-    <label for="file">Subir la imagen</label>    
-    <input type="file" name="file" id="file" class="form-control-file"   >
-
-    <label for="tiene_descuento">Tiene descuento:</label>
-    <select name="tiene_descuento" required>
-        <option value="0">No</option>
-        <option value="1">Sí</option>
-    </select>
-        <!-- Lista de productos -->
-        <h2>Lista de Productos</h2>
-        <ul>
-        <button type="submit">Agregar Producto</button>
-        <?php        
-$productos = obtenerProductos();
-
-foreach ($productos as $producto) {
-    echo "<li>ID: {$producto['id']} - Nombre: {$producto['nombre']} - Descripción: {$producto['descripcion']} - 
-          Cantidad en existencia: {$producto['cantidad_existencia']} - Agotado: {$producto['agotado']} - 
-          Precio: {$producto['precio']} - Imagen: {$producto['imagen']} - Tiene descuento: {$producto['tiene_descuento']} - 
-          Descuento: {$producto['descuento']}% 
-          <a href='editar_producto.php?id={$producto['id']}'>Editar</a> 
-          <a href='eliminar_producto.php?id={$producto['id']}'>Eliminar</a></li>";
+        if ($stmt->execute()) {
+            echo '<br> Registro borrado <br>';
+        } else {
+            echo 'Error al borrar el registro';
+        }
+        $stmt->close();
+    }
+    // Consulta de datos a la tabla peliculas
+    $sql = 'SELECT * FROM peliculas';
+    $resultado = $conexion->query($sql);
+    if ($resultado->num_rows) {
+        ?>
+        <div>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <legend>Eliminar Películas</legend>
+                <br>
+                <select class="browser-default custom-select" name='eliminar'>
+                    <?php
+                    while ($fila = $resultado->fetch_assoc()) {
+                        echo '<option value="' . $fila["id"] . '">' . $fila["nombre"] . '</option>';
+                    }
+                    ?>
+                </select>
+                <br><br>
+                <button type="submit" value="submit" name="submit">Eliminar</button>
+            </form>
+        </div>
+        <?php
+    } else {
+        echo "No hay datos";
+    }
+    $conexion->close();
 }
 ?>
-        
-        </ul>
-    </main>
-</body>
-</html>

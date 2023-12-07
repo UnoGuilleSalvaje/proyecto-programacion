@@ -161,11 +161,30 @@ if (isset($_SESSION['username'])) {
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-6"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="#">Contáctanos</a>
+                                                    href="Contactanos/index.php">Contáctanos</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-6">
                                                     
                                                 </div>
                                             </li>
+<li class="desktopNav__linkWrapper">
+    <?php
+    // Verifica si el usuario está logueado y si su rol es 'admin'
+
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {  
+        echo '<li class="desktopNav__linkWrapper ">
+        <a class="desktopNav__link" href="AdministrarProductos.php" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+        </a>
+        <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="alta_producto.php">Altas</a></li>
+        <li><a class="dropdown-item" href="editar_producto.php">Cambios</a></li>
+        <li><a class="dropdown-item" href="eliminar_producto.php">Bajas</a></li>
+        </ul>
+    </li>';
+    }
+    ?>
+</li>
+
                                         </ul>
                                     </div>
                                 <!-- Fin de links -->

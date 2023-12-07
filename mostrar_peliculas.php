@@ -100,6 +100,10 @@ if (isset($_SESSION['username'])) {
                                                 <div class="search desktopNav__tabContainer">
                                                     <a id="search" class="search desktopNav__tab" aria-label="search"
                                                         href="#">
+<?php
+if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
+    // El contenido que quieres mostrar a usuarios logueados
+?>
  <div class="container-icon">
 				<div class="container-cart-icon" >
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-cart" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -146,6 +150,16 @@ if (isset($_SESSION['username'])) {
 					<p class="cart-empty invisible">El carrito está vacío</p>
 				</div>
 			</div>
+
+            <?php
+} else{
+    
+?>
+
+<?php
+}
+?>
+
                                                     </a>
                                                 </div>
                                                 
@@ -261,9 +275,10 @@ if ($resultado->num_rows > 0) {
         $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
         $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
 
+        $rutaImagen = "media/posters/" . rawurlencode($pelicula['nombre']) . ".jpg";
         echo "<div class='item'>
                 <figure>
-                    <img src='{$pelicula['imagen']}' alt='{$pelicula['nombre']}' />
+                <img src='{$rutaImagen}' alt='{$pelicula['nombre']}' /
                 </figure>
                 <div class='info-product'>
                     <h2>{$pelicula['nombre']}</h2>

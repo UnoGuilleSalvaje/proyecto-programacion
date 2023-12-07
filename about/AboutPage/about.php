@@ -1,13 +1,14 @@
 <?php
-// Iniciar la sesión al principio de tu script
 session_start();
 
+// Define las clases CSS en una variable
+$class = "logged-out"; // Clase por defecto si el usuario no está logueado
+
 if (isset($_SESSION['username'])) {
-    // El usuario está logueado.
-    // Puedes realizar acciones adicionales aquí, como mostrar el nombre de usuario.
+    // Cambia la clase si el usuario está logueado
+    $class = "logged-in";
     echo "Bienvenido, " . $_SESSION['username'];
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +26,15 @@ if (isset($_SESSION['username'])) {
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .logged-in {
+            margin-top: 1400px; /* Margen cuando el usuario está logueado */
+        }
+
+        .logged-out {
+            margin-top: 50px; /* Margen cuando el usuario no está logueado */
+        }
+    </style>
 </head>
 <body>
      <!-- Barra de Navegación -->
@@ -162,11 +172,29 @@ if (isset($_SESSION['username'])) {
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-6"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="#">Contáctanos</a>
+                                                    href="../../Contactanos/index.php">Contáctanos</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-6">
                                                     
                                                 </div>
                                             </li>
+                                            <li class="desktopNav__linkWrapper">
+    <?php
+    // Verifica si el usuario está logueado y si su rol es 'admin'
+
+    if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {  
+        echo '<li class="desktopNav__linkWrapper ">
+        <a class="desktopNav__link" href="AdministrarProductos.php" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+        </a>
+        <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="../../alta_producto.php">Altas</a></li>
+        <li><a class="dropdown-item" href="../../editar_producto.php">Cambios</a></li>
+        <li><a class="dropdown-item" href="../../eliminar_producto.php">Bajas</a></li>
+        </ul>
+    </li>';
+    }
+    ?>
+</li>
                                         </ul>
                                     </div>
                                 <!-- Fin de links -->
@@ -177,7 +205,7 @@ if (isset($_SESSION['username'])) {
                     </nav>
 
                     
-    <div class="container2" style="margin-top: 1400px;">
+     <div class="container2 <?php echo $class; ?>">
     <br>
     <h1 style="text-align: center;">Acerca de Nosotros</h1>
         Bienvenido a GandsMovies.com, tu destino número uno para disfrutar de las mejores películas en línea.

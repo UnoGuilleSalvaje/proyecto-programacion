@@ -189,7 +189,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-6"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="#">Contáctanos</a>
+                                                    href="Contactanos/index.php">Contáctanos</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-6">
                                                     
                                                 </div>
@@ -204,9 +204,9 @@ document.querySelectorAll('.img-table').forEach(function(img) {
             Admin
         </a>
         <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="AdministrarProductos.php">Altas</a></li>
-        <li><a class="dropdown-item" href="AdministrarProductos.php">Bajas</a></li>
-        <li><a class="dropdown-item" href="AdministrarProductos.php">Cambios</a></li>
+        <li><a class="dropdown-item" href="alta_producto.php">Altas</a></li>
+        <li><a class="dropdown-item" href="editar_producto.php">Cambios</a></li>
+        <li><a class="dropdown-item" href="eliminar_producto.php">Bajas</a></li>
         </ul>
     </li>';
     }
