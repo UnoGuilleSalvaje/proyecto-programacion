@@ -6,7 +6,6 @@ if (isset($_SESSION['username'])) {
     // El usuario está logueado.
     // Puedes realizar acciones adicionales aquí, como mostrar el nombre de usuario.
     echo "Bienvenido, " . $_SESSION['username'];
-
 }
 
 ?>
@@ -28,6 +27,101 @@ if (isset($_SESSION['username'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e; /* Gris página */
+}
+
+form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #151515; /* Gris más oscuro */
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: .5em;
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ec1d24; /* Rojo GANDS Logo */
+    background-color: #1e1e1e; /* Gris página */
+    color: #ffffff;
+}
+
+input[type="submit"],
+button {
+    display: block;
+    margin: auto; /* Centra el botón horizontalmente */
+    width: 40%;
+    padding: 10px;
+    background-color: #e62429; /* Rojo botón */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #ec1d24; /* Rojo GANDS Logo */
+}
+
+/* Agregando un poco de espacio alrededor del formulario */
+.container-form {
+    padding: 40px;
+}
+
+/* Estilos para los mensajes de error o confirmación */
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.error {
+    background-color: #ff3860;
+}
+.success {
+    background-color: #23d160;
+}
+
+.home-link {
+  position: absolute;
+  top: 70px; /* Ajusta según sea necesario para la posición vertical */
+  left: 50%;
+  transform: translateX(-50%); /* Centra horizontalmente */
+  z-index: 10; /* Asegura que la imagen esté encima de otros elementos */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), /* Sombra interna */
+               0 6px 20px 0 rgba(0, 0, 0, 1); /* Sombra externa más difuminada */
+}
+
+.home-link a {
+  display: block;
+  text-align: center; /* Centra la imagen en el enlace */
+}
+
+.home-link img {
+  width: 100px; /* O el tamaño que prefieras */
+  height: auto; /* Mantiene la relación de aspecto */
+}
+
+    </style>
+
 
     <noscript data-n-css=""></noscript>
     <script>
@@ -45,11 +139,14 @@ document.querySelectorAll('.img-table').forEach(function(img) {
 });
 
     </script>
-   
 </head>
 
-<body>
-    <div id="__next">
+<?php
+
+?>
+
+
+<div id="__next">
         <div id="terrigen-page" class="page">
             <div id="page-wrapper" class="page__body">
                 <header class="page__header">
@@ -189,7 +286,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-6"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="Contactanos/index.php">Contáctanos</a>
+                                                    href="#">Contáctanos</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-6">
                                                     
                                                 </div>
@@ -222,376 +319,112 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                         </div>
                     </nav>
 
-                <!-- Header -------------------- -->
-                </header>
-                <div class="ad__skin-placeholder"></div>
-                <div id="page-content" class="page__contents -page">
-                    <section id="promo-1"
-                        class="page__component page__component-- page__component--promo section__color__dark firstComponent">
-                        <div class="promo light thin longer ">
-                            <div class="promo__wrapper">
-                                <div class="promo__content">
-                                    <figure class="img__wrapper promo__logo"><img
-                                            src="media/cinema-tickets-with-pop-corn-drink-amd-glasses-free-png.webp"
-                                            srcSet="" alt="" />
-                                    </figure>
-                                    <div class="promo__content__main">
-                                        <div class="promo__title">Donde tus sueños se proyectan en pantalla </div>
-                                        <div class="promo__description"></div>
-                                    </div><a class="promo__content__btn"
-                                        href="#"> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section id="masthead-2" class="page__component page__component-- page__component--masthead section__color__light ">
-                        <div class="line"></div>
-                        <div class="carousel baseCarousel masthead auto ">
-                            <div class="baseCarousel__wrapper">
-                                <button class="baseCarousel__arrow baseCarousel__arrow left" role="button" tabindex="0" onclick="prevSlide()">
-                                    <!-- ... Tu código existente ... -->
-                                </button>
-                                <div class="carousel__content">
-                                    <!-- Slide 1 -->
-                                    <div class="carousel__slide">
-                                        <img src="media/gands.png" alt="Descripción de la imagen 1">
-                                    </div>
-                    
-                                    <!-- Slide 2 -->
-                                    <div class="carousel__slide">
-                                        <img src="media/fondoOscuro1.png" alt="Descripción de la imagen 2">
-                                    </div>
-                    
-                                    <!-- Slide 3 -->
-                                    <div class="carousel__slide">
-                                        <img src="media/1.jpg" alt="Descripción de la imagen 3">
-                                    </div>
-                                      <!-- Slide 4 -->
-                                    <div class="carousel__slide">
-                                        <img src="media/tendencia.jpg" alt="Descripción de la imagen 3">
-                                    </div>
-                                      <!-- Slide 5 -->
-                                    <div class="carousel__slide">
-                                        <img src="media/top.png" alt="Descripción de la imagen 3">
-                                    </div>
-                            
-                                </div>
-                                <button class="baseCarousel__arrow baseCarousel__arrow right" role="button" tabindex="0" onclick="nextSlide()">
-                                </button>
-                            </div>
 
-                            <div class="tabs__component ">
-                                <ul class="tabs__container">
-                                    <li class="tabs__btns "><a role="button" tabindex="0">Lo Mejor del Cine en GAND's</a></li>
-                                    <li class="tabs__btns "><a role="button" tabindex="0">Top Películas de la Semana</a></li>
-                                    <li class="tabs__btns "><a role="button" tabindex="0">Top Series de la Semana</a></li>
-                                    <li class="tabs__btns "><a role="button" tabindex="0">Promociones exclusivas en GAND's</a></li>
-                                    <li class="tabs__btns "><a role="button" tabindex="0">Lo mejor del año 2023 al alcance de tu mano</a></li>
-                                </ul>
-                            </div>
+<?php
+// Conexión a la base de datos (asegúrate de reemplazar con tus propios detalles de conexión)
+$servidor = 'localhost';
+$cuenta = 'root';
+$password = '';
+$bd = 'db_peliculas';
+//Se establece una conexión con la base de datos MySQL 
+$conexion = new mysqli($servidor, $cuenta, $password, $bd);
 
-                            <div class="social-links-wrapper">
-                                <div class="social-links social">
-                                    <div class="social__title">Síguenos</div><a target="_blank"
-                                        aria-label="follow us on Facebook, opens a new window" class="social__img"
-                                        href="https://www.facebook.com"><span class="icon--svg icon--facebook "
-                                            aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18"
-                                                height="18" viewBox="0 0 18 18">
-                                                <path fill-rule="evenodd"
-                                                    d="M9.426 17.647H.974A.974.974 0 010 16.673V.974C0 .436.436 0 .974 0h15.7c.537 0 .973.436.973.974v15.699a.974.974 0 01-.974.974h-4.497v-6.834h2.294l.343-2.663h-2.637v-1.7c0-.772.214-1.297 1.32-1.297h1.41V2.77a18.853 18.853 0 00-2.055-.105c-2.033 0-3.425 1.241-3.425 3.52V8.15h-2.3v2.663h2.3v6.834z">
-                                                </path>
-                                            </svg></span></a><a target="_blank"
-                                        aria-label="follow us on Twitter, opens a new window" class="social__img"
-                                        href="https://twitter.com/home"><span class="icon--svg icon--twitter"
-                                            aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18"
-                                                height="18" viewBox="0 0 18 18">
-                                                <path
-                                                    d="M3.5 5.1l3.8 5L4 13.6c-1.9 1.8-3.1 3.6-2.8 3.9.3.3 1.7-.8 3.1-2.5 3.2-3.8 4.1-3.8 6.4 0 1.3 2.2 2.5 3 4.5 3H18l-3.6-5-3.7-5.1L13.9 4c1.8-2.2 2.8-4 2.3-4-.4 0-1.8 1.3-3 3-1.3 1.6-2.6 3-3 3-.4 0-1.6-1.4-2.7-3C6.1.9 4.7 0 2.7 0H-.2l3.7 5.1zm6.3 3.3c5.3 7.6 5.8 8.6 4.4 8.6C13.4 17 3 2.7 3 1.6c0-2 2.3.3 6.8 6.8z">
-                                                </path>
-                                            </svg></span></a><a target="_blank"
-                                        aria-label="follow us on Instagram, opens a new window" class="social__img"
-                                        href="https://www.instagram.com/tecnobash/"><span class="icon--svg"
-                                            aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18"
-                                                height="18" viewBox="0 0 18 18">
-                                                <path fill-rule="evenodd"
-                                                    d="M15.441 15.993H2.206a.552.552 0 01-.552-.552V7.17H3.86c-.287.414-.384 1.185-.384 1.675 0 2.953 2.408 5.356 5.368 5.356 2.96 0 5.368-2.403 5.368-5.356 0-.49-.069-1.25-.425-1.675h2.206v8.272a.552.552 0 01-.552.552M8.844 5.458a3.39 3.39 0 013.394 3.386 3.39 3.39 0 01-3.394 3.386A3.39 3.39 0 015.45 8.844a3.39 3.39 0 013.393-3.386m4.391-3.252h1.655c.304 0 .551.247.551.551v1.655a.552.552 0 01-.551.551h-1.655a.552.552 0 01-.551-.551V2.757c0-.304.247-.551.551-.551M15.55 0H2.098A2.095 2.095 0 000 2.093v13.461c0 1.156.94 2.093 2.098 2.093h13.451a2.095 2.095 0 002.098-2.093V2.093C17.647.937 16.707 0 15.549 0">
-                                                </path>
-                                            </svg></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <script>
-                        let currentSlide = 0;
-                    
-                        function showSlide(index) {
-                            const slides = document.querySelectorAll('.carousel__content .carousel__slide');
-                            currentSlide = (index + slides.length) % slides.length;
-                    
-                            slides.forEach((slide, i) => {
-                                slide.style.display = (i === currentSlide) ? 'flex' : 'none';
-                            });
-                        }
-                    
-                        function nextSlide() {
-                            showSlide(currentSlide + 1);
-                        }
-                    
-                        function prevSlide() {
-                            showSlide(currentSlide - 1);
-                        }
-                    
-                        function startCarousel() {
-                            // Muestra el primer slide al cargar la página
-                            showSlide(currentSlide);
-                    
-                            // Cambia automáticamente cada 5 segundos
-                            setInterval(() => {
-                                nextSlide();
-                            }, 5000);
-                        }
-                    
-                        // Llama a la función para iniciar el carrusel
-                        window.onload = startCarousel;
-                    </script>
-                     
-                    <section class="page__component page__component-- page__component--ad section__color__light ">
-                        <div class="ad ad--empty ad--banner">
-                            <div></div>
-                        </div>
-                    </section>
-                 
+// Verifica si la conexión fue exitosa
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
+}
 
-                    <!--CUADRO NEGRO MANDALORIA-->
-                    <section id="sets-4" class="page__component page__component-- page__component--sets  ">
-                        <div class="sets base_sets half ">
-                            <div class="sets__hero">
-                                <div class="sets__bg__container">
-                                    <figure class="img__wrapper sets__background__wrapper">
-                                        <!--Imagen de fondo del cuadro negro-->
-                                        <div class="built__background built__background--single sets__background use-vars"
-                                            style="background-image:url(media/Mandaloriaan.png) !important">
-                                        </div>
-                                    </figure>
-                                </div>
-                                <div class="mobile_tab"><button class="baseCarousel__arrow base_sets__arrow left "
-                                        role="button" tabindex="0"><svg viewBox="10 0 50 110" width="30px">
-                                            <path d="M40 35 L20 55 L40 75" class="arrow"></path>
-                                        </svg></button>
-                                    <div class="tabs-mobile"></div><button
-                                        class="baseCarousel__arrow base_sets__arrow right" role="button"
-                                        tabindex="0"><svg viewBox="0 0 50 110" width="30px">
-                                            <path d="M20,75,40,55,20,35" class="arrow"></path>
-                                        </svg></button>
-                                </div>
-                                <div class="sets__main">
-                                    <div class="sets__container " aria-live="polite" role="region">
-                                        <figure class="img__wrapper "><img
-                                                src="media/disney.png"
-                                                srcSet=""
-                                                alt="mulogo_lob_log_eye_01_1" class="sets__logo" /></figure>
-                                        <div class="sets__eyebrow">Encuentra tus peliculas favoritas </div>
-                                        <div class="sets__title">Descubre el cine como nunca antes con Gands Movies</div>
-                                        <div class="sets__description">Donde cada película es una experiencia única, 
-                                            ¡sumérgete en un mundo de entretenimiento sin límites!</div><a target="_self"
-                                            class="cta-btn cta-btn--outline cta-btn--light "
-                                            href=""><span
-                                                class="innerFill "><span>Unirme Ahora</span></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tabs__div"></div>
-                        </div>
-                    </section>
-                  
-        
-                    <section id="video-6" class="page__component page__component-- page__component--video section__color__light ">
-                        <div class="content-container light vertical">
-                            <div class="video-component full-module light" id="video-d4ff68a87608e483314c18d90bb8fe0c">
-                               
-                                <div class="video-component__container playlist">
-                                    <div class="video-metadata">
-                                        <div class="video-metadata__meta__wrapper">
-                                            <div class="video-metadata__eyebrow">Gands Movies Live</div>
-                                            <div class="video-metadata__title">Series y películas</div>
-                                            <div class="video-metadata__description">Contenido ilimitadas para ver lo que quieras, cuando quieras. 
-                                                Lleva tus historias favoritas siempre contigo. </div>
-                                        </div>
-                                    </div>
-                                    <div class="video-component__playlist video-component__playlist_playing-false"></div>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <section id="sets-7" class="page__component page__component-- page__component--sets  ">
-                        <div class="sets base_sets half ">
-                            <div class="sets__hero">
-                                <div class="sets__bg__container">
-                                    <figure class="img__wrapper sets__background__wrapper">
-                                        <div class="built__background built__background--single sets__background use-vars"
-                                            style="background-image:url(%27https_/cdn.marvel.com/content/1x/new_com_20231115_set_01.html)">
-                                        </div>
-                                    </figure>
-                                </div>
-                                <div class="mobile_tab"><button class="baseCarousel__arrow base_sets__arrow left "
-                                        role="button" tabindex="0"><svg viewBox="10 0 50 110" width="30px">
-                                            <path d="M40 35 L20 55 L40 75" class="arrow"></path>
-                                        </svg></button>
-                                    <div class="tabs-mobile"></div><button
-                                        class="baseCarousel__arrow base_sets__arrow right" role="button"
-                                        tabindex="0"><svg viewBox="0 0 50 110" width="30px">
-                                            <path d="M20,75,40,55,20,35" class="arrow"></path>
-                                        </svg></button>
-                                </div>
-                                <div class="sets__main">
-                                    <div class="sets__container " aria-live="polite" role="region">
-                                        <div class="sets__eyebrow">Todo en Gands Movies</div>
-                                        <div class="sets__title">Cuando quieras, donde quieras</div>
-                                        <div class="sets__description">Disfrútalo en tu pantalla favorita, ya sea tu TV, tableta, computadora, teléfono y otros.
-                                            Vive una experiencia única con una amplia selección de títulos en 4K. 
-                                            Además, puedes ver en cuatro pantallas en simultáneo para que nadie se quede afuera.</div><a target="_self"
-                                            class="cta-btn cta-btn--outline cta-btn--light "
-                                            href="#"><span class="innerFill "><span>Comienza Ahora</span></span></a><a target="_self"
-                                            class="cta-btn cta-btn--outline cta-btn--light "
-                                            href="#"><span class="innerFill "><span>Leer Más</span></span></a>
-                                                    
-                                    </div>
-                                    <img class="img-black-original" src="media/original.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tabs__div"></div>
-                        </div>
-                    </section>
-                    
-                    <!-- Tabla con imágenes -->
-                    <section id="promo-10">
-                        <div class="description-title">Originalidad con Gands Movies y en exclusivo</div>
-                        <p>Disfruta de películas, series y documentales nunca antes vistos. Solo en Gands Movies.</p>
-                        <table>
-                            <tr>
-                                <td><img class="img-table shake" src="media/img1.jpeg" alt="Imagen 1"></td>
-                                <td><img class="img-table shake" src="media/img2.jpeg" alt="Imagen 2"></td>
-                                <td><img class="img-table shake" src="media/img3.jpeg" alt="Imagen 3"></td>
-                            </tr>
-                            <tr>
-                                <td><img class="img-table shake" src="media/img4.jpeg" alt="Imagen 4"></td>
-                                <td><img class="img-table shake" src="media/img5.jpeg" alt="Imagen 5"></td>
-                                <td><img class="img-table shake" src="media/img6.jpeg" alt="Imagen 6"></td>
-                            </tr>
-                            <tr>
-                                <td><img class="img-table shake" src="media/img7.jpeg" alt="Imagen 7"></td>
-                                <td><img class="img-table shake" src="media/img8.jpeg" alt="Imagen 8"></td>
-                                <td><img class="img-table shake" src="media/img9.jpeg" alt="Imagen 9"></td>
-                            </tr>
-                        </table>
-                    </section>
-                    
-                    <section id="promo-8"
-                        class="page__component page__component-- page__component--promo section__color__dark ">
-                        <div class="promo dark featured longer ">
-                            <div class="promo__wrapper">
-                                <figure class="img__wrapper img__wrappert ">
-                                    <picture class="promo__asset">
-                                    
-                                        <img class="img-contact img-contactt" src="media/Peliculascollague.jpeg"/>
-                                    </picture>
-                                </figure>
-                                <div class="promo__content">
-                                    <div class="promo__content__main">
-                                        <div class="promo__eyebrow">Gands Movies</div>
-                                        <div class="promo__title">Contacta con Gands Movies: Tu Puerta al Entretenimiento Cinematográfico​</div>
-                                        <div class="promo__description">¡Estamos aquí para ti! En Gands Movies valoramos tu experiencia 
-                                            y queremos asegurarnos de que tengas todo lo que necesitas para disfrutar al máximo. 
-                                            No dudes en ponerte en contacto con nosotros para cualquier pregunta, sugerencia o asistencia.
-                                            Aquí te dejamos cómo puedes encontrarnos:​</div>
-                                            
-                                            <a target="_self" class="cta-btn cta-btn--solid cta-btn--red "
-                                            href="#"><span class="innerFill "><span>Contáctanos</span></span></a>
-                                    </div><a class="promo__content__btn"
-                                        href="#"> </a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+$producto = null;
 
-                    <div class="container">
-    <br>
+// Consulta para obtener todos los productos
+$sql = "SELECT id, nombre FROM peliculas";
+$resultado = $conexion->query($sql);
 
-    <div class="container">
-    <br>
-    <h2>Próximos Lanzamientos 2024</h2>
+// Verifica si la consulta tiene resultados
+if ($resultado->num_rows > 0) {
+    // Inicio de la lista desplegable
+    echo '<form action="" method="post">';
+    echo '<select name="producto_id">';
 
-    <div class="accordion" id="upcomingAccordion">
-        <!-- Película 1 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel1')">
-                Alien: Romulus
-            </div>
-            <div class="panel-body" id="panel1" style="display: none;">
-                Fecha de estreno: Agosto 2024. Una nueva entrada en el universo de Alien.
-            </div>
-        </div>
-        <!-- Película 2 -->
-        <div class="panel">
-            <div class="panel-header" onclick="togglePanel('panel2')">
-                Borderlands
-            </div>
-            <div class="panel-body" id="panel2" style="display: none;">
-                Fecha de estreno: Agosto 2024. Adaptación del famoso videojuego al cine.
-            </div>
-        </div>
-
-        <!-- Película 3 -->
-        <div class="panel">
-        <div class="panel-header" onclick="togglePanel('panel3')">
-                Kraven the Hunter
-            </div>
-            <div class="panel-body" id="panel3" style="display: none;">
-                Fecha de estreno: Agosto 2024. El icónico cazador de Spider-Man llega a la gran pantalla.
-            </div>
-        </div>
-
-        <!-- Película 4 -->
-        <div class="panel">
-        <div class="panel-header" onclick="togglePanel('panel4')">
-                Harold and the Purple Crayon
-            </div>
-            <div class="panel-body" id="panel4" style="display: none;">
-                Fecha de estreno: Agosto 2024. La clásica historia infantil cobra vida.
-            </div>
-        </div>
-
-        <!-- Película 5 -->
-        <div class="panel">
-        <div class="panel-header" onclick="togglePanel('panel5')">
-                Speak No Evil
-            </div>
-            <div class="panel-body" id="panel5" style="display: none;">
-                Fecha de estreno: Agosto 2024. Un thriller que mantendrá a los espectadores al borde de sus asientos.
-            </div>
-        </div>
-
-        <!-- Película 6 -->
-        <div class="panel">
-        <div class="panel-header" onclick="togglePanel('panel6')">
-                Trap
-            </div>
-            <div class="panel-body" id="panel6" style="display: none;">
-                Fecha de estreno: Agosto 2024. Un thriller de Universal Pictures lleno de suspense.
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function togglePanel(panelId) {
-        var panel = document.getElementById(panelId);
-        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    // Opciones de la lista desplegable
+    while ($fila = $resultado->fetch_assoc()) {
+        echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
     }
-</script>
-</div>
 
-                <br><br><br>
+    // Fin de la lista desplegable
+    echo '</select>';
+    echo '<input type="submit" name="seleccionar_producto" value="Seleccionar Producto">';
+    echo '</form>';
+} else {
+    echo "No hay productos disponibles.";
+}
+
+// Verificar si se ha seleccionado un producto
+if (isset($_POST['seleccionar_producto']) && !empty($_POST['producto_id'])) {
+    $producto_id = $_POST['producto_id'];
+    // Consulta para obtener los detalles del producto seleccionado
+    $sql = "SELECT * FROM peliculas WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $producto_id);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($resultado->num_rows > 0) {
+        $producto = $resultado->fetch_assoc();
+    } else {
+        echo "Producto no encontrado.";
+    }
+    $stmt->close();
+}
+
+// Cierra la conexión a la base de datos
+$conexion->close();
+
+if ($producto): ?>
+<form action="edit_movie.php" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id_producto" value="<?php echo $producto['id']; ?>">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" value="<?php echo htmlspecialchars($producto['nombre']); ?>">
+
+    <label for="descripcion">Descripción:</label>
+    <textarea name="descripcion" required><?php echo htmlspecialchars($producto['descripcion']); ?></textarea>
+
+    <label for="cantidad_existencia">Cantidad en existencia:</label>
+    <input type="number" name="cantidad_existencia" value="<?php echo $producto['cantidad_existencia']; ?>">
+
+    <label for="agotado">Agotado:</label>
+    <select name="agotado" required>
+        <option value="0" <?php // Si no está agotado, imprime 'selected' ?>>No</option>
+        <option value="1" <?php // Si está agotado, imprime 'selected' ?>>Sí</option>
+    </select>
+
+    <label for="precio">Precio:</label>
+    <input type="number" name="precio" step="0.01" value="<?php echo $producto['precio']; ?>">
+
+    <label for="imagen">Imagen:</label>
+    <input type="file" name="imagen">
+    <img src="media/posters/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="Imagen actual del producto" style="max-width:200px; display: block; margin-left: auto; margin-right: auto;">
+
+    <label for="tiene_descuento">Tiene descuento:</label>
+    <select name="tiene_descuento">
+        <option value="<?php echo $producto['tiene_descuento']; ?>" <?php // Si no tiene descuento, imprime 'selected' ?>>No</option>
+        <option value="<?php echo $producto['tiene_descuento']; ?>" <?php // Si tiene descuento, imprime 'selected' ?>>Sí</option>
+    </select>
+
+    <label for="descuento">Descuento:</label>
+    <input type="number" name="descuento" step="0.01" value="<?php echo $producto['descuento']; ?>">
+
+    <label for="genero">Género:</label>
+    <input type="text" name="genero" value="<?php echo $producto['genero']; ?>">
+
+    <br><br>
+    <input type="submit" name="editar_producto" value="Actualizar Producto">
+</form>
+<?php endif;
+?>
+
+
+<br><br><br>
                    <!--Aqui inicia nuestro footer -->
                 <footer class="page__footer">
                     <footer class="main-footer">
@@ -756,5 +589,3 @@ document.querySelectorAll('.img-table').forEach(function(img) {
 </div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-   </body>
-</html>
