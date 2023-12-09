@@ -42,13 +42,13 @@ header{
 
 .count-products{
     position: absolute;
-    top: 55%;
-    right: 0;
+    top: 60%;
+    right: 70%;
 
-    background-color: #000;
+    background-color: #e62429;
     color: #fff;
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
 
     display: flex;
     justify-content: center;
