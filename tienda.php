@@ -273,9 +273,13 @@ if ($resultado->num_rows > 0) {
         $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
         $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
 
+        // Formar el nombre del archivo de imagen
+        $nombreArchivo = $pelicula['nombre'];
+        $nombreImg = "media/posters/" . $nombreArchivo . ".jpg";
+
         echo "<div class='item'>
                 <figure>
-                    <img src='{$pelicula['imagen']}' alt='{$pelicula['nombre']}' />
+                    <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
                 </figure>
                 <div class='info-product'>
                     <h2>{$pelicula['nombre']}</h2>
