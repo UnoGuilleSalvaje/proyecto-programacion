@@ -177,7 +177,7 @@ if (isset($_SESSION['username'])) {
                                                     
                                                 </div>
                                             </li>
-                                            <li class="desktopNav__linkWrapper">
+<li class="desktopNav__linkWrapper">
     <?php
     // Verifica si el usuario está logueado y si su rol es 'admin'
 

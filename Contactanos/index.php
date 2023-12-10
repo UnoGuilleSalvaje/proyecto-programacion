@@ -270,13 +270,13 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                                     
                                                 </div>
                                             </li>
-<li class="desktopNav__linkWrapper">
+                                            <li class="desktopNav__linkWrapper">
     <?php
     // Verifica si el usuario está logueado y si su rol es 'admin'
 
     if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {  
         echo '<li class="desktopNav__linkWrapper ">
-        <a class="desktopNav__link" href="../AdministrarProductos.php" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="desktopNav__link" href="AdministrarProductos.php" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
         </a>
         <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
