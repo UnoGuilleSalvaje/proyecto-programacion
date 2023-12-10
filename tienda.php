@@ -287,7 +287,7 @@ if ($resultado->num_rows > 0) {
         // Formar el nombre del archivo de imagen
         $nombreArchivo = $pelicula['nombre'];
         $nombreImg = "media/posters/" . $nombreArchivo . ".jpg";
-
+        
         // Aquí agregamos el atributo data-cantidad-existencia al div del item
         echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
                 <figure>

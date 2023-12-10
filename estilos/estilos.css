@@ -73,6 +73,11 @@ header{
     
 }
 
+.container-cart-products:hover{
+    color: #ec1d24da;
+    
+}
+
 .cart-product{
     display: flex;
     align-items: center;
@@ -122,7 +127,6 @@ header{
     margin-right: 0; /* No hay margen a la derecha del último elemento */
     color: black;
 }
-
 
 .icon-close{
     width: 25px;

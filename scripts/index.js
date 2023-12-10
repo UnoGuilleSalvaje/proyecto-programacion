@@ -3,6 +3,10 @@ const containerCartProducts = document.querySelector(
 	'.container-cart-products'
 );
 
+// Establecer estilos para permitir desplazamiento
+containerCartProducts.style.maxHeight = '400px'; // Ajusta esto según tus necesidades
+containerCartProducts.style.overflowY = 'auto';
+
 btnCart.addEventListener('click', () => {
 	containerCartProducts.classList.toggle('hidden-cart');
 });
@@ -24,9 +28,25 @@ const countProducts = document.querySelector('#contador-productos');
 const cartEmpty = document.querySelector('.cart-empty');
 const cartTotal = document.querySelector('.cart-total');
 
+function actualizarCarritoEnServidor() {
+    fetch('actualizar_carrito.php', {
+        method: 'POST',
+        body: JSON.stringify({ cart: allProducts }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Carrito actualizado en el servidor', data);
+    })
+    .catch(error => console.error('Error al actualizar el carrito:', error));
+}
 
 productsList.addEventListener('click', e => {
     if (e.target.classList.contains('btn-add-cart')) {
+
+		e.stopPropagation();
         // Acceder al contenedor del producto que tiene el atributo data-cantidad-existencia
         const productContainer = e.target.closest('.item');
 
@@ -79,6 +99,7 @@ productsList.addEventListener('click', e => {
                 console.log('No hay stock disponible para este producto.');
             }
         }
+		actualizarCarritoEnServidor();
         showHTML();
     }
 });
@@ -86,6 +107,9 @@ productsList.addEventListener('click', e => {
 rowProduct.addEventListener('click', e => {
     // Verifica si el clic fue en el icono de cerrar
     if (e.target.classList.contains('icon-close')) {
+        // Detiene la propagación del evento para evitar que se cierre el carrito
+        e.stopPropagation();
+
         // Encuentra el contenedor del producto completo que incluye el título, la descripción, etc.
         const productContainer = e.target.closest('.cart-product');
         // Encuentra el título del producto dentro del contenedor del producto
@@ -97,9 +121,11 @@ rowProduct.addEventListener('click', e => {
         console.log(allProducts);
 
         // Actualiza el HTML para reflejar el cambio
+        actualizarCarritoEnServidor();
         showHTML();
     }
 });
+
 
 // Funcion para mostrar  HTML
 const showHTML = () => {
@@ -163,5 +189,25 @@ const showHTML = () => {
 
 	valorTotal.innerText = `$${total.toFixed(2)}`;
 	countProducts.innerText = totalOfProducts;
+};
+
+document.addEventListener('click', function(event) {
+    const isClickInsideCart = containerCartProducts.contains(event.target);
+    const isClickOnCartButton = event.target === btnCart || btnCart.contains(event.target);
+
+    if (!isClickInsideCart && !isClickOnCartButton) {
+        containerCartProducts.classList.add('hidden-cart');
+    }
+});
+
+// Cuando la página se carga, carga el carrito del servidor
+window.onload = () => {
+    fetch('cargar_carrito.php')
+    .then(response => response.json())
+    .then(data => {
+        allProducts = data;
+        showHTML();
+    })
+    .catch(error => console.error('Error al cargar el carrito:', error));
 };
 
