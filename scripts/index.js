@@ -120,7 +120,7 @@ const showHTML = () => {
 
 		containerProduct.innerHTML = `
             <div class="info-cart-product">
-                <span class="cantidad-producto-carrito">${product.quantity}</span>
+                <span class="cantidad-producto-carrito"> x ${product.quantity}</span>
                 <p class="titulo-producto-carrito">${product.title}</p>
                 <span class="precio-producto-carrito">${product.price}</span>
             </div>

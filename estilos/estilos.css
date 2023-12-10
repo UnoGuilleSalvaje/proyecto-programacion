@@ -101,6 +101,7 @@ header{
 }
 
 .cantidad-producto-carrito{
+    color:rgba(0, 0, 0, 0.463);
     font-weight: 400;
     font-size: 20px;
 }

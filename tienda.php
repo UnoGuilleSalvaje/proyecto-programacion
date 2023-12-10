@@ -152,7 +152,7 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
 					<div class="row-product hidden">
 						<div class="cart-product">
 							<div class="info-cart-product">
-								<span class="cantidad-producto-carrito">1</span>
+								<span class="cantidad-producto-carrito"></span>
 								<p class="titulo-producto-carrito">El carrito se encuentra vacío</p>
 								<span class="precio-producto-carrito">$0</span>
 							</div>
