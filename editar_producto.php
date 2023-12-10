@@ -406,10 +406,11 @@ if ($producto): ?>
     <img src="media/posters/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="Imagen actual del producto" style="max-width:200px; display: block; margin-left: auto; margin-right: auto;">
 
     <label for="tiene_descuento">Tiene descuento:</label>
-    <select name="tiene_descuento">
-        <option value="<?php echo $producto['tiene_descuento']; ?>" <?php // Si no tiene descuento, imprime 'selected' ?>>No</option>
-        <option value="<?php echo $producto['tiene_descuento']; ?>" <?php // Si tiene descuento, imprime 'selected' ?>>Sí</option>
-    </select>
+<select name="tiene_descuento" id="tiene_descuento">
+    <option value="0" <?php echo $producto['tiene_descuento'] == '0' ? 'selected' : ''; ?>>No</option>
+    <option value="1" <?php echo $producto['tiene_descuento'] == '1' ? 'selected' : ''; ?>>Sí</option>
+</select>
+
 
     <label for="descuento">Descuento:</label>
     <input type="number" name="descuento" step="0.01" value="<?php echo $producto['descuento']; ?>">

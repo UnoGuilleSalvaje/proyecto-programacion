@@ -96,16 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             echo "El archivo no es una imagen.";
         }
-    } else {
-        // Error al cargar la imagen o no se seleccionó ninguna nueva imagen
-        // Puedes decidir mantener la imagen actual o manejar este caso como un error
-        $imagen = $producto['imagen']; // Mantiene la imagen actual si no se ha cargado una nueva
     }
     
     // Prepara la consulta SQL para actualizar los datos
     $stmt = $conexion->prepare("UPDATE peliculas SET nombre = ?, descripcion = ?, cantidad_existencia = ?, agotado = ?, precio = ?, imagen = ?, tiene_descuento = ?, descuento = ?, genero = ? WHERE id = ?");
-    $stmt->bind_param("ssidsiissi", $nombre, $descripcion, $cantidad_existencia, $agotado, $precio, $imagen, $tiene_descuento, $descuento, $genero, $id);
-    
+    $stmt->bind_param("ssiidsdiss", $nombre, $descripcion, $cantidad_existencia, $agotado, $precio, $imagen, $tiene_descuento, $descuento, $genero, $id);
+       
     // Ejecuta la consulta
     if ($stmt->execute()) {
         ?>
