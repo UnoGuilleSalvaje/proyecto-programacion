@@ -72,7 +72,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $descuento = $_POST['descuento'];
     $genero = $_POST['genero'];
 
-    // Aquí deberías procesar la carga del archivo de la imagen si es necesario
+    // Maneja la carga del archivo de la imagen
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
+        $rutaCarpetaDestino = "media/posters/";
+
+        // Asegúrate de que el archivo es una imagen
+        $check = getimagesize($_FILES['imagen']['tmp_name']);
+        if ($check !== false) {
+            // Limpiar el nombre de archivo
+            $nombreImagen = basename($_FILES['imagen']['name']);
+            $extension = strtolower(pathinfo($nombreImagen, PATHINFO_EXTENSION));
+            $nombreArchivo = $nombre . '.' . $extension; // nombre de la película + extensión
+            $rutaCompleta = $rutaCarpetaDestino . $nombreArchivo;
+
+            // Intentar mover el archivo cargado al destino
+            if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaCompleta)) {
+                // El archivo se cargó y movió correctamente
+                $imagen = $nombreArchivo; // Actualiza el nombre de la imagen para la base de datos
+            } else {
+                // Error al mover el archivo
+                echo "Hubo un error al subir el archivo.";
+            }
+        } else {
+            echo "El archivo no es una imagen.";
+        }
+    } else {
+        // Error al cargar la imagen o no se seleccionó ninguna nueva imagen
+        // Puedes decidir mantener la imagen actual o manejar este caso como un error
+        $imagen = $producto['imagen']; // Mantiene la imagen actual si no se ha cargado una nueva
+    }
     
     // Prepara la consulta SQL para actualizar los datos
     $stmt = $conexion->prepare("UPDATE peliculas SET nombre = ?, descripcion = ?, cantidad_existencia = ?, agotado = ?, precio = ?, imagen = ?, tiene_descuento = ?, descuento = ?, genero = ? WHERE id = ?");
