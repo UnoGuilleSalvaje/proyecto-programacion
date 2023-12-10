@@ -64,6 +64,54 @@ $peliculas = obtenerPeliculas();
         <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Incluir SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+function showLoginAlert() {
+  Swal.fire({
+    title: 'Iniciar Sesión Requerido',
+    text: 'Para añadir productos al carrito, primero debes estar logueado.',
+    icon: 'warning',
+    background: '#1e1e1e', // Gris página
+    showCancelButton: true,
+    confirmButtonColor: '#e62429', // Rojo botón
+    cancelButtonColor: '#151515', // Gris más oscuro
+    confirmButtonText: 'Ir a Iniciar Sesión',
+    cancelButtonText: 'Cancelar',
+    customClass: {
+      popup: 'swal-custom-popup',
+      title: 'swal-custom-title',
+      content: 'swal-custom-content',
+      confirmButton: 'swal-custom-confirm',
+      cancelButton: 'swal-custom-cancel'
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = 'login_registro/index.php';
+    }
+  });
+}
+</script>
+
+<style>
+  .swal-custom-popup {
+    background-color: #1e1e1e; /* Gris página */
+  }
+  .swal-custom-title {
+    color: #ffffff; /* Color del título en blanco */
+  }
+  .swal-custom-content {
+    color: #ffffff; /* Color del contenido en blanco */
+  }
+  .swal-custom-confirm {
+    background-color: #e62429; /* Rojo botón */
+  }
+  .swal-custom-cancel {
+    background-color: #151515; /* Gris más oscuro */
+  }
+</style>
+
 	</head>
 	<bodyt>
 
@@ -327,7 +375,7 @@ if ($resultado->num_rows > 0) {
                 <p>Género: {$pelicula['genero']}</p>
                 
                 
-                <button class='btn-login-required' onclick='location.href=\"login_registro/index.php\";'>Iniciar sesión para comprar</button>
+                <button class='btn-login-required' onclick='showLoginAlert()'>Iniciar sesión para comprar</button>
             </div>
           </div>";
         }
@@ -335,8 +383,6 @@ if ($resultado->num_rows > 0) {
 } else {
     echo "<p>No se encontraron películas.</p>";
 }
-
-
 ?>
 
         </div>
@@ -513,6 +559,5 @@ if ($resultado->num_rows > 0) {
 
 		<script src="scripts/index.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 	</body>
 </html>

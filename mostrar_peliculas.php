@@ -32,6 +32,54 @@ if (isset($_SESSION['username'])) {
         <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <!-- Incluir SweetAlert -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+function showLoginAlert() {
+Swal.fire({
+title: 'Iniciar Sesión Requerido',
+text: 'Para añadir productos al carrito, primero debes estar logueado.',
+icon: 'warning',
+background: '#1e1e1e', // Gris página
+showCancelButton: true,
+confirmButtonColor: '#e62429', // Rojo botón
+cancelButtonColor: '#151515', // Gris más oscuro
+confirmButtonText: 'Ir a Iniciar Sesión',
+cancelButtonText: 'Cancelar',
+customClass: {
+  popup: 'swal-custom-popup',
+  title: 'swal-custom-title',
+  content: 'swal-custom-content',
+  confirmButton: 'swal-custom-confirm',
+  cancelButton: 'swal-custom-cancel'
+}
+}).then((result) => {
+if (result.isConfirmed) {
+  window.location.href = 'login_registro/index.php';
+}
+});
+}
+</script>
+
+<style>
+.swal-custom-popup {
+background-color: #1e1e1e; /* Gris página */
+}
+.swal-custom-title {
+color: #ffffff; /* Color del título en blanco */
+}
+.swal-custom-content {
+color: #ffffff; /* Color del contenido en blanco */
+}
+.swal-custom-confirm {
+background-color: #e62429; /* Rojo botón */
+}
+.swal-custom-cancel {
+background-color: #151515; /* Gris más oscuro */
+}
+</style>
+
 	</head>
 	<bodyt>
 
@@ -278,8 +326,9 @@ if ($resultado->num_rows > 0) {
         $nombreArchivo = $pelicula['nombre'];
         $nombreImg = "media/posters/" . $nombreArchivo . ".jpg";
 
-        // Aquí agregamos el atributo data-cantidad-existencia al div del item
-        echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
+        if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+            // Usuario logueado
+            echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
                 <figure>
                     <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
                 </figure>
@@ -292,9 +341,32 @@ if ($resultado->num_rows > 0) {
                     <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>
                     <p>Descuento: {$descuentoTexto}</p>
                     <p>Género: {$pelicula['genero']}</p>
+                    
+                    
                     <button class='btn-add-cart'>Añadir al carrito</button>
                 </div>
               </div>";
+        } else {
+            // Usuario no logueado
+            echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
+            <figure>
+                <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
+            </figure>
+            <div class='info-product'>
+                <h2>{$pelicula['nombre']}</h2>
+                <p>ID: {$pelicula['id']}</p>
+                <p class='descripcion-producto'>Descripción: {$pelicula['descripcion']}</p>
+                <p>Cantidad en existencia: {$pelicula['cantidad_existencia']}</p>
+                <p>Estado: {$estado}</p>
+                <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>
+                <p>Descuento: {$descuentoTexto}</p>
+                <p>Género: {$pelicula['genero']}</p>
+                
+                
+                <button class='btn-login-required' onclick='showLoginAlert()'>Iniciar sesión para comprar</button>
+            </div>
+          </div>";
+        }
     }
 } else {
     echo "<p>No se encontraron películas.</p>";
