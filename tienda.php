@@ -6,6 +6,8 @@ if (isset($_SESSION['username'])) {
     // El usuario está logueado.
     // Puedes realizar acciones adicionales aquí, como mostrar el nombre de usuario.
     echo "Bienvenido, " . $_SESSION['username'];
+
+    $usuarioLogueado = isset($_SESSION['username']);
 }
 
 ?>
@@ -287,9 +289,10 @@ if ($resultado->num_rows > 0) {
         // Formar el nombre del archivo de imagen
         $nombreArchivo = $pelicula['nombre'];
         $nombreImg = "media/posters/" . $nombreArchivo . ".jpg";
-        
-        // Aquí agregamos el atributo data-cantidad-existencia al div del item
-        echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
+
+        if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+            // Usuario logueado
+            echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
                 <figure>
                     <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
                 </figure>
@@ -302,9 +305,32 @@ if ($resultado->num_rows > 0) {
                     <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>
                     <p>Descuento: {$descuentoTexto}</p>
                     <p>Género: {$pelicula['genero']}</p>
+                    
+                    
                     <button class='btn-add-cart'>Añadir al carrito</button>
                 </div>
               </div>";
+        } else {
+            // Usuario no logueado
+            echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
+            <figure>
+                <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
+            </figure>
+            <div class='info-product'>
+                <h2>{$pelicula['nombre']}</h2>
+                <p>ID: {$pelicula['id']}</p>
+                <p class='descripcion-producto'>Descripción: {$pelicula['descripcion']}</p>
+                <p>Cantidad en existencia: {$pelicula['cantidad_existencia']}</p>
+                <p>Estado: {$estado}</p>
+                <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>
+                <p>Descuento: {$descuentoTexto}</p>
+                <p>Género: {$pelicula['genero']}</p>
+                
+                
+                <button class='btn-login-required' onclick='location.href=\"login_registro/index.php\";'>Iniciar sesión para comprar</button>
+            </div>
+          </div>";
+        }
     }
 } else {
     echo "<p>No se encontraron películas.</p>";

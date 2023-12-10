@@ -210,4 +210,3 @@ window.onload = () => {
     })
     .catch(error => console.error('Error al cargar el carrito:', error));
 };
-

@@ -223,7 +223,7 @@ header{
 .info-product button{
     border: none;
     background: none;
-    background-color: #000;
+    background-color: #1e1e1e;
     color: #fff;
     padding: 15px 10px;
     cursor: pointer;
