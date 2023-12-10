@@ -296,7 +296,7 @@ if ($resultado->num_rows > 0) {
                 <div class='info-product'>
                     <h2>{$pelicula['nombre']}</h2>
                     <p>ID: {$pelicula['id']}</p>
-                    <p>Descripción: {$pelicula['descripcion']}</p>
+                    <p class='descripcion-producto'>Descripción: {$pelicula['descripcion']}</p>
                     <p>Cantidad en existencia: {$pelicula['cantidad_existencia']}</p>
                     <p>Estado: {$estado}</p>
                     <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>

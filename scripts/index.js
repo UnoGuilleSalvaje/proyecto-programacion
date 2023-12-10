@@ -42,10 +42,12 @@ productsList.addEventListener('click', e => {
         // Corregir la referencia a productContainer en lugar de product
         const priceText = productContainer.querySelector('p.price').textContent;
         const priceNumber = parseFloat(priceText.replace(/[^0-9.]/g, ''));
+		const descripcion = productContainer.querySelector('p.descripcion-producto').textContent;
 
         const infoProduct = {
             quantity: 1,
             title: productContainer.querySelector('h2').textContent,
+			description: descripcion,
             price: priceNumber,
             available: cantidadExistencia // Agrega la cantidad disponible
         };
@@ -82,18 +84,21 @@ productsList.addEventListener('click', e => {
 });
 
 rowProduct.addEventListener('click', e => {
-	if (e.target.classList.contains('icon-close')) {
-		const product = e.target.parentElement;
-		const title = product.querySelector('p').textContent;
+    // Verifica si el clic fue en el icono de cerrar
+    if (e.target.classList.contains('icon-close')) {
+        // Encuentra el contenedor del producto completo que incluye el título, la descripción, etc.
+        const productContainer = e.target.closest('.cart-product');
+        // Encuentra el título del producto dentro del contenedor del producto
+        const title = productContainer.querySelector('.titulo-producto-carrito').textContent;
 
-		allProducts = allProducts.filter(
-			product => product.title !== title
-		);
+        // Actualiza el arreglo allProducts para filtrar el producto que se quiere eliminar
+        allProducts = allProducts.filter(product => product.title !== title);
 
-		console.log(allProducts);
+        console.log(allProducts);
 
-		showHTML();
-	}
+        // Actualiza el HTML para reflejar el cambio
+        showHTML();
+    }
 });
 
 // Funcion para mostrar  HTML
@@ -118,13 +123,18 @@ const showHTML = () => {
 		const containerProduct = document.createElement('div');
 		containerProduct.classList.add('cart-product');
 
-		containerProduct.innerHTML = `
-            <div class="info-cart-product">
-                <span class="cantidad-producto-carrito"> x ${product.quantity}</span>
-                <p class="titulo-producto-carrito">${product.title}</p>
-                <span class="precio-producto-carrito">${product.price}</span>
-            </div>
-            <svg
+		const subtotal = product.quantity * product.price; // Calcular subtotal por producto
+
+        containerProduct.innerHTML = `
+		<div class="info-cart-product">
+		<h3 class="titulo-producto-carrito">${product.title}</h3>
+		<p class="descripcion-producto-carrito">${product.description}</p>
+		
+		<div class="cantidad-precio">
+		<div>Cantidad: x<span class="cantidad-producto-carrito">${product.quantity}</span></div>
+		<div>Precio: $<span class="precio-producto-carrito">${product.price}</span></div>
+		<div>Subtotal: $<span class="subtotal-producto-carrito">${subtotal.toFixed(2)}</span></div>
+		<svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -138,6 +148,9 @@ const showHTML = () => {
                     d="M6 18L18 6M6 6l12 12"
                 />
             </svg>
+		</div>
+            
+			</div>
         `;
 
 		rowProduct.append(containerProduct);
