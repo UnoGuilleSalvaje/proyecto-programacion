@@ -270,15 +270,18 @@ $resultado = $stmt->get_result();
 if ($resultado->num_rows > 0) {
     // Mostrar cada película en un div
     while ($pelicula = $resultado->fetch_assoc()) {
-        // Aquí iría tu código para mostrar los detalles de cada película
         $descuentoTexto = $pelicula['tiene_descuento'] == '1' ? $pelicula['descuento'] . '%' : 'No';
         $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
         $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
 
-        $rutaImagen = "media/posters/" . rawurlencode($pelicula['nombre']) . ".jpg";
-        echo "<div class='item'>
+        // Formar el nombre del archivo de imagen
+        $nombreArchivo = $pelicula['nombre'];
+        $nombreImg = "media/posters/" . $nombreArchivo . ".jpg";
+
+        // Aquí agregamos el atributo data-cantidad-existencia al div del item
+        echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
                 <figure>
-                <img src='{$rutaImagen}' alt='{$pelicula['nombre']}' /
+                    <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
                 </figure>
                 <div class='info-product'>
                     <h2>{$pelicula['nombre']}</h2>
@@ -294,7 +297,7 @@ if ($resultado->num_rows > 0) {
               </div>";
     }
 } else {
-    echo "<p>No se encontraron películas en el género seleccionado.</p>";
+    echo "<p>No se encontraron películas.</p>";
 }
 ?>
 </div>

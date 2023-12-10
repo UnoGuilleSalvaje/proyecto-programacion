@@ -273,8 +273,6 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
         <!-- Películas ----------------------------------------------------------------------------- -->
         <div class="container-items" style="margin-left: 50px; margin-right: 50px;";>
         <?php
-// Suponiendo que ya tienes una conexión a la base de datos establecida y guardada en la variable $conexion
-
 // Obtener las películas de la base de datos
 $resultado = $conexion->query("SELECT * FROM peliculas");
 
@@ -290,7 +288,8 @@ if ($resultado->num_rows > 0) {
         $nombreArchivo = $pelicula['nombre'];
         $nombreImg = "media/posters/" . $nombreArchivo . ".jpg";
 
-        echo "<div class='item'>
+        // Aquí agregamos el atributo data-cantidad-existencia al div del item
+        echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
                 <figure>
                     <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
                 </figure>
@@ -310,6 +309,7 @@ if ($resultado->num_rows > 0) {
 } else {
     echo "<p>No se encontraron películas.</p>";
 }
+
 
 ?>
 

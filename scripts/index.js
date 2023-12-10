@@ -24,40 +24,61 @@ const countProducts = document.querySelector('#contador-productos');
 const cartEmpty = document.querySelector('.cart-empty');
 const cartTotal = document.querySelector('.cart-total');
 
+
 productsList.addEventListener('click', e => {
-	if (e.target.classList.contains('btn-add-cart')) {
-		const product = e.target.parentElement;
+    if (e.target.classList.contains('btn-add-cart')) {
+        // Acceder al contenedor del producto que tiene el atributo data-cantidad-existencia
+        const productContainer = e.target.closest('.item');
 
-		// Utiliza una expresión regular para extraer solo los números y puntos decimales del precio
-		const priceText = product.querySelector('p.price').textContent;
-		const priceNumber = parseFloat(priceText.replace(/[^0-9.]/g, ''));
+        // Verificar que el contenedor del producto fue encontrado
+        if (!productContainer) {
+            console.error('Contenedor del producto no encontrado');
+            return;
+        }
 
-		const infoProduct = {
-			quantity: 1,
-			title: product.querySelector('h2').textContent,
-			price: priceNumber,
-		};
+        // Obtener la cantidad en existencia
+        const cantidadExistencia = parseInt(productContainer.getAttribute('data-cantidad-existencia'));
 
-		const exits = allProducts.some(
-			product => product.title === infoProduct.title
-		);
+        // Corregir la referencia a productContainer en lugar de product
+        const priceText = productContainer.querySelector('p.price').textContent;
+        const priceNumber = parseFloat(priceText.replace(/[^0-9.]/g, ''));
 
-		if (exits) {
-			const products = allProducts.map(product => {
-				if (product.title === infoProduct.title) {
-					product.quantity++;
-					return product;
-				} else {
-					return product;
-				}
-			});
-			allProducts = [...products];
-		} else {
-			allProducts = [...allProducts, infoProduct];
-		}
+        const infoProduct = {
+            quantity: 1,
+            title: productContainer.querySelector('h2').textContent,
+            price: priceNumber,
+            available: cantidadExistencia // Agrega la cantidad disponible
+        };
 
-		showHTML();
-	}
+        const exits = allProducts.some(product => product.title === infoProduct.title);
+
+        if (exits) {
+            const products = allProducts.map(product => {
+                if (product.title === infoProduct.title) {
+                    // Verifica si la cantidad agregada no supera la cantidad en existencia
+                    if (product.quantity < product.available) {
+                        product.quantity++;
+                    } else {
+                        // Aquí puedes mostrar una alerta o mensaje indicando que no hay suficiente stock
+                        console.log('No hay suficiente stock para agregar más de este producto.');
+                    }
+                    return product;
+                } else {
+                    return product;
+                }
+            });
+            allProducts = [...products];
+        } else {
+            // Verifica si hay stock disponible antes de agregar el producto por primera vez
+            if (infoProduct.available > 0) {
+                allProducts = [...allProducts, infoProduct];
+            } else {
+                // Mostrar mensaje de que no hay stock
+                console.log('No hay stock disponible para este producto.');
+            }
+        }
+        showHTML();
+    }
 });
 
 rowProduct.addEventListener('click', e => {
