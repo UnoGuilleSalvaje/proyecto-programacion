@@ -322,6 +322,13 @@ if ($resultado->num_rows > 0) {
         $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
         $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
 
+        // Calcular el precio antes del descuento si hay descuento aplicado
+        $precioSinDescuento = "";
+        if ($pelicula['tiene_descuento'] == '1') {
+            $precioAntesDelDescuento = $pelicula['precio'] / (1 - ($pelicula['descuento'] / 100));
+            $precioSinDescuento = "<p class='price'>Precio original: <del>\$" . number_format($precioAntesDelDescuento, 2) . "</del></p>";
+        }
+
         // Formar el nombre del archivo de imagen
         $nombreArchivo = $pelicula['nombre'];
         $nombreImg = "media/posters/" . $nombreArchivo . ".jpg";
@@ -338,6 +345,7 @@ if ($resultado->num_rows > 0) {
                     <p class='descripcion-producto'>Descripción: {$pelicula['descripcion']}</p>
                     <p>Cantidad en existencia: {$pelicula['cantidad_existencia']}</p>
                     <p>Estado: {$estado}</p>
+                    $precioSinDescuento
                     <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>
                     <p>Descuento: {$descuentoTexto}</p>
                     <p>Género: {$pelicula['genero']}</p>
