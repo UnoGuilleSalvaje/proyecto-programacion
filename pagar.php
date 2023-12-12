@@ -28,19 +28,21 @@ if (isset($datosRecibidos['cart'])) {
     // Puedes realizar operaciones adicionales con la información del carrito aquí
 
     // Mostrar información del carrito (esto es solo un ejemplo)
-    //     $response = [
-    //         'success' => true,
-    //         'cartItems' => $cartItems,
-    //     ];
 
-    //     echo json_encode($response);
-    // } else {
-    //     $response = [
-    //         'success' => false,
+    $response = [
+        'success' => true,
+        'message' => '¡Información del carrito recibida con éxito!',
+        'cartItems' => $cartItems,
+    ];
 
-    //     ];
+    echo json_encode($response);
+} else {
+    $response = [
+        'success' => false,
+        'message' => 'No se recibió la información del carrito.',
+    ];
 
-    //     echo json_encode($response);
+    echo json_encode($response);
 }
 ?>
 
@@ -93,6 +95,7 @@ if (isset($datosRecibidos['cart'])) {
             });
         }
     </script>
+
     <script>
         // Función para actualizar el total en la página
     function actualizarTotal(total) {
@@ -112,6 +115,7 @@ if (isset($datosRecibidos['cart'])) {
             }
         }
     </script>
+
     <style>
         .swal-custom-popup {
             background-color: #1e1e1e;
@@ -137,6 +141,7 @@ if (isset($datosRecibidos['cart'])) {
             background-color: #151515;
             /* Gris más oscuro */
         }
+
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -249,13 +254,13 @@ if (isset($datosRecibidos['cart'])) {
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Work+Sans:wght@800&display=swap');
+
     </style>
 
 </head>
 <bodyt>
 
     <!-- Barra de Navegación -->
-
 
     <div class="navigation__container--navs 
                             navigation__container--fixed 
@@ -277,6 +282,7 @@ if (isset($datosRecibidos['cart'])) {
                                     } else {
                                         // Usuario no logueado
                                         echo '<a class="user-menu-tab sign-in" href="login_registro/index.php">
+                                        
                         <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;">INICIAR SESIÓN </font></font></a>
                         <span class="user-menu-tab separator">
@@ -285,6 +291,7 @@ if (isset($datosRecibidos['cart'])) {
                         <a class="user-menu-tab join-dropdown" href="login_registro/index.php">
                             <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REGISTRARSE</font>
                         </font></a>';
+
                                     }
                                     ?>
                                     <span class="user-menu-tab username"></span>
@@ -313,10 +320,12 @@ if (isset($datosRecibidos['cart'])) {
                                         <span class="maravillas-title">Descubre más</span>
                                     </a>
                                 <?php endif; ?>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
     </div>
@@ -476,5 +485,6 @@ if (isset($datosRecibidos['cart'])) {
     </div>
     </table>
     </body>
+
 
 </html>

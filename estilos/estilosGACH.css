@@ -1,0 +1,220 @@
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url(imagesGACH/fondoOscuro1.jpg); 
+    background-size: cover; /* Asegura que la imagen de fondo cubra todo el espacio disponible */
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: #1e1e1e;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), /* Sombra interna */
+                 0 6px 20px 0 rgba(0, 0, 0, 1); /* Sombra externa más difuminada */
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+    margin-bottom: 20px; /* Asegura la separación entre campos */
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #ffffff00;
+    pointer-events: none;
+    transition: .5s;
+}
+
+/* Estilo para cuando el input tiene el foco o contiene un valor válido */
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -30px;
+    left: 0;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+/* Centrar el botón y mejorar su apariencia */
+.login-box form a {
+    position: relative;
+    display: inline-block; /* Cambiar a block para que tome el ancho completo */
+    padding: 10px 20px;
+    color: #ffffff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px; /* Asegura la separación entre la casilla y el botón */
+    letter-spacing: 4px;
+    background: #0000003b; /* Fondo del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Estilo del cursor como puntero */
+    text-align: center; /* Alinea el texto del botón al centro */
+    margin: 20px auto; /* Centrado horizontal del botón */
+}
+
+/* Estilos para el efecto hover del botón */
+.login-box a:hover {
+    background: #e62429;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ec1d24,
+                0 0 25px #ec1d24,
+                0 0 50px #ec1d24,
+                0 0 100px #ec1d24;
+}
+
+/* Estilos para los spans que crean el efecto en el botón */
+.login-box a span {
+    position: absolute;
+    display: block;
+}
+  
+  .login-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ec1d24);
+    animation: btn-anim1 1s linear infinite;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #ec1d24);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+  
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #ec1d24);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+  
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #ec1d24);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+  
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
+
+  .checkbox-container {
+    display: flex; /* Utiliza flexbox para la disposición de los elementos */
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+    justify-content: flex-start; /* Alinea los elementos al inicio del contenedor */
+    margin-top: 10px; /* O cualquier margen que necesites para espaciar desde el elemento anterior */
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.checkbox {
+    margin-right: 10px; /* Añade un margen a la derecha del checkbox para separar del texto */
+}
+
+body, h2, .button {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.home-link {
+    position: absolute;
+    top: 70px; /* Ajusta según sea necesario para la posición vertical */
+    left: 50%;
+    transform: translateX(-50%); /* Centra horizontalmente */
+    z-index: 10; /* Asegura que la imagen esté encima de otros elementos */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), /* Sombra interna */
+                 0 6px 20px 0 rgba(0, 0, 0, 1); /* Sombra externa más difuminada */
+  }
+  
+  .home-link a {
+    display: block;
+    text-align: center; /* Centra la imagen en el enlace */
+  }
+  
+  .home-link img {
+    width: 100px; /* O el tamaño que prefieras */
+    height: auto; /* Mantiene la relación de aspecto */
+  }
+  
+
