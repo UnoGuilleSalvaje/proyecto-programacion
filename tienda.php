@@ -226,6 +226,7 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
 					<div class="cart-total hidden">
 						<h3>Total:</h3>
 						<span class="total-pagar">$0</span>
+                        <button class="btn-pagar" onclick="window.location.href='pagar.php'">Pagar</button>
 					</div>
 					<p class="cart-empty invisible">El carrito está vacío</p>
 				</div>

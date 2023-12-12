@@ -2,6 +2,7 @@ const btnCart = document.querySelector('.container-cart-icon');
 const containerCartProducts = document.querySelector(
 	'.container-cart-products'
 );
+const btnPagar = document.querySelector('.btn-pagar');
 
 // Establecer estilos para permitir desplazamiento
 containerCartProducts.style.maxHeight = '400px'; // Ajusta esto según tus necesidades
@@ -14,6 +15,7 @@ btnCart.addEventListener('click', () => {
 /* ========================= */
 const cartInfo = document.querySelector('.cart-product');
 const rowProduct = document.querySelector('.row-product');
+
 
 // Lista de todos los contenedores de productos
 const productsList = document.querySelector('.container-items');
@@ -210,4 +212,32 @@ window.onload = () => {
     })
     .catch(error => console.error('Error al cargar el carrito:', error));
 };
+
+// Cuando se hace clic en el botón de pagar, muestra la tabla del carrito
+btnPagar.addEventListener('click', () => {
+    const cartItems = allProducts.map(product => {
+        return {
+            title: product.title,
+            quantity: product.quantity,
+            price: product.price
+        };
+    });
+    showCartTable(cartItems);
+});
+
+function showCartTable(cartItems) {
+    const cartTableBody = document.getElementById('cartTableBody');
+    cartTableBody.innerHTML = ''; // Limpiar la tabla antes de actualizarla
+
+    cartItems.forEach(product => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${product.title}</td>
+            <td>${product.quantity}</td>
+            <td>$${product.price.toFixed(2)}</td>
+            <td>$${(product.quantity * product.price).toFixed(2)}</td>
+        `;
+        cartTableBody.appendChild(row);
+    });
+}
 
