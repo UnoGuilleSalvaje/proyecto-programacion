@@ -310,7 +310,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                                 </path>
                                             </svg></span></a><a target="_blank"
                                         aria-label="follow us on Instagram, opens a new window" class="social__img"
-                                        href="https://www.instagram.com/tecnobash/"><span class="icon--svg"
+                                        href="https://www.instagram.com/gandsmovies/"><span class="icon--svg"
                                             aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18"
                                                 height="18" viewBox="0 0 18 18">
                                                 <path fill-rule="evenodd"
@@ -685,7 +685,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                 </svg></span></a></li>
     <li class="footer__social__img"><a target="_blank"
             aria-label="follow us on Instagram, opens a new window" class=""
-            href="https://www.instagram.com/"><span
+            href="https://www.instagram.com/gandsmovies/"><span
                 class="icon--svg icon--svg--gray-fill" aria-hidden="true">
                 <!--Instagram-->
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"

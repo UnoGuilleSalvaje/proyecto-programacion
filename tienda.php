@@ -351,6 +351,7 @@ if ($resultado->num_rows > 0) {
     while ($pelicula = $resultado->fetch_assoc()) {
         $descuentoTexto = $pelicula['tiene_descuento'] == '1' ? $pelicula['descuento'] . '%' : 'No';
         $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
+        $estado = $pelicula['cantidad_existencia'] <= '0' ? 'Agotado' : 'En existencia';
         $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
 
         // Calcular el precio antes del descuento si hay descuento aplicado
@@ -513,7 +514,7 @@ if ($resultado->num_rows > 0) {
                 </svg></span></a></li>
     <li class="footer__social__img"><a target="_blank"
             aria-label="follow us on Instagram, opens a new window" class=""
-            href="https://www.instagram.com/"><span
+            href="https://www.instagram.com/gandsmovies/"><span
                 class="icon--svg icon--svg--gray-fill" aria-hidden="true">
                 <!--Instagram-->
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
