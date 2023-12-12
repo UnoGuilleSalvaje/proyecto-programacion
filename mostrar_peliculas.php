@@ -338,6 +338,7 @@ if ($resultado->num_rows > 0) {
     while ($pelicula = $resultado->fetch_assoc()) {
         $descuentoTexto = $pelicula['tiene_descuento'] == '1' ? $pelicula['descuento'] . '%' : 'No';
         $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
+        $estado = $pelicula['cantidad_existencia'] <= '0' ? 'Agotado' : 'En existencia';
         $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
 
         // Calcular el precio antes del descuento si hay descuento aplicado
