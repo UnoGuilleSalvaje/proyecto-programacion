@@ -444,7 +444,7 @@ if (isset($_SESSION['username'])) {
 </ul>
 </nav>
 </div>
-<p class="copy_right">&copy; 2023 Gands Movies. Todos los derechos reservados. Prohibida la reproducción sin autorización.</p>
+<p class="copy_right">&copy; 2023 Gands Movies. Todos los derechos reservados. Este sitio, fruto de un proyecto avanzado en programación de sistemas web, ofrece una experiencia única en entretenimiento digital. Prohibida la reproducción sin autorización.</p>
 </footer>
 
 </div>  
