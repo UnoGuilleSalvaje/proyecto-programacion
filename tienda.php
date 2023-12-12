@@ -339,6 +339,80 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
             <p style="margin-left: 50px; margin-right: 50px;">Explora nuestro extenso catálogo de películas, donde encontrarás desde los clásicos atemporales hasta los éxitos contemporáneos. Cada película ha sido seleccionada para garantizar que tengas acceso a una diversidad de géneros y estilos, adecuados para cualquier preferencia o estado de ánimo. Nuestro objetivo es proporcionarte no solo entretenimiento, sino también la oportunidad de descubrir nuevas historias y aventurarte en mundos desconocidos, todo desde el confort de tu hogar.</p>
 			
 		</header>
+<?php
+     function obtenerProductos() {
+    global $conexion;
+    $sql = "SELECT * FROM productos";
+    $result = $conexion->query($sql);
+    $productos = [];
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $productos[] = $row;
+        }
+    }
+    return $productos;
+}
+
+
+// Función para filtrar productos por rango de precios
+function filtrarProductosPorPrecio($precioMin, $precioMax) {
+    global $conexion;
+    $productosFiltrados = array();
+
+    // Utiliza consultas preparadas para evitar SQL injection
+    $stmt = $conexion->prepare("SELECT * FROM peliculas WHERE precio >= ? AND precio <= ?");
+    $stmt->bind_param("ii", $precioMin, $precioMax);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+        $productosFiltrados[] = $row;
+    }
+
+    $stmt->close();
+
+    return $productosFiltrados;
+}
+
+// Obtener el rango de precios desde la URL (puedes ajustarlo según tu lógica)
+$precioMin = isset($_GET['precioMin']) ? $_GET['precioMin'] : null;
+$precioMax = isset($_GET['precioMax']) ? $_GET['precioMax'] : null;
+
+// Verificar si se proporciona un rango válido
+if (is_numeric($precioMin) && is_numeric($precioMax)) {
+    // Filtrar productos por rango de precios
+    $productosFiltrados = filtrarProductosPorPrecio($precioMin, $precioMax);
+} else {
+    // Obtener todos los productos si no se proporciona un rango válido
+    $productosFiltrados = obtenerProductos();
+}
+
+usort($productosFiltrados, function ($a, $b) {
+    return $a['precio'] - $b['precio'];
+});
+
+?>
+        <form action="" method="get" style="margin-left: 50px; margin-right: 50px;">
+    <label for="precioMin">Precio mínimo:</label>
+    <input type="text" id="precioMin" name="precioMin" value="<?php echo $precioMin; ?>" required>
+    <br>
+    <label for="precioMax">Precio máximo:</label>
+    <input type="text" id="precioMax" name="precioMax" value="<?php echo $precioMax; ?>" required>
+    <input type="submit" value="Filtrar">
+    <br><br>
+</form>
+    <!-- Mostrar productos filtrados o todos los productos -->
+    <?php if (!empty($productosFiltrados)): ?>
+        <ul>
+            <?php foreach ($productosFiltrados as $producto): ?>
+                <li style="margin-left: 50px; margin-right: 50px;"><?php echo $producto['nombre'] . ' - $' . $producto['precio'] . ' - ' .  $producto['genero'] ; 
+                ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>No se encontraron productos.</p>
+    <?php endif; ?>
         <!-- Películas ----------------------------------------------------------------------------- -->
         <div class="container-items" style="margin-left: 50px; margin-right: 50px;";>
         <?php
@@ -351,9 +425,6 @@ if ($resultado->num_rows > 0) {
     while ($pelicula = $resultado->fetch_assoc()) {
         $descuentoTexto = $pelicula['tiene_descuento'] == '1' ? $pelicula['descuento'] . '%' : 'No';
         $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
-
-        $estado = $pelicula['cantidad_existencia'] <= '0' ? 'Agotado' : 'En existencia';
-
         $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
 
         // Calcular el precio antes del descuento si hay descuento aplicado
@@ -516,9 +587,7 @@ if ($resultado->num_rows > 0) {
                 </svg></span></a></li>
     <li class="footer__social__img"><a target="_blank"
             aria-label="follow us on Instagram, opens a new window" class=""
-
-            href="https://www.instagram.com/gandsmovies/"><span
-
+            href="https://www.instagram.com/"><span
                 class="icon--svg icon--svg--gray-fill" aria-hidden="true">
                 <!--Instagram-->
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
