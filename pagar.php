@@ -435,21 +435,24 @@ $(document).ready(function() {
                 console.error("Error: " + error);
             }
         });
-    });
-
 
     function actualizarGastosEnvio(costoEnvio) {
-    $('#gastos-envio').text('$' + costoEnvio.toFixed(2));
-}
+        $('#gastos-envio').text('$' + costoEnvio.toFixed(2));
+        $('#costoEnvio').val(costoEnvio); // Actualiza el campo oculto
+    }
 
-function actualizarImpuesto(impuesto) {
+    function actualizarImpuesto(impuesto) {
+    console.log("Impuesto recibido: ", impuesto); // Para depuración
     $('#impuesto').text('$' + impuesto.toFixed(2));
+    $('#imp').val(impuesto); // Actualiza el campo oculto
 }
 
-function actualizarTotal(nuevoTotal) {
-    $('#total').text('$' + nuevoTotal.toFixed(2));
-}
 
+    function actualizarTotal(nuevoTotal) {
+        $('#total').text('$' + nuevoTotal.toFixed(2));
+        $('#totalConEnvioEImpuestos').val(nuevoTotal); // Actualiza el campo oculto
+    }
+});
 
     $('#apply-discount').on('click', function() {
         var discountCode = $('#discount-code').val();
@@ -526,7 +529,6 @@ function actualizarTotal(total) {
         </table>
 
 
-
         <!-- Formulario para enviar la información del carrito y detalles de pago -->
         <form class="payment-form" id="payment-form" action="procesar_pago.php" method="POST">
             <!-- Información del carrito (productos, cantidades, precios) -->
@@ -555,6 +557,13 @@ function actualizarTotal(total) {
 
             <label for="cvv">CVV:</label>
             <input type="text" name="cvv" required>
+
+                <!-- Campos ocultos para el costo de envío, impuesto y total -->
+    <input type="hidden" name="costoEnvio" id="costoEnvio">
+    <input type="hidden" name="imp" id="imp">
+    <input type="hidden" name="totalConEnvioEImpuestos" id="totalConEnvioEImpuestos">
+
+    <!-- Resto del formulario -->
 
             <!-- Botón de pago y envia correo con los datos de la compra con enviar_correp.php-->   
             <button type="submit" id="btnPago">Pagar</button>

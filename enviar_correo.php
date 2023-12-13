@@ -12,7 +12,7 @@ require './PHPMailer/src/SMTP.php';
 date_default_timezone_set('America/Mexico_City');
 
 // Obtener la dirección de correo electrónico del usuario desde la URL
-$correo_electronico = "trestamal@gmail.com";   // Reemplaza con la variable real obtenida desde tu código pagar.php
+$correo_electronico = "unoguillel@gmail.com";   // Reemplaza con la variable real obtenida desde tu código pagar.php
 
 $mail = new PHPMailer(true);
 

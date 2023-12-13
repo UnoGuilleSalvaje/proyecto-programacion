@@ -252,6 +252,28 @@ btnPago.addEventListener('click', () => {
 });
 
 
+const btnGenerarPDF = document.getElementById('btnGenerarPDF');
+
+btnGenerarPDF.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevenir el envío del formulario por defecto
+
+    const cartItems = allProducts.map(product => {
+        return {
+            title: product.title,
+            quantity: product.quantity,
+            price: product.price
+        };
+    });
+
+    console.log(JSON.stringify({ cart: cartItems })); // Añade esta línea para depuración
+    document.getElementById('cartData').value = JSON.stringify({ cart: cartItems });
+    document.getElementById('formPdf').submit();
+});
+
+
+
+
+
 function showCartTable(cartItems) {
     const cartTableBody = document.getElementById('cartTableBody');
     cartTableBody.innerHTML = ''; // Limpiar la tabla antes de actualizarla
