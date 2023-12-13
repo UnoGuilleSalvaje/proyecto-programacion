@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree&display=swap");
+
+*::after,
+*::before,
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bodyt{
+    margin: 0 auto;
+    max-width: 1200px;
+    font-family: 'Lato';
+    color: #333;
+}
+
+.icon-cart{
+    width: 40px;
+    height: 40px;
+    stroke: #000;
+}
+
+.icon-cart:hover{
+    cursor: pointer;
+}
+
+img{
+    max-width: 100%;
+}
+
+/* Header */
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 40px 0;
+}
+
+.container-icon{
+    position: relative;
+}
+
+.count-products{
+    position: absolute;
+    top: 60%;
+    right: 70%;
+
+    background-color: #e62429;
+    color: #fff;
+    width: 15px;
+    height: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+#contador-productos{
+    font-size: 12px;
+}
+
+.container-cart-products{
+    position: absolute;
+    top: 50px;
+    right: 0;
+    
+    background-color: #fff;
+    width: 400px;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    
+}
+
+.container-cart-products:hover{
+    color: #ec1d24da;
+    
+}
+
+.cart-product{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+
+}
+
+.info-cart-product{
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos al principio de cada contenedor */
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en la siguiente línea */
+}
+
+.titulo-producto-carrito{
+    font-weight: bold; /* Hace que el título sea más grueso */
+    font-size: 20px; /* Tamaño del título */
+    flex-basis: 100%; /* Hace que el título ocupe el ancho completo */
+}
+
+.descripcion-producto-carrito{
+    font-size: 8px; /* Tamaño de la descripción */
+    flex-basis: 100%; /* Hace que la descripción ocupe el ancho completo */
+    margin-bottom: 1rem; /* Espacio entre la descripción y la sección de cantidad/precio */
+}
+
+.cantidad-precio {
+    display: flex;
+    justify-content: space-between; /* Esto espaciará los elementos equitativamente */
+    align-items: center;
+    flex-basis: 100%; /* Ahora el contenedor ocupará el ancho completo */
+    margin-bottom: 1rem; /* Espacio debajo del contenedor cantidad-precio */
+}
+
+.cantidad-producto-carrito,
+.precio-producto-carrito,
+.subtotal-producto-carrito {
+    margin-right: 10px; /* Espacio a la derecha de cada elemento */
+    color: black;
+}
+
+/* También puedes añadir un margen a la derecha del último elemento */
+.subtotal-producto-carrito {
+    margin-right: 0; /* No hay margen a la derecha del último elemento */
+    color: black;
+}
+
+.icon-close{
+    width: 25px;
+    height: 25px;
+}
+
+.icon-close:hover{
+    stroke: red;
+    cursor: pointer;
+}
+
+.cart-total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.cart-total h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.total-pagar{
+    font-size: 20px;
+    font-weight: 900;
+    color:#e62429;
+}
+
+.hidden-cart{
+    display: none;
+}
+
+
+
+
+/* Main */
+.container-items{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.item{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar contenido en el eje horizontal */
+    justify-content: space-between; /* Distribuir el espacio verticalmente */
+    background-color: #fff; /* Color de fondo del contenedor */
+    padding: 20px; /* Espaciado interno del contenedor */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para resaltar los contenedores */
+    min-height: 300px; /* Altura mínima para cada contenedor */
+}
+
+.item:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+}
+
+.item img{
+    width: 500px; /* Ancho fijo para todas las imágenes */
+    height: 600px; /* Altura fija para todas las imágenes */
+    object-fit: cover; /* Ajustar la imagen para cubrir el espacio sin deformarse */
+    border-radius: 5px; /* Opcional: bordes redondeados para las imágenes */
+    transition: all .5s;
+}
+
+.item figure{
+    overflow: hidden;
+}
+
+.item:hover img{
+    transform: scale(0.9);
+}
+
+.info-product{
+    padding: 15px 30px;
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1; /* Permitir que el contenido crezca para llenar el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Esto asegurará que el texto esté alineado abajo */
+}
+
+.price{
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.info-product button{
+    border: none;
+    background: none;
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.txt{
+    font-family: "Figtree", sans-serif;
+    text-align: center;
+}
+
+.invisible {
+    color:#00000000;
+}
+
+.icon-close {
+    stroke: red !important;
+}
+
