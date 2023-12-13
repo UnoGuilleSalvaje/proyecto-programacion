@@ -207,7 +207,10 @@ document.querySelectorAll('.img-table').forEach(function(img) {
         <li><a class="dropdown-item" href="alta_producto.php">Altas</a></li>
         <li><a class="dropdown-item" href="editar_producto.php">Cambios</a></li>
         <li><a class="dropdown-item" href="eliminar_producto.php">Bajas</a></li>
+        <li><a class="dropdown-item" href="grafica 1.php">Grafica 1</a></li>
+        <li><a class="dropdown-item" href="grafica 2.php">Grafica 2</a></li>
         </ul>
+    </li>';
     </li>';
     }
     ?>

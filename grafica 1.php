@@ -1,3 +1,6 @@
+<head>
+    
+</head>
 <?php
 // Iniciar la sesión al principio de tu script
 session_start();
@@ -6,118 +9,159 @@ if (isset($_SESSION['username'])) {
     // El usuario está logueado.
     // Puedes realizar acciones adicionales aquí, como mostrar el nombre de usuario.
     echo "Bienvenido, " . $_SESSION['username'];
-
-    $usuarioLogueado = isset($_SESSION['username']);
 }
 
-?>
-
-<?php
-// Conexión a la base de datos
-$servidor = 'localhost';
-$cuenta = 'root';
-$password = '';
-$bd = 'db_peliculas';
-$conexion = new mysqli($servidor, $cuenta, $password, $bd);
-
-if ($conexion->connect_errno) {
-    die('Error en la conexión');
-}
-
-// Obtener todas las películas
-function obtenerPeliculas() {
-    global $conexion;
-    $sql = "SELECT * FROM peliculas";
-    $result = $conexion->query($sql);
-    $peliculas = [];
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $peliculas[] = $row;
-        }
-    }
-    return $peliculas;
-}
-
-$peliculas = obtenerPeliculas();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<title>Tienda</title>
-        <link rel="stylesheet" href="estilos/styles.css">
-		<link rel="stylesheet" href="estilos/estilos.css" />
-        <link rel="icon" href="media/g.png" type="image/x-icon">
-        <link rel="shortcut icon" href="media/g.png" type="image/x-icon" >
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charSet="utf-8" />
+    <title>GandsMovies.com | Sitio oficial GandsMovies</title>
+    <meta name="title" content="GandsMovies.com | sitio oficual GandsMovies peliculas" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="media/g.png" type="image/x-icon">
+    <link rel="shortcut icon" href="media/g.png" type="image/x-icon" >
+    <link rel="stylesheet" href="estilos/styles.css">
+    <link href="index.html" rel="canonical" />
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWecw7o4Lg5L3M4anMK8XQ6/JD4pky3uK6PAx9F0RJK5hNgLl4mJ7L6yHuhf"
-        crossorigin="anonymous"
-        />
-
-        <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Incluir SweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js" integrity="sha512-7DgGWBKHddtgZ9Cgu8aGfJXvgcVv4SWSESomRtghob4k4orCBUTSRQ4s5SaC2Rz+OptMqNk0aHHsaUBk6fzIXw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js" ></script>
 
-    <script>
-function showLoginAlert() {
-  Swal.fire({
-    title: 'Iniciar Sesión Requerido',
-    text: 'Para añadir productos al carrito, primero debes estar logueado.',
-    icon: 'warning',
-    background: '#1e1e1e', // Gris página
-    showCancelButton: true,
-    confirmButtonColor: '#e62429', // Rojo botón
-    cancelButtonColor: '#151515', // Gris más oscuro
-    confirmButtonText: 'Ir a Iniciar Sesión',
-    cancelButtonText: 'Cancelar',
-    customClass: {
-      popup: 'swal-custom-popup',
-      title: 'swal-custom-title',
-      content: 'swal-custom-content',
-      confirmButton: 'swal-custom-confirm',
-      cancelButton: 'swal-custom-cancel'
-    }
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.href = 'login_registro/index.php';
-    }
-  });
-}
-</script>
-
-<style>
-  .swal-custom-popup {
+    <style>
+        body {
+    font-family: Arial, sans-serif;
     background-color: #1e1e1e; /* Gris página */
-  }
-  .swal-custom-title {
-    color: #ffffff; /* Color del título en blanco */
-  }
-  .swal-custom-content {
-    color: #ffffff; /* Color del contenido en blanco */
-  }
-  .swal-custom-confirm {
-    background-color: #e62429; /* Rojo botón */
-  }
-  .swal-custom-cancel {
+}
+
+form {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
     background-color: #151515; /* Gris más oscuro */
-  }
-</style>
+    color: #ffffff;
+    border-radius: 5px;
+}
 
-	</head>
-	<bodyt>
+label {
+    display: block;
+    margin-bottom: .5em;
+    color: #ffffff;
+}
 
-        <!-- Barra de Navegación -->
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ec1d24; /* Rojo GANDS Logo */
+    background-color: #1e1e1e; /* Gris página */
+    color: #ffffff;
+}
 
-        <nav class="navigation__container">
+input[type="submit"],
+button {
+    display: block;
+    margin: auto; /* Centra el botón horizontalmente */
+    width: 40%;
+    padding: 10px;
+    background-color: #e62429; /* Rojo botón */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #ec1d24; /* Rojo GANDS Logo */
+}
+
+/* Agregando un poco de espacio alrededor del formulario */
+.container-form {
+    padding: 40px;
+}
+
+/* Estilos para los mensajes de error o confirmación */
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.error {
+    background-color: #ff3860;
+}
+.success {
+    background-color: #23d160;
+}
+
+.home-link {
+  position: absolute;
+  top: 70px; /* Ajusta según sea necesario para la posición vertical */
+  left: 50%;
+  transform: translateX(-50%); /* Centra horizontalmente */
+  z-index: 10; /* Asegura que la imagen esté encima de otros elementos */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), /* Sombra interna */
+               0 6px 20px 0 rgba(0, 0, 0, 1); /* Sombra externa más difuminada */
+}
+
+.home-link a {
+  display: block;
+  text-align: center; /* Centra la imagen en el enlace */
+}
+
+.home-link img {
+  width: 100px; /* O el tamaño que prefieras */
+  height: auto; /* Mantiene la relación de aspecto */
+}
+
+    </style>
+
+
+    <noscript data-n-css=""></noscript>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    //Añade un evento de clic a todas las imágenes con la clase 'img-table'
+document.querySelectorAll('.img-table').forEach(function(img) {
+  img.addEventListener('click', function() {
+    //Agrega la clase 'shake' al hacer clic en la imagen
+    img.classList.add('shake');
+    
+    //Remueve la clase 'shake' después de una animación
+    setTimeout(function() {
+      img.classList.remove('shake');
+    }, 500); // 500 milisegundos = 0.5 segundos
+  });
+});
+
+    </script>
+</head>
+
+<body>
+    
+<?php
+
+?>
+
+
+<div id="__next">
+        <div id="terrigen-page" class="page">
+            <div id="page-wrapper" class="page__body">
+                <header class="page__header">
+
+                    <!-- Barra de Navegación -->
+
+                    <nav class="navigation__container">
                         <div class="navigation__container--navs 
                             navigation__container--fixed 
                             navigation__container--top">
@@ -177,69 +221,22 @@ function showLoginAlert() {
         <?php endif; ?>
     </div>
 
-                                                <div class="search desktopNav__tabContainer">
+                                                <div class="search desktopNav__tabContainer ">
                                                     <a id="search" class="search desktopNav__tab" aria-label="search"
                                                         href="#">
-                                                        <?php
-if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
-    // El contenido que quieres mostrar a usuarios logueados
-?>
- <div class="container-icon">
-				<div class="container-cart-icon" >
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-cart" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-  <path d="M3 3h18v2H3z"/>
-  <path d="M3 8h18l-1.5 9H4.5L3 8z"/>
-  <circle cx="6" cy="19" r="2"/>
-  <circle cx="17" cy="19" r="2"/>
-</svg>
+                                                        <span
+                                                            class="icon--svg icon--svg--black-fill icon--svg--black-stroke icon--search"
+                                                            aria-hidden="true">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="19"
+                                                                height="17" viewBox="0 0 19 17" fill-rule="evenodd">
+                                                                <circle cx="6.5" cy="6.5" r="5.5">
 
-					<div class="count-products ">
-						<span id="contador-productos">0</span>
-					</div>
-				</div>
+                                                                </circle>
+                                                                <path d="M14 14l3.536 3.536">
 
-				<div class="container-cart-products hidden-cart">
-					<div class="row-product hidden">
-						<div class="cart-product">
-							<div class="info-cart-product">
-								<span class="cantidad-producto-carrito"></span>
-								<p class="titulo-producto-carrito">El carrito se encuentra vacío</p>
-								<span class="precio-producto-carrito">$0</span>
-							</div>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="red"
-								class="icon-close"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M6 18L18 6M6 6l12 12"
-								/>
-							</svg>
-						</div>
-					</div>
-
-					<div class="cart-total hidden">
-						<h3>Total:</h3>
-						<span class="total-pagar">$0</span>
-                        <button class="btn-pagar" onclick="window.location.href='pagar.php'">Pagar</button>
-					</div>
-					<p class="cart-empty invisible">El carrito está vacío</p>
-				</div>
-			</div>
-
-            <?php
-} else{
-    
-?>
-
-<?php
-}
-?>
+                                                                </path>
+                                                            </svg>
+                                                        </span>
                                                     </a>
                                                 </div>
                                                 
@@ -247,7 +244,6 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
                                             
                                         </div>
                                     </div>
-
                     
                                     <!-- Links   -->
                                     <div class="desktopNav__lower">
@@ -298,12 +294,12 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-6"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="Contactanos/index.php">Contáctanos</a>
+                                                    href="#">Contáctanos</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-6">
                                                     
                                                 </div>
                                             </li>
-                                            <li class="desktopNav__linkWrapper">
+<li class="desktopNav__linkWrapper">
     <?php
     // Verifica si el usuario está logueado y si su rol es 'admin'
 
@@ -321,6 +317,7 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
     }
     ?>
 </li>
+
                                         </ul>
                                     </div>
                                 <!-- Fin de links -->
@@ -331,169 +328,70 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
                     </nav>
 
 
-                    <br><br>
-                    <h1 class="txt">Películas</h1>
-
-		<header>
-			
-            <p style="margin-left: 50px; margin-right: 50px;">Explora nuestro extenso catálogo de películas, donde encontrarás desde los clásicos atemporales hasta los éxitos contemporáneos. Cada película ha sido seleccionada para garantizar que tengas acceso a una diversidad de géneros y estilos, adecuados para cualquier preferencia o estado de ánimo. Nuestro objetivo es proporcionarte no solo entretenimiento, sino también la oportunidad de descubrir nuevas historias y aventurarte en mundos desconocidos, todo desde el confort de tu hogar.</p>
-			
-		</header>
 <?php
-     function obtenerProductos() {
-    global $conexion;
-    $sql = "SELECT * FROM productos";
-    $result = $conexion->query($sql);
-    $productos = [];
+// Conexión a la base de datos (asegúrate de reemplazar con tus propios detalles de conexión)
+$servidor = 'localhost';
+$cuenta = 'root';
+$password = '';
+$bd = 'db_peliculas';
+//Se establece una conexión con la base de datos MySQL 
+$conexion = new mysqli($servidor, $cuenta, $password, $bd);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $productos[] = $row;
-        }
-    }
-    return $productos;
+// Verifica si la conexión fue exitosa
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
 }
 
+$producto = null;
 
-// Función para filtrar productos por rango de precios
-function filtrarProductosPorPrecio($precioMin, $precioMax) {
-    global $conexion;
-    $productosFiltrados = array();
+// Consulta para obtener todos los productos
+$sql = "SELECT id, precio, genero FROM peliculas";
+$resultado = $conexion->query($sql);
 
-    // Utiliza consultas preparadas para evitar SQL injection
-    $stmt = $conexion->prepare("SELECT * FROM peliculas WHERE precio >= ? AND precio <= ?");
-    $stmt->bind_param("ii", $precioMin, $precioMax);
-    $stmt->execute();
-    $result = $stmt->get_result();
 
-    while ($row = $result->fetch_assoc()) {
-        $productosFiltrados[] = $row;
-    }
-
-    $stmt->close();
-
-    return $productosFiltrados;
-}
-
-// Obtener el rango de precios desde la URL (puedes ajustarlo según tu lógica)
-$precioMin = isset($_GET['precioMin']) ? $_GET['precioMin'] : null;
-$precioMax = isset($_GET['precioMax']) ? $_GET['precioMax'] : null;
-
-// Verificar si se proporciona un rango válido
-if (is_numeric($precioMin) && is_numeric($precioMax)) {
-    // Filtrar productos por rango de precios
-    $productosFiltrados = filtrarProductosPorPrecio($precioMin, $precioMax);
-} else {
-    // Obtener todos los productos si no se proporciona un rango válido
-    $productosFiltrados = obtenerProductos();
-}
-
-usort($productosFiltrados, function ($a, $b) {
-    return $a['precio'] - $b['precio'];
-});
+$conexion->close();
 
 ?>
-        <form action="" method="get" style="margin-left: 50px; margin-right: 50px;">
-    <label for="precioMin">Precio mínimo:</label>
-    <input type="text" id="precioMin" name="precioMin" value="<?php echo $precioMin; ?>" required>
-    <br>
-    <label for="precioMax">Precio máximo:</label>
-    <input type="text" id="precioMax" name="precioMax" value="<?php echo $precioMax; ?>" required>
-    <input type="submit" value="Filtrar">
-    <br><br>
-</form>
-    <!-- Mostrar productos filtrados o todos los productos -->
-    <?php if (!empty($productosFiltrados)): ?>
-        <ul>
-            <?php foreach ($productosFiltrados as $producto): ?>
-                <li style="margin-left: 50px; margin-right: 50px;"><?php echo $producto['nombre'] . ' - $' . $producto['precio'] . ' - ' .  $producto['genero'] ; 
-                ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>No se encontraron productos.</p>
-    <?php endif; ?>
-        <!-- Películas ----------------------------------------------------------------------------- -->
-        <div class="container-items" style="margin-left: 50px; margin-right: 50px;";>
-        <?php
-// Obtener las películas de la base de datos
-$resultado = $conexion->query("SELECT * FROM peliculas");
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var data = <?php echo json_encode($data); ?>;
 
-// Verificar si hay resultados
-if ($resultado->num_rows > 0) {
-    // Mostrar cada película en un div
-    while ($pelicula = $resultado->fetch_assoc()) {
-        $descuentoTexto = $pelicula['tiene_descuento'] == '1' ? $pelicula['descuento'] . '%' : 'No';
-        $estado = $pelicula['agotado'] == '1' ? 'Agotado' : 'En existencia';
-        $precioConDescuento = $pelicula['tiene_descuento'] == '1' ? $pelicula['precio'] * (1 - ($pelicula['descuento'] / 100)) : $pelicula['precio'];
+    var labels = data.map(function(item) {
+        return item.id;
+    });
 
-        // Calcular el precio antes del descuento si hay descuento aplicado
-        $precioSinDescuento = "";
-        if ($pelicula['tiene_descuento'] == '1') {
-            $precioAntesDelDescuento = $pelicula['precio'] / (1 - ($pelicula['descuento'] / 100));
-            $precioSinDescuento = "<p class='price'>Precio original: <del>\$" . number_format($precioAntesDelDescuento, 2) . "</del></p>";
+    var values = data.map(function(item) {
+        return item.precio;
+    });
+
+    var values = data.map(function(item) {
+        return item.genero;
+    });
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Datos desde la base de datos',
+                data: values,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
+    });
+</script>
 
-        // Formar el nombre del archivo de imagen
-        $nombreArchivo = $pelicula['nombre'];
-        $nombreImg = "media/posters/" . $nombreArchivo . ".jpg";
-
-        if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
-            // Usuario logueado
-            echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
-                <figure>
-                    <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
-                </figure>
-                <div class='info-product'>
-                    <h2>{$pelicula['nombre']}</h2>
-                    <p>ID: {$pelicula['id']}</p>
-                    <p class='descripcion-producto'>Descripción: {$pelicula['descripcion']}</p>
-                    <p>Cantidad en existencia: {$pelicula['cantidad_existencia']}</p>
-                    <p>Estado: {$estado}</p>
-                    $precioSinDescuento
-                    <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>
-                    <p>Descuento: {$descuentoTexto}</p>
-                    <p>Género: {$pelicula['genero']}</p>
-                    
-                    
-                    <button class='btn-add-cart'>Añadir al carrito</button>
-                </div>
-              </div>";
-        } else {
-            // Usuario no logueado
-            echo "<div class='item' data-cantidad-existencia='{$pelicula['cantidad_existencia']}'>
-            <figure>
-                <img src='{$nombreImg}' alt='{$pelicula['nombre']}' />
-            </figure>
-            <div class='info-product'>
-                <h2>{$pelicula['nombre']}</h2>
-                <p>ID: {$pelicula['id']}</p>
-                <p class='descripcion-producto'>Descripción: {$pelicula['descripcion']}</p>
-                <p>Cantidad en existencia: {$pelicula['cantidad_existencia']}</p>
-                <p>Estado: {$estado}</p>
-                <p class='price'>Precio: \$" . number_format($pelicula['precio'], 2) . "</p>
-                <p>Descuento: {$descuentoTexto}</p>
-                <p>Género: {$pelicula['genero']}</p>
-                
-                
-                <button class='btn-login-required' onclick='showLoginAlert()'>Iniciar sesión para comprar</button>
-            </div>
-          </div>";
-        }
-    }
-} else {
-    echo "<p>No se encontraron películas.</p>";
-}
-?>
-
-        </div>
-
-
-
-
-
-
-        <br><br><br>
+<br><br><br>
                    <!--Aqui inicia nuestro footer -->
                 <footer class="page__footer">
                     <footer class="main-footer">
@@ -651,14 +549,10 @@ if ($resultado->num_rows > 0) {
 </ul>
 </nav>
 </div>
-<p class="copy_right">&copy; 2023 Gands Movies. Todos los derechos reservados. Este sitio, fruto de un proyecto avanzado en programación de sistemas web, ofrece una experiencia única en entretenimiento digital. Prohibida la reproducción sin autorización.</p>
+<p class="copy_right">&copy; 2023 Gands Movies. Todos los derechos reservados. Prohibida la reproducción sin autorización.</p>
 </footer>
 
 </div>  
 </div>
 </div>
-
-		<script src="scripts/index.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	</body>
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
