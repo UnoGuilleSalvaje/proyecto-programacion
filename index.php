@@ -9,7 +9,6 @@ if (isset($_SESSION['username'])) {
 
 }
 
-//============================ ESTE ES UN INDEX DE CONTACTO ============================
 ?>
 
 <!DOCTYPE html>
@@ -17,95 +16,20 @@ if (isset($_SESSION['username'])) {
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GandsMovies.com | Sitio oficial GandsMovies</title>
     <meta name="title" content="GandsMovies.com | sitio oficual GandsMovies peliculas" />
     <meta property="og:type" content="website" />
-    <link rel="icon" href="../media/g.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../media/g.png" type="image/x-icon" >
-    <link rel="stylesheet" href="../estilos/styles.css">
-    <link href="../index.html" rel="canonical" />
-
+    <link rel="icon" href="media/g.png" type="image/x-icon">
+    <link rel="shortcut icon" href="media/g.png" type="image/x-icon" >
+    <link href="index.html" rel="canonical" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!--MIS ESTILOS CSS-->
+    <link rel="stylesheet" href="estilos/styles.css">
 
-  <style>
-    body {
-          margin: 0;
-          font-family: Roboto,Trebuchet MS,Helvetica,Arial,sans-serif;
-         
-          background-color:white;
-      }
-
-      .contact-container {
-          max-width: 1000px;
-          margin: 50px auto;
-          background-color: white;
-          border: 3px solid #ddd;
-          border-radius: 10px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-          
-      }
-
-      .contact-form {
-          padding: 20px;
-          box-sizing: border-box;
-          float: left;
-          width: 60%;
-      }
-
-      .contact-info {
-          padding: 20px;
-          box-sizing: border-box;
-          float: left;
-          width: 40%;
-
-          background-color: #1e1e1e;
-
-
-      }
-
-      .contact-info h2 {
-          margin-top: 0;
-          color: #ffffff;
-      }
-
-      .contact-info p {
-          color: #ffffff;
-      }
-
-      .contact-form label {
-          display: block;
-          margin-bottom: 8px;
-          color: #333;
-      }
-
-      .contact-form input,
-      .contact-form textarea {
-          width: 100%;
-          padding: 10px;
-          margin-bottom: 16px;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-          box-sizing: border-box;
-      }
-
-      .contact-form button {
-          background-color: #e62429;
-
-          color: #fff;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-      }
-
-      .contact-form button:hover {
-          background-color: #e62429;
-
-      }
-  </style>
     <noscript data-n-css=""></noscript>
     <script>
     //Añade un evento de clic a todas las imágenes con la clase 'img-table'
@@ -137,10 +61,9 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                         <div class="navigation__container--navs 
                             navigation__container--fixed 
                             navigation__container--top">
-                
-                            <section id="mobile-nav" class="mobile-nav" data-top-component="mobile-nav" data-page-position="nav">
+<section id="mobile-nav" class="mobile-nav" data-top-component="mobile-nav" data-page-position="nav">
     <div class="mobile-nav__container">
-        <a href="../mobileOpen.php" class="mobile-nav__open" aria-label="open navigation" role="button"
+        <a href="mobileOpen.php" class="mobile-nav__open" aria-label="open navigation" role="button"
             tabindex="0">
             <span class="icon--svg icon--svg--white-fill mobile-nav__hamburger" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16">
@@ -152,9 +75,9 @@ document.querySelectorAll('.img-table').forEach(function(img) {
         </a>
 
 
-        <a class="mobile-nav__logo" href="../index.php">
+        <a class="mobile-nav__logo" href="index.php">
             <span class="icon--svg icon--svg mvl-animated-logo" aria-hidden="true">
-            <img class="logo-2" src="../media/GANDS MOVIES ORIGINAL.png" alt=""><!--LOGO DEL SITIO-->
+            <img class="logo-2" src="media/GANDS MOVIES ORIGINAL.png" alt=""><!--LOGO DEL SITIO-->
                 <svg width="130" height="52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 </svg>
             </span>
@@ -172,11 +95,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
 </script>
 
     </script>
-</section>                
-                      
-
-
-
+</section>
                             <section class="desktopNav__container" data-top-component="desktop-nav"
                                 data-page-position="nav">
                                 <div class="desktopNav">
@@ -184,7 +103,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                         <div class="desktopNav__tabAndLogoContainer">
                                         <div class="insider desktopNav__tabContainer">
     <div class="insider desktopNav__tab">
-        <img src="../media/10307911.png" alt="" style="width: 20px; height: 20px; margin-top: 13px; margin-left: 7px !important;">
+        <img src="media/10307911.png" alt="" style="width: 20px; height: 20px; margin-top: 13px; margin-left: 7px !important;">
         <div class="user-menu__links">
 
             <?php
@@ -194,13 +113,13 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                 echo '<p class="maravillas-title">Bienvenido, ' . htmlspecialchars($_SESSION['username']) . '</p>';
             } else {
                 // Usuario no logueado
-                echo '<a class="user-menu-tab sign-in" href="../login_registro/index.php">
+                echo '<a class="user-menu-tab sign-in" href="login_registro/index.php">
                         <font style="vertical-align: inherit;">
                             <font style="vertical-align: inherit;">INICIAR SESIÓN </font></font></a>
                         <span class="user-menu-tab separator">
                             <font style="vertical-align: inherit;">
                                 <font style="vertical-align: inherit;">| </font></font></span>
-                        <a class="user-menu-tab join-dropdown" href="../login_registro/index.php">
+                        <a class="user-menu-tab join-dropdown" href="login_registro/index.php">
                             <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REGISTRARSE</font>
                         </font></a>';
             }
@@ -211,9 +130,9 @@ document.querySelectorAll('.img-table').forEach(function(img) {
     </div>
 </div>
                                             
-                                            <a class="desktopNav__logo" href="../index.php">
+                                            <a class="desktopNav__logo" href="index.php">
                                                 <span class="icon--svg icon--svg mvl-animated-logo" aria-hidden="true">
-                                                    <img src="../media/GANDS MOVIES ORIGINAL.png" alt=""><!--LOGO DEL SITIO-->
+                                                    <img src="media/GANDS MOVIES ORIGINAL.png" alt=""><!--LOGO DEL SITIO-->
                                                 </span>
                                             </a>
                                             
@@ -222,12 +141,12 @@ document.querySelectorAll('.img-table').forEach(function(img) {
         <?php if (isset($_SESSION['username'])): ?>
             <div class="searchPromo__wrap">
                 <br><br>
-                <a href="../logout.php" style="margin-right: 15px;"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                <a href="logout.php" style="margin-right: 15px;"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
             </div>
         <?php else: ?>
             <!-- Usuario no logueado: Muestra la sección de login -->
-            <a class="searchPromo desktopNav__tab" href="../login.php">
-                <img class="searchPromo__image" src="../media/tickets.png" alt="GandsMovies logo" />
+            <a class="searchPromo desktopNav__tab" href="login.php">
+                <img class="searchPromo__image" src="media/tickets.png" alt="GandsMovies logo" />
                 <span class="maravillas-title">Descubre más</span>
             </a>
         <?php endif; ?>
@@ -262,26 +181,26 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                         <ul class="desktopNav__linkContainer">
                                             <li class="desktopNav__linkWrapper">
                                                 <a id="mvl-flyout-button-0" class="desktopNav__link mvl-flyout-button"
-                                                    href="../index.php">Inicio</a>
+                                                    href="index.php">Inicio</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-0">
                                                    
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-1"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="../tienda.php">Películas</a>
+                                                    href="tienda.php">Películas</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-1">
                                                 
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper ">
-                                                <a class="desktopNav__link" href="../#" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="desktopNav__link" href="#" id="dropdownMenuButton1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Géneros
                                                 </a>
                                                 <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="../mostrar_peliculas.php?genero=Accion">Acción</a></li>
-                                                <li><a class="dropdown-item" href="../mostrar_peliculas.php?genero=Comedia">Comedia</a></li>
-                                                <li><a class="dropdown-item" href="../mostrar_peliculas.php?genero=Drama">Drama</a></li>
+                                                <li><a class="dropdown-item" href="mostrar_peliculas.php?genero=Accion">Acción</a></li>
+                                                <li><a class="dropdown-item" href="mostrar_peliculas.php?genero=Comedia">Comedia</a></li>
+                                                <li><a class="dropdown-item" href="mostrar_peliculas.php?genero=Drama">Drama</a></li>
                                                 </ul>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-3"
@@ -292,26 +211,26 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-4"
-                                                    class="desktopNav__link mvl-flyout-button" href="../about/AboutPage/about.php">Acerca de</a>
+                                                    class="desktopNav__link mvl-flyout-button" href="about/AboutPage/about.php">Acerca de</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-4">
                                                    
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-5"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="../ayuda.php">Ayuda</a>
+                                                    href="ayuda.php">Ayuda</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-5">
                                                    
                                                 </div>
                                             </li>
                                             <li class="desktopNav__linkWrapper"><a id="mvl-flyout-button-6"
                                                     class="desktopNav__link mvl-flyout-button"
-                                                    href="../Contactanos/index.php">Contáctanos</a>
+                                                    href="Contactanos/index.php">Contáctanos</a>
                                                 <div class="desktopNav__flyout-container nav-flyout-container-6">
                                                     
                                                 </div>
                                             </li>
-                                            <li class="desktopNav__linkWrapper">
+<li class="desktopNav__linkWrapper">
     <?php
     // Verifica si el usuario está logueado y si su rol es 'admin'
 
@@ -321,9 +240,9 @@ document.querySelectorAll('.img-table').forEach(function(img) {
             Admin
         </a>
         <ul class="dropdown-menu nav-flyout-container-2" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="../alta_producto.php">Altas</a></li>
-        <li><a class="dropdown-item" href="../editar_producto.php">Cambios</a></li>
-        <li><a class="dropdown-item" href="../eliminar_producto.php">Bajas</a></li>
+        <li><a class="dropdown-item" href="alta_producto.php">Altas</a></li>
+        <li><a class="dropdown-item" href="editar_producto.php">Cambios</a></li>
+        <li><a class="dropdown-item" href="eliminar_producto.php">Bajas</a></li>
         </ul>
     </li>';
     }
@@ -338,59 +257,378 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                             </section>
                         </div>
                     </nav>
-    
-    <div class="contact-container">
-      <div class="contact-form">
-        <h1>CONTACTANOS</h1>
-        <form action="correo.php" method="post">
-          <label for="name">TU NOMBRE COMPLETO:</label>
-          <input type="text" name="name" required />
 
-          <label for="email">EMAIL:</label>
-          <input type="email" name="email" required />
+                <!-- Header -------------------- -->
+                </header>
+                <div class="ad__skin-placeholder"></div>
+                <div id="page-content" class="page__contents -page">
+                    <section id="promo-1"
+                        class="page__component page__component-- page__component--promo section__color__dark firstComponent">
+                        <div class="promo light thin longer ">
+                            <div class="promo__wrapper">
+                                <div class="promo__content">
+                                    <figure class="img__wrapper promo__logo"><img
+                                            src="media/cinema-tickets-with-pop-corn-drink-amd-glasses-free-png.webp"
+                                            srcSet="" alt="" />
+                                    </figure>
+                                    <div class="promo__content__main">
+                                        <div class="promo__title">Donde tus sueños se proyectan en pantalla </div>
+                                        <div class="promo__description"></div>
+                                    </div><a class="promo__content__btn"
+                                        href="#"> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="masthead-2" class="page__component page__component-- page__component--masthead section__color__light ">
+                        <div class="line"></div>
+                        <div class="carousel baseCarousel masthead auto ">
 
-          <label for="message">DEJANOS TU MENSAJE:</label>
-          <textarea name="message" rows="4" required></textarea>
-
-          <button type="submit">ENVIAR</button>
-        </form>
-      </div>
-
-      <div class="contact-info">
-        <h2>Nuestro domicilio</h2>
-        <p>
-          <strong>Dirección:</strong> Av. Héroe de Nacozari #200A,
-          Aguascalientes
-        </p>
-        <p><strong>Teléfono:</strong> (449) 3684231</p>
-        <p><strong>Correo electrónico:</strong> vanianayeli2011@hotmail.com</p>
-
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.393295029523!2d-102.28450462585542!3d21.88092585796769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee7247ec04cd%3A0xb23e2c30af1bdd16!2sCOPIAS%20UNIVERSIDAD!5e0!3m2!1ses-419!2smx!4v1701740761305!5m2!1ses-419!2smx"
-          width="350"
-          height="300"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        >
-        </iframe>
-      </div>
+                        <!--AQUÍ INICIA EL CARRRUSEL DE  BOOTSTRAP-->
+                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="media/gands.png" class="d-block w-100" alt="...">
     </div>
-  </body>
-</html>
+    <div class="carousel-item">
+      <img src="media/fondoOscuro1.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="media/1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="media/top.png" class="d-block w-100" alt="...">
+    </div>
+   
+  </div>
+</div>
+                           <!-- <div class="baseCarousel__wrapper">
+                                <button class="baseCarousel__arrow baseCarousel__arrow left" role="button" tabindex="0" onclick="prevSlide()">
+                                    <!-- ... Tu código existente ... -->
+                              <!--  </button>
+                                
+                                <div class="carousel__content">
+                                    <!-- Slide 1 -->
+                             <!--       <div class="carousel__slide">
+                                        <img src="media/gands.png" alt="Descripción de la imagen 1">
+                                    </div>
+                    
+                                    <!-- Slide 2 -->
+                                <!--    <div class="carousel__slide">
+                                        <img src="media/fondoOscuro1.png" alt="Descripción de la imagen 2">
+                                    </div>
+                    
+                                    <!-- Slide 3 -->
+                                <!--    <div class="carousel__slide">
+                                        <img src="media/1.jpg" alt="Descripción de la imagen 3">
+                                    </div>
+                                      <!-- Slide 4 -->
+                                <!--    <div class="carousel__slide">
+                                        <img src="media/tendencia.jpg" alt="Descripción de la imagen 3">
+                                    </div>
+                                      <!-- Slide 5 -->
+                                <!--   <div class="carousel__slide">
+                                        <img src="media/top.png" alt="Descripción de la imagen 3">
+                                    </div>
+                            
+                                </div>
+                                <button class="baseCarousel__arrow baseCarousel__arrow right" role="button" tabindex="0" onclick="nextSlide()">
+                                </button>
+                            </div>-->
 
-<br><br><br>
+                            <div class="tabs__component ">
+                                <ul class="tabs__container">
+                                    <li class="tabs__btns "><a role="button" tabindex="0">Lo Mejor del Cine en GAND's</a></li>
+                                    <li class="tabs__btns "><a role="button" tabindex="0">Top Películas de la Semana</a></li>
+                                    <li class="tabs__btns "><a role="button" tabindex="0">Top Series de la Semana</a></li>
+                                    <li class="tabs__btns "><a role="button" tabindex="0">Promociones exclusivas en GAND's</a></li>
+                                    <li class="tabs__btns "><a role="button" tabindex="0">Lo mejor del año 2023 al alcance de tu mano</a></li>
+                                </ul>
+                            </div>
+                        <div id="social-container">
+                            <div class="social-links-wrapper">
+                                <div class="social-links social">
+                                    <div class="social__title">Síguenos</div><a target="_blank"
+                                        aria-label="follow us on Facebook, opens a new window" class="social__img"
+                                        href="https://www.facebook.com/profile.php?id=61551065917242"><span class="icon--svg icon--facebook "
+                                            aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                                height="18" viewBox="0 0 18 18">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.426 17.647H.974A.974.974 0 010 16.673V.974C0 .436.436 0 .974 0h15.7c.537 0 .973.436.973.974v15.699a.974.974 0 01-.974.974h-4.497v-6.834h2.294l.343-2.663h-2.637v-1.7c0-.772.214-1.297 1.32-1.297h1.41V2.77a18.853 18.853 0 00-2.055-.105c-2.033 0-3.425 1.241-3.425 3.52V8.15h-2.3v2.663h2.3v6.834z">
+                                                </path>
+                                            </svg></span></a><a target="_blank"
+                                        aria-label="follow us on Twitter, opens a new window" class="social__img"
+                                        href="https://twitter.com/home"><span class="icon--svg icon--twitter"
+                                            aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                                height="18" viewBox="0 0 18 18">
+                                                <path
+                                                    d="M3.5 5.1l3.8 5L4 13.6c-1.9 1.8-3.1 3.6-2.8 3.9.3.3 1.7-.8 3.1-2.5 3.2-3.8 4.1-3.8 6.4 0 1.3 2.2 2.5 3 4.5 3H18l-3.6-5-3.7-5.1L13.9 4c1.8-2.2 2.8-4 2.3-4-.4 0-1.8 1.3-3 3-1.3 1.6-2.6 3-3 3-.4 0-1.6-1.4-2.7-3C6.1.9 4.7 0 2.7 0H-.2l3.7 5.1zm6.3 3.3c5.3 7.6 5.8 8.6 4.4 8.6C13.4 17 3 2.7 3 1.6c0-2 2.3.3 6.8 6.8z">
+                                                </path>
+                                            </svg></span></a><a target="_blank"
+                                        aria-label="follow us on Instagram, opens a new window" class="social__img"
+                                        href="https://instagram.com/gandsmovies?igshid=MTNiYzNiMzkwZA%3D%3D&utm_source=qr"><span class="icon--svg"
+                                            aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                                height="18" viewBox="0 0 18 18">
+                                                <path fill-rule="evenodd"
+                                                    d="M15.441 15.993H2.206a.552.552 0 01-.552-.552V7.17H3.86c-.287.414-.384 1.185-.384 1.675 0 2.953 2.408 5.356 5.368 5.356 2.96 0 5.368-2.403 5.368-5.356 0-.49-.069-1.25-.425-1.675h2.206v8.272a.552.552 0 01-.552.552M8.844 5.458a3.39 3.39 0 013.394 3.386 3.39 3.39 0 01-3.394 3.386A3.39 3.39 0 015.45 8.844a3.39 3.39 0 013.393-3.386m4.391-3.252h1.655c.304 0 .551.247.551.551v1.655a.552.552 0 01-.551.551h-1.655a.552.552 0 01-.551-.551V2.757c0-.304.247-.551.551-.551M15.55 0H2.098A2.095 2.095 0 000 2.093v13.461c0 1.156.94 2.093 2.098 2.093h13.451a2.095 2.095 0 002.098-2.093V2.093C17.647.937 16.707 0 15.549 0">
+                                                </path>
+                                            </svg></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </section>
+               
+                     
+                    <section class="page__component page__component-- page__component--ad section__color__light ">
+                        <div class="ad ad--empty ad--banner">
+                            <div></div>
+                        </div>
+                    </section>
+                 
+
+                    <!--CUADRO NEGRO MANDALORIA-->
+                    <section id="sets-4" class="page__component page__component-- page__component--sets  ">
+                        <div class="sets base_sets half ">
+                            <div class="sets__hero">
+                                <div class="sets__bg__container">
+                                    <figure class="img__wrapper sets__background__wrapper">
+                                        <!--Imagen de fondo del cuadro negro-->
+                                        <div class="built__background built__background--single sets__background use-vars"
+                                            style="background-image:url(media/Mandaloriaan.png) !important">
+                                        </div>
+                                    </figure>
+                                </div>
+                                <div class="mobile_tab"><button class="baseCarousel__arrow base_sets__arrow left "
+                                        role="button" tabindex="0"><svg viewBox="10 0 50 110" width="30px">
+                                            <path d="M40 35 L20 55 L40 75" class="arrow"></path>
+                                        </svg></button>
+                                    <div class="tabs-mobile"></div><button
+                                        class="baseCarousel__arrow base_sets__arrow right" role="button"
+                                        tabindex="0"><svg viewBox="0 0 50 110" width="30px">
+                                            <path d="M20,75,40,55,20,35" class="arrow"></path>
+                                        </svg></button>
+                                </div>
+                                <div class="sets__main">
+                                    <div class="sets__container " aria-live="polite" role="region">
+                                        <figure class="img__wrapper "><img
+                                                src="media/disney.png"
+                                                srcSet=""
+                                                alt="mulogo_lob_log_eye_01_1" class="sets__logo" /></figure>
+                                        <div class="sets__eyebrow">Encuentra tus peliculas favoritas </div>
+                                        <div class="sets__title">Descubre el cine como nunca antes con Gands Movies</div>
+                                        <div class="sets__description">Donde cada película es una experiencia única, 
+                                            ¡sumérgete en un mundo de entretenimiento sin límites!</div><a target="_self"
+                                            class="cta-btn cta-btn--outline cta-btn--light "
+                                            href=""><span
+                                                class="innerFill "><span>Unirme Ahora</span></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs__div"></div>
+                        </div>
+                    </section>
+                  
+        
+                    <section id="video-6" class="page__component page__component-- page__component--video section__color__light ">
+                        <div class="content-container light vertical">
+                            <div class="video-component full-module light" id="video-d4ff68a87608e483314c18d90bb8fe0c">
+                               
+                                <div class="video-component__container playlist">
+                                    <div class="video-metadata">
+                                        <div class="video-metadata__meta__wrapper">
+                                            <div class="video-metadata__eyebrow">Gands Movies Live</div>
+                                            <div class="video-metadata__title">Series y películas</div>
+                                            <div class="video-metadata__description">Contenido ilimitadas para ver lo que quieras, cuando quieras. 
+                                                Lleva tus historias favoritas siempre contigo. </div>
+                                        </div>
+                                    </div>
+                                    <div class="video-component__playlist video-component__playlist_playing-false"></div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="sets-7" class="page__component page__component-- page__component--sets  ">
+                        <div class="sets base_sets half ">
+                            <div class="sets__hero">
+                                <div class="sets__bg__container">
+                                    <figure class="img__wrapper sets__background__wrapper">
+                                        <div class="built__background built__background--single sets__background use-vars"
+                                            style="background-image:url(media/pantalla.webp) !important ">
+                                        </div>
+                                    </figure>
+                                </div>
+                                <div class="mobile_tab"><button class="baseCarousel__arrow base_sets__arrow left "
+                                        role="button" tabindex="0"><svg viewBox="10 0 50 110" width="30px">
+                                            <path d="M40 35 L20 55 L40 75" class="arrow"></path>
+                                        </svg></button>
+                                    <div class="tabs-mobile"></div><button
+                                        class="baseCarousel__arrow base_sets__arrow right" role="button"
+                                        tabindex="0"><svg viewBox="0 0 50 110" width="30px">
+                                            <path d="M20,75,40,55,20,35" class="arrow"></path>
+                                        </svg></button>
+                                </div>
+                                <div class="sets__main">
+                                    <div class="sets__container " aria-live="polite" role="region">
+                                        <div class="sets__eyebrow">Todo en Gands Movies</div>
+                                        <div class="sets__title">Cuando quieras, donde quieras</div>
+                                        <div class="sets__description">Disfrútalo en tu pantalla favorita, ya sea tu TV, tableta, computadora, teléfono y otros.
+                                            Vive una experiencia única con una amplia selección de títulos en 4K. 
+                                            Además, puedes ver en cuatro pantallas en simultáneo para que nadie se quede afuera.</div><a target="_self"
+                                            class="cta-btn cta-btn--outline cta-btn--light "
+                                            href="#"><span class="innerFill "><span>Comienza Ahora</span></span></a><a target="_self"
+                                            class="cta-btn cta-btn--outline cta-btn--light "
+                                            href="#"><span class="innerFill "><span>Leer Más</span></span></a>
+                                                    
+                                    </div>
+                                  <!--  <img class="img-black-original" src="media/original.png" alt="">-->
+                                </div>
+                            </div>
+                            <div class="tabs__div"></div>
+                        </div>
+                    </section>
+                    
+                    <!-- Tabla con imágenes -->
+                    <section id="promo-10">
+                        <div class="description-title">Originalidad con Gands Movies y en exclusivo</div>
+                        <p>Disfruta de películas, series y documentales nunca antes vistos. Solo en Gands Movies.</p>
+                        <table>
+                            <tr>
+                                <td><img class="img-table shake" src="media/img1.jpeg" alt="Imagen 1"></td>
+                                <td><img class="img-table shake" src="media/img2.jpeg" alt="Imagen 2"></td>
+                                <td><img class="img-table shake" src="media/img3.jpeg" alt="Imagen 3"></td>
+                            </tr>
+                            <tr>
+                                <td><img class="img-table shake" src="media/img4.jpeg" alt="Imagen 4"></td>
+                                <td><img class="img-table shake" src="media/img5.jpeg" alt="Imagen 5"></td>
+                                <td><img class="img-table shake" src="media/img6.jpeg" alt="Imagen 6"></td>
+                            </tr>
+                            <tr>
+                                <td><img class="img-table shake" src="media/img7.jpeg" alt="Imagen 7"></td>
+                                <td><img class="img-table shake" src="media/img8.jpeg" alt="Imagen 8"></td>
+                                <td><img class="img-table shake" src="media/img9.jpeg" alt="Imagen 9"></td>
+                            </tr>
+                        </table>
+                    </section>
+                    
+                    <section id="promo-8"
+                        class="page__component page__component-- page__component--promo section__color__dark ">
+                        <div class="promo dark featured longer ">
+                            <div class="promo__wrapper">
+                                <figure class="img__wrapper img__wrappert ">
+                                    <picture class="promo__asset">
+                                    
+                                        <img class="img-contact img-contactt" src="media/Peliculascollague.jpeg"/>
+                                    </picture>
+                                </figure>
+                                <div class="promo__content">
+                                    <div class="promo__content__main">
+                                        <div class="promo__eyebrow">Gands Movies</div>
+                                        <div class="promo__title">Contacta con Gands Movies: Tu Puerta al Entretenimiento Cinematográfico​</div>
+                                        <div class="promo__description">¡Estamos aquí para ti! En Gands Movies valoramos tu experiencia 
+                                            y queremos asegurarnos de que tengas todo lo que necesitas para disfrutar al máximo. 
+                                            No dudes en ponerte en contacto con nosotros para cualquier pregunta, sugerencia o asistencia.
+                                            Aquí te dejamos cómo puedes encontrarnos:​</div>
+                                            
+                                            <a target="_self" class="cta-btn cta-btn--solid cta-btn--red "
+                                            href=""><span class="innerFill "><span>Contáctanos</span></span></a>
+                                    </div><a class="promo__content__btn"
+                                        href="#"> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="container">
+    <br>
+
+    <div class="container">
+    <br>
+    <h2>Próximos Lanzamientos 2024</h2>
+
+    <div class="accordion" id="upcomingAccordion">
+        <!-- Película 1 -->
+        <div class="panel">
+            <div class="panel-header" onclick="togglePanel('panel1')">
+                Alien: Romulus
+            </div>
+            <div class="panel-body" id="panel1" style="display: none;">
+                Fecha de estreno: Agosto 2024. Una nueva entrada en el universo de Alien.
+            </div>
+        </div>
+        <!-- Película 2 -->
+        <div class="panel">
+            <div class="panel-header" onclick="togglePanel('panel2')">
+                Borderlands
+            </div>
+            <div class="panel-body" id="panel2" style="display: none;">
+                Fecha de estreno: Agosto 2024. Adaptación del famoso videojuego al cine.
+            </div>
+        </div>
+
+        <!-- Película 3 -->
+        <div class="panel">
+        <div class="panel-header" onclick="togglePanel('panel3')">
+                Kraven the Hunter
+            </div>
+            <div class="panel-body" id="panel3" style="display: none;">
+                Fecha de estreno: Agosto 2024. El icónico cazador de Spider-Man llega a la gran pantalla.
+            </div>
+        </div>
+
+        <!-- Película 4 -->
+        <div class="panel">
+        <div class="panel-header" onclick="togglePanel('panel4')">
+                Harold and the Purple Crayon
+            </div>
+            <div class="panel-body" id="panel4" style="display: none;">
+                Fecha de estreno: Agosto 2024. La clásica historia infantil cobra vida.
+            </div>
+        </div>
+
+        <!-- Película 5 -->
+        <div class="panel">
+        <div class="panel-header" onclick="togglePanel('panel5')">
+                Speak No Evil
+            </div>
+            <div class="panel-body" id="panel5" style="display: none;">
+                Fecha de estreno: Agosto 2024. Un thriller que mantendrá a los espectadores al borde de sus asientos.
+            </div>
+        </div>
+
+        <!-- Película 6 -->
+        <div class="panel">
+        <div class="panel-header" onclick="togglePanel('panel6')">
+                Trap
+            </div>
+            <div class="panel-body" id="panel6" style="display: none;">
+                Fecha de estreno: Agosto 2024. Un thriller de Universal Pictures lleno de suspense.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePanel(panelId) {
+        var panel = document.getElementById(panelId);
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+</div>
+
+                <br><br><br>
                    <!--Aqui inicia nuestro footer -->
                 <footer class="page__footer">
                     <footer class="main-footer">
                         <div class="main-footer__full-content">
                             <div class="main-footer__links"><a class="main-footer__logo" href="index.html">
                                 <span class="icon--svg main-footer__logo--svg" aria-hidden="true">
-                                      <!--Icono G-->    <img src="../media/g.png" alt="" style="width: 90%; height: 96%; margin-left: 19px; ">
+                                      <!--Icono G-->    <img src="media/g.png" alt="" style="width: 90%; height: 96%; margin-left: 19px; ">
                                 </span></a>
                                 <nav class="main-footer__primary-links" aria-label="Primary footer navigtion">
                                     <ul>
-                                        <li class="main-footer__link"><a href="../index.php">Inicio</a>
+                                        <li class="main-footer__link"><a href="#">Inicio</a>
                                         </li>
                                         <li class="main-footer__link"><a href="#">Catálogos</a>
                                         </li>
@@ -414,7 +652,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                 <div class="main-footer__promotion">
                                         <div class="main-footer__promotion-image-wrapper">
                                             <figure class="img__wrapper "><img
-                                                    src="../media/U.png" style="width: 40px; height: 40px; margin-left: 25px;" 
+                                                    src="media/U.png" style="width: 40px; height: 40px; margin-left: 25px;" 
                                                    
                                                     alt="--Imagen" class="main-footer__promotion-image" />
                                             </figure>
@@ -429,7 +667,7 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                                      
                                         <div class="main-footer__promotion-image-wrapper">
                                             <figure class="img__wrapper "><img
-                                                    src="../media/E.png" style="width: 40px; height: 40px; margin-left: 25px;"
+                                                    src="media/E.png" style="width: 40px; height: 40px; margin-left: 25px;"
                                                     
                                                     alt="Marvel Unlimited Logo" class="main-footer__promotion-image" />
                                             </figure>
@@ -543,8 +781,6 @@ document.querySelectorAll('.img-table').forEach(function(img) {
 </div>  
 </div>
 </div>
-
-		<script src="scripts/index.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+   </body>
 </html>
