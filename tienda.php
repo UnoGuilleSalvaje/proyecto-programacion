@@ -355,53 +355,53 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
 }
 
 
-// Función para filtrar productos por rango de precios
-function filtrarProductosPorPrecio($precioMin, $precioMax) {
-    global $conexion;
-    $productosFiltrados = array();
+// // Función para filtrar productos por rango de precios
+// function filtrarProductosPorPrecio($precioMin, $precioMax) {
+//     global $conexion;
+//     $productosFiltrados = array();
 
-    // Utiliza consultas preparadas para evitar SQL injection
-    $stmt = $conexion->prepare("SELECT * FROM peliculas WHERE precio >= ? AND precio <= ?");
-    $stmt->bind_param("ii", $precioMin, $precioMax);
-    $stmt->execute();
-    $result = $stmt->get_result();
+//     // Utiliza consultas preparadas para evitar SQL injection
+//     $stmt = $conexion->prepare("SELECT * FROM peliculas WHERE precio >= ? AND precio <= ?");
+//     $stmt->bind_param("ii", $precioMin, $precioMax);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
 
-    while ($row = $result->fetch_assoc()) {
-        $productosFiltrados[] = $row;
-    }
+//     while ($row = $result->fetch_assoc()) {
+//         $productosFiltrados[] = $row;
+//     }
 
-    $stmt->close();
+//     $stmt->close();
 
-    return $productosFiltrados;
-}
+//     return $productosFiltrados;
+// }
 
-// Obtener el rango de precios desde la URL (puedes ajustarlo según tu lógica)
-$precioMin = isset($_GET['precioMin']) ? $_GET['precioMin'] : null;
-$precioMax = isset($_GET['precioMax']) ? $_GET['precioMax'] : null;
+// // Obtener el rango de precios desde la URL (puedes ajustarlo según tu lógica)
+// $precioMin = isset($_GET['precioMin']) ? $_GET['precioMin'] : null;
+// $precioMax = isset($_GET['precioMax']) ? $_GET['precioMax'] : null;
 
-// Verificar si se proporciona un rango válido
-if (is_numeric($precioMin) && is_numeric($precioMax)) {
-    // Filtrar productos por rango de precios
-    $productosFiltrados = filtrarProductosPorPrecio($precioMin, $precioMax);
-} else {
-    // Obtener todos los productos si no se proporciona un rango válido
-    $productosFiltrados = obtenerProductos();
-}
+// // Verificar si se proporciona un rango válido
+// if (is_numeric($precioMin) && is_numeric($precioMax)) {
+//     // Filtrar productos por rango de precios
+//     $productosFiltrados = filtrarProductosPorPrecio($precioMin, $precioMax);
+// } else {
+//     // Obtener todos los productos si no se proporciona un rango válido
+//     $productosFiltrados = obtenerProductos();
+// }
 
-usort($productosFiltrados, function ($a, $b) {
-    return $a['precio'] - $b['precio'];
-});
+// usort($productosFiltrados, function ($a, $b) {
+//     return $a['precio'] - $b['precio'];
+// });
 
 ?>
-        <form action="" method="get" style="margin-left: 50px; margin-right: 50px;">
+        <!-- <form action="" method="get" style="margin-left: 50px; margin-right: 50px;">
     <label for="precioMin">Precio mínimo:</label>
     <input type="text" id="precioMin" name="precioMin" value="<?php echo $precioMin; ?>" required>
     <br>
     <label for="precioMax">Precio máximo:</label>
     <input type="text" id="precioMax" name="precioMax" value="<?php echo $precioMax; ?>" required>
     <input type="submit" value="Filtrar">
-    <br><br>
-</form>
+    <br><br> -->
+<!-- </form> -->
     <!-- Mostrar productos filtrados o todos los productos -->
     <?php if (!empty($productosFiltrados)): ?>
         <ul>
@@ -411,7 +411,7 @@ usort($productosFiltrados, function ($a, $b) {
             <?php endforeach; ?>
         </ul>
     <?php else: ?>
-        <p>No se encontraron productos.</p>
+        <!-- <p>No se encontraron productos.</p> -->
     <?php endif; ?>
         <!-- Películas ----------------------------------------------------------------------------- -->
         <div class="container-items" style="margin-left: 50px; margin-right: 50px;";>

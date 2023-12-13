@@ -211,7 +211,6 @@ document.querySelectorAll('.img-table').forEach(function(img) {
         <li><a class="dropdown-item" href="grafica 2.php">Grafica 2</a></li>
         </ul>
     </li>';
-    </li>';
     }
     ?>
 </li>

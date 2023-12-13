@@ -542,7 +542,7 @@ function actualizarTotal(total) {
     <option value="Espana">España</option>
     <!-- Añade más países según sea necesario -->
 </select>
-
+<form action="procesar_pago.php" method="post">
             <label for="direccion">Dirección:</label>
             <input type="text" name="direccion" required>
 
@@ -557,7 +557,8 @@ function actualizarTotal(total) {
             <input type="text" name="cvv" required>
 
             <!-- Botón de pago y envia correo con los datos de la compra con enviar_correp.php-->   
-            <button type="button" id="btnPagar">Pagar</button>
+            <button type="submit" id="btnPago">Pagar</button>
+</form>
             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
             
 <script>

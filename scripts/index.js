@@ -225,6 +225,33 @@ btnPagar.addEventListener('click', () => {
     showCartTable(cartItems);
 });
 
+btnPago.addEventListener('click', () => {
+    const cartItems = allProducts.map(product => {
+        return {
+            title: product.title,
+            quantity: product.quantity
+        };
+    });
+
+    fetch('disminuir_cantidad.php', {
+        method: 'POST',
+        body: JSON.stringify({ cart: cartItems }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Cantidades actualizadas con éxito');
+        } else {
+            console.error('Error al actualizar cantidades');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+
 function showCartTable(cartItems) {
     const cartTableBody = document.getElementById('cartTableBody');
     cartTableBody.innerHTML = ''; // Limpiar la tabla antes de actualizarla
