@@ -27,21 +27,6 @@ if (isset($datosRecibidos['cart'])) {
 
     // Puedes realizar operaciones adicionales con la información del carrito aquí
 
-    // Mostrar información del carrito (esto es solo un ejemplo)
-
-    $response = [
-        'success' => true,
-        'message' => '¡Información del carrito recibida con éxito!',
-        'cartItems' => $cartItems,
-    ];
-
-    echo json_encode($response);
-} else {
-    $response = [
-        'success' => false,
-        'message' => 'No se recibió la información del carrito.',
-    ];
-
     echo json_encode($response);
 }
 ?>
@@ -116,6 +101,10 @@ if (isset($datosRecibidos['cart'])) {
         }
     </script>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <style>
         .swal-custom-popup {
             background-color: #1e1e1e;
@@ -133,9 +122,21 @@ if (isset($datosRecibidos['cart'])) {
         }
 
         .swal-custom-confirm {
-            background-color: #e62429;
-            /* Rojo botón */
-        }
+    background-color: #e62429; /* Rojo botón */
+    color: #ffffff; /* Texto en blanco */
+    padding: 15px 32px; /* Padding más grande para un botón más grande */
+    font-size: 16px; /* Tamaño de fuente más grande */
+    border: none;
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para un efecto elevado */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.swal-custom-confirm:hover {
+    background-color: #ec1d24; /* Un rojo más oscuro para el efecto hover */
+}
+
 
         .swal-custom-cancel {
             background-color: #151515;
@@ -145,7 +146,7 @@ if (isset($datosRecibidos['cart'])) {
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-image: url(media/fondo_pago.jpg);
+            background-image: url(media/fondo2.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -165,7 +166,7 @@ if (isset($datosRecibidos['cart'])) {
             color: white;
         }
         .payment-container {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -204,14 +205,14 @@ if (isset($datosRecibidos['cart'])) {
 
         .payment-form input {
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ec1d24;
             border-radius: 5px;
             font-size: 14px;
         }
 
         .payment-form button {
             padding: 10px;
-            background-color: #007bff;
+            background-color: #e62429;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -221,7 +222,7 @@ if (isset($datosRecibidos['cart'])) {
         }
 
         .payment-form button:hover {
-            background-color: #0056b3;
+            background-color: #ec1d24;
         }
 
         .discount-form {
@@ -237,14 +238,14 @@ if (isset($datosRecibidos['cart'])) {
 
         .discount-form input {
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ec1d24;
             border-radius: 5px;
             font-size: 14px;
         }
 
         .discount-form button {
             padding: 10px;
-            background-color: #007bff;
+            background-color: #e62429;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -363,10 +364,10 @@ if (isset($datosRecibidos['cart'])) {
                     $total = isset($_SESSION['descuento_aplicado']) && $_SESSION['descuento_aplicado']
                         ? $_SESSION['total_con_descuento']
                         : calcularTotalSinDescuento($_SESSION['cart']);
+                        $costoEnvio = 0;
 
-                    // Actualizar el total en la página 
-                    echo '<script>actualizarTotal(' . $total . ');</script>';
                 }
+                
                 // mostrar valor que trae total
 
                 $_POST['total'] = $total;
@@ -380,9 +381,21 @@ if (isset($datosRecibidos['cart'])) {
                 }
                 ?>
                 <tr>
-                    <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
-                    <td><strong>$<?php echo number_format($total, 2); ?></strong></td>
-                </tr>
+    <td colspan="3" style="text-align: right;"><strong>Gastos de Envío:</strong></td>
+    <td><strong id="gastos-envio">$0.00</strong></td>
+</tr>
+
+<tr>
+    <td colspan="3" style="text-align: right;"><strong>Impuesto:</strong></td>
+    <td><strong id="impuesto">$0.00</strong></td>
+</tr>
+
+
+<tr>
+    <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
+    <td><strong id="total">$<?php echo number_format($total, 2); ?></strong></td>
+</tr>
+
                 <!-- icono de paypal, mastercard y visa -->
                 <tr style="border: white; border-bottom: 127px solid white;">
                     <td colspan="1" style="text-align: right;">
@@ -392,18 +405,121 @@ if (isset($datosRecibidos['cart'])) {
                         <img src="media/visa.png" alt="" style="width: 140px; height: 50px; display:flex; justify-content: space-evenly;">
                     </td>
                     <td colspan="1" style="text-align: right;">
-                        <img src="media/Oxxo.svg" alt="" style="width: 100px; height: 50px; display:flex; justify-content: space-evenly;">
+                        <img src="media/Oxxo_Logo.png" alt="" style="width: 100px; height: 50px; display:flex; justify-content: space-evenly;">
 
                     </td>
                     <!-- discount form -->
                 <tr class="discount-form">
                     <td colspan="4" style="text-align: left;">
-                        <form action="aplicar_descuento.php" method="POST">
-                            <label for="discount">Código de descuento:</label>
-                            <input type="text" name="discount" id="discount">
-                            <!-- reload page -->
-                            <button type="submit" onclick="window.location.reload();">Aplicar</button>
-                        </form>
+                    <form id="discount-form">
+    <label for="discount-code">Código de descuento:</label>
+    <input type="text" id="discount-code">
+    <button type="button" id="apply-discount">Aplicar</button>
+</form>
+
+<script>
+$(document).ready(function() {
+    $('#pais').on('change', function() {
+        var paisSeleccionado = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: 'calcular_envio.php',
+            data: { pais: paisSeleccionado },
+            success: function(response) {
+                var data = JSON.parse(response);
+                actualizarGastosEnvio(data.costoEnvio);
+                actualizarImpuesto(data.impuesto);
+                actualizarTotal(data.totalConEnvioEImpuestos);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error: " + error);
+            }
+        });
+    });
+
+
+    function actualizarGastosEnvio(costoEnvio) {
+    $('#gastos-envio').text('$' + costoEnvio.toFixed(2));
+}
+
+function actualizarImpuesto(impuesto) {
+    $('#impuesto').text('$' + impuesto.toFixed(2));
+}
+
+function actualizarTotal(nuevoTotal) {
+    $('#total').text('$' + nuevoTotal.toFixed(2));
+}
+
+
+    $('#apply-discount').on('click', function() {
+        var discountCode = $('#discount-code').val();
+        $.ajax({
+            type: 'POST',
+            url: 'aplicar_descuento.php', // La URL del script PHP que maneja el descuento
+            data: { discount: discountCode },
+            success: function(response) {
+                var data = JSON.parse(response);
+                if (data.success) {
+    actualizarTotal(data.totalConDescuento);
+    Swal.fire({
+    title: 'Descuento Aplicado',
+    text: 'El descuento ha sido aplicado con éxito.',
+    icon: 'success',
+    customClass: {
+        popup: 'swal-custom-popup',
+        title: 'swal-custom-title',
+        content: 'swal-custom-content',
+        confirmButton: 'swal-custom-confirm'
+    },
+    buttonsStyling: false,
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Excelente'
+});
+} else {
+    Swal.fire({
+    title: 'Error',
+    text: 'Código de descuento no válido.',
+    icon: 'error',
+    customClass: {
+        popup: 'swal-custom-popup',
+        title: 'swal-custom-title',
+        content: 'swal-custom-content',
+        confirmButton: 'swal-custom-confirm',
+        cancelButton: 'swal-custom-cancel'
+    },
+    buttonsStyling: false,
+    confirmButtonColor: '#d33',
+    confirmButtonText: 'Intentar de nuevo'
+});
+}
+
+            },
+            error: function() {
+                Swal.fire({
+    title: 'Error',
+    text: 'No se pudo aplicar el descuento',
+    icon: 'error',
+    customClass: {
+        popup: 'swal-custom-popup',
+        title: 'swal-custom-title',
+        content: 'swal-custom-content',
+        confirmButton: 'swal-custom-confirm',
+        cancelButton: 'swal-custom-cancel'
+    },
+    buttonsStyling: false,
+    confirmButtonColor: '#d33',
+    confirmButtonText: 'Intentar de nuevo'
+});
+            }
+        });
+    });
+});
+
+function actualizarTotal(total) {
+    $('#total').text('$' + total.toFixed(2));
+}
+
+</script>
                     </td>
                 </tr>
             </tbody>
@@ -419,6 +535,13 @@ if (isset($datosRecibidos['cart'])) {
             <!-- Campos de información del comprador -->
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" required>
+
+            <label for="pais">País:</label>
+<select name="pais" id="pais" required>
+    <option value="Mexico">México</option>
+    <option value="Espana">España</option>
+    <!-- Añade más países según sea necesario -->
+</select>
 
             <label for="direccion">Dirección:</label>
             <input type="text" name="direccion" required>
@@ -436,6 +559,7 @@ if (isset($datosRecibidos['cart'])) {
             <!-- Botón de pago y envia correo con los datos de la compra con enviar_correp.php-->   
             <button type="button" id="btnPagar">Pagar</button>
             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            
 <script>
     $(document).ready(function () {
         $('#btnPagar').on('click', function () {
@@ -472,6 +596,8 @@ if (isset($datosRecibidos['cart'])) {
 
         </form>
     </div>
+
+    
 
 
     <!-- Incluir SweetAlert -->
