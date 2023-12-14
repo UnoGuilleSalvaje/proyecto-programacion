@@ -436,17 +436,26 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                         <div class="content-container light vertical">
                             <div class="video-component full-module light" id="video-d4ff68a87608e483314c18d90bb8fe0c">
                                
-                                <div class="video-component__container playlist">
+                            <div class="video-component__container playlist">
                                     <div class="video-metadata">
                                         <div class="video-metadata__meta__wrapper">
                                             <div class="video-metadata__eyebrow">Gands Movies Live</div>
                                             <div class="video-metadata__title">Series y películas</div>
-                                            <div class="video-metadata__description">Contenido ilimitadas para ver lo que quieras, cuando quieras. 
+                                            <div class="video-metadata__description">Contenido ilimitadas para ver lo
+                                                que quieras, cuando quieras.
                                                 Lleva tus historias favoritas siempre contigo. </div>
-                                        </div>
-                                    </div>
-                                    <div class="video-component__playlist video-component__playlist_playing-false"></div>
-                            </div>
+                                            <div style="text-align: right;">
+                                                <p style="position: absolute; bottom: 155px; right: 0;">Usa el siguiente
+                                                    cupón
+                                                    en
+                                                    nuestra
+                                                    tienda:
+                                                </p>
+                                                <img class="video-metadata_description" src="media/GANDESLAONDA.png"
+                                                    alt="cupon" style="position: absolute; right: 0; bottom: 30px; ">
+
+                                            </div>
+
                         </div>
                     </section>
                     
