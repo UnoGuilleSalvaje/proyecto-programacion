@@ -330,9 +330,25 @@ if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
                         </div>
                     </nav>
 
+                    <br>
+                    
 
-                    <br><br>
-                    <h1 class="txt">Películas</h1>
+
+                    <br>
+                    <div class="peliculas-header">
+    <h1 class="txt">PELÍCULAS</h1>
+    <div class="filtro-container">
+    <form action="filtro.php" method="get" class="filtro-form">
+            <label for="precio_minimo">Precio Mínimo:</label>
+            <input type="number" id="precio_minimo" name="precio_minimo" min="0" step="0.01" required>
+
+            <label for="precio_maximo">Precio Máximo:</label>
+            <input type="number" id="precio_maximo" name="precio_maximo" min="0" step="0.01" required>
+
+        <button type="submit" class="filtro-btn">Filtrar</button>
+    </form>
+</div>
+</div>
 
 		<header>
 			

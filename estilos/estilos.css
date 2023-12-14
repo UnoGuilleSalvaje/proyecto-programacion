@@ -232,6 +232,7 @@ header{
 .txt{
     font-family: "Figtree", sans-serif;
     text-align: center;
+    margin-left: 50px;
 }
 
 .invisible {
@@ -241,4 +242,60 @@ header{
 .icon-close {
     stroke: red !important;
 }
+
+.peliculas-header {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el título y el formulario */
+    align-items: center; /* Alineación vertical */
+    margin-bottom: 20px; /* Espacio debajo del header */
+}
+
+.filtro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filtro-form {
+    display: flex;
+    background-color: #1e1e1e;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 0.8rem; /* Tamaño de texto más pequeño */
+}
+
+.filtro-form input,
+.filtro-form button {
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ec1d24;
+    background-color: #151515;
+    color: white;
+}
+
+.filtro-form button {
+    background-color: #e62429;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filtro-form button:hover {
+    background-color: #ec1d24;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .peliculas-header {
+        flex-direction: column;
+    }
+
+    .filtro-container {
+        width: 100%;
+        margin-top: 20px; /* Espacio arriba del formulario en pantallas pequeñas */
+    }
+}
+
 
