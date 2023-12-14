@@ -328,69 +328,33 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                     </nav>
 
 
-<?php
-// Conexión a la base de datos (asegúrate de reemplazar con tus propios detalles de conexión)
-$servidor = 'localhost';
-$cuenta = 'root';
-$password = '';
-$bd = 'baseinventario';
-//Se establece una conexión con la base de datos MySQL 
-$conexion = new mysqli($servidor, $cuenta, $password, $bd);
 
-// Verifica si la conexión fue exitosa
-if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
-}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-$producto = null;
+      function drawChart() {
 
-// Consulta para obtener todos los productos
-$sql = "SELECT id, precio, genero FROM usuarios";
-$resultado = $conexion->query($sql);
+        var data = google.visualization.arrayToDataTable([
+          ['Genero', 'existencias'],
+          ['comedia',     11],
+          ['musical',  1],
+          ['Belico', 1],
+          ['Drama',  10],
+          ['Accion',  12],
+        ]);
 
+        var options = {
+          title: 'Grafica de existencias'
+        };
 
-$conexion->close();
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-?>
-<canvas id="myChart" width="400" height="400"></canvas>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var data = <?php echo json_encode($data); ?>;
-
-    var labels = data.map(function(item) {
-        return item.intentos_fallidos;
-    });
-
-    var values = data.map(function(item) {
-        return item.artista;
-    });
-
-    var values = data.map(function(item) {
-        return item.id;
-    });
-
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Datos desde la base de datos',
-                data: values,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-
+        chart.draw(data, options);
+      }
+    </script>
+<div id="piechart" style="width: 900px; height: 500px;"></div>
 <br><br><br>
                    <!--Aqui inicia nuestro footer -->
                 <footer class="page__footer">
