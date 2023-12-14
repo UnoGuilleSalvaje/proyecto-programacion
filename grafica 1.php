@@ -328,69 +328,32 @@ document.querySelectorAll('.img-table').forEach(function(img) {
                     </nav>
 
 
-<?php
-// Conexión a la base de datos (asegúrate de reemplazar con tus propios detalles de conexión)
-$servidor = 'localhost';
-$cuenta = 'root';
-$password = '';
-$bd = 'db_peliculas';
-//Se establece una conexión con la base de datos MySQL 
-$conexion = new mysqli($servidor, $cuenta, $password, $bd);
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-// Verifica si la conexión fue exitosa
-if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
-}
+      function drawChart() {
 
-$producto = null;
+        var data = google.visualization.arrayToDataTable([
+          ['cliente', 'Compras'],
+          ['Jorge calderon Reyes',     203],
+          ['Jocelin Xitlali Ortega Lopez',  189],
+          ['Samantha Ruiz Sierra', 182],
+          ['Uriel Alejandro Reyes Cardona', 112],
+          ['Eduardo Salamanca Perez', 103],
+        ]);
 
-// Consulta para obtener todos los productos
-$sql = "SELECT id, precio, genero FROM peliculas";
-$resultado = $conexion->query($sql);
+        var options = {
+          title: 'Grafica de Mejores 5 clientes (Compras por cliente)'
+        };
 
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-$conexion->close();
-
-?>
-<canvas id="myChart" width="400" height="400"></canvas>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var data = <?php echo json_encode($data); ?>;
-
-    var labels = data.map(function(item) {
-        return item.id;
-    });
-
-    var values = data.map(function(item) {
-        return item.precio;
-    });
-
-    var values = data.map(function(item) {
-        return item.genero;
-    });
-
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Datos desde la base de datos',
-                data: values,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-
+        chart.draw(data, options);
+      }
+    </script>
+<div id="piechart" style="width: 900px; height: 500px;"></div>
 <br><br><br>
                    <!--Aqui inicia nuestro footer -->
                 <footer class="page__footer">
